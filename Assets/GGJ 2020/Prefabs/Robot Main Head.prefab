@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7170689285348797373}
   - component: {fileID: 7492419521064647636}
   - component: {fileID: 2222747498695350052}
-  - component: {fileID: 7170689285348797362}
   - component: {fileID: 7170689285348797363}
   - component: {fileID: 7170689285348797360}
+  - component: {fileID: 2659499067919377576}
   m_Layer: 8
   m_Name: Robot Main Head
   m_TagString: Untagged
@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 7170689285348797363}
-  Collider: {fileID: 7170689285348797362}
+  Collider: {fileID: 2659499067919377576}
   PartType: 0
   AudioSource: {fileID: 7170689285348797360}
   AudioClipsCollisions:
@@ -122,19 +123,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7170689285348797362
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7170689285348797361}
-  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.863572, y: 2.5502338, z: 3.06529}
-  m_Center: {x: 0, y: 0.106116, z: 0.32864702}
 --- !u!54 &7170689285348797363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -247,3 +235,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &2659499067919377576
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170689285348797361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: cbcb949f63cbeb64a862304917f37c4b, type: 3}

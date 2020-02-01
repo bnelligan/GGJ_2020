@@ -2958,6 +2958,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot Main Head
       objectReference: {fileID: 0}
+    - target: {fileID: 7170689285348797373, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
+        type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 4660874116014541830}
     - target: {fileID: 7906820457947885319, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3015,6 +3020,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6a1709a9ff9ef4f9f39a141059c23f, type: 3}
+--- !u!64 &4660874116014541830 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 2659499067919377576, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4660874116014541829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5570928335533282766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3094,6 +3105,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7954006168671694600, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+        type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 5570928335533282767}
     - target: {fileID: 7954006168671694604, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
         type: 3}
       propertyPath: m_Name
@@ -3101,6 +3117,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4, type: 3}
+--- !u!64 &5570928335533282767 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 1183259625678313566, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9124885623878491680
 PrefabInstance:
   m_ObjectHideFlags: 0

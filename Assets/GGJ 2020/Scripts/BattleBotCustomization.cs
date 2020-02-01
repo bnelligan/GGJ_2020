@@ -61,6 +61,8 @@ namespace BrokenBattleBots
 
                                 this.selectedBattleBotPart = battleBotPart;
 
+                                this.selectedBattleBotPart.BeingDragged = true;
+
                                 UnityEngine.Debug.Log ($"{ this } selected { this.selectedBattleBotPart }");
                             }
                         }
@@ -74,6 +76,8 @@ namespace BrokenBattleBots
                 if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.selectedBattleBotPart.Socket != null)
                 {
                     UnityEngine.Debug.Log ($"{ this } released { this.selectedBattleBotPart }");
+
+                    this.selectedBattleBotPart.BeingDragged = false;
 
                     this.selectedBattleBotPart = null;
 

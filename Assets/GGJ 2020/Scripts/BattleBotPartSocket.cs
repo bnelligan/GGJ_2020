@@ -39,7 +39,10 @@ namespace BrokenBattleBots
             {
                 UnityEngine.Debug.LogWarning ($"{ battleBotPart } is not compatible with { this }");
 
-                battleBotPart.PlayErrorSound ();
+                if (battleBotPart.BeingDragged == true)
+                {
+                    battleBotPart.PlayErrorSound ();
+                }
 
                 return;
             }

@@ -8,6 +8,7 @@ namespace BrokenBattleBots
     [RequireComponent (typeof (Rigidbody))]
     public class BattleBotPart : MonoBehaviour
     {
+        public bool BeingDragged;
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
         public Collider Collider;
