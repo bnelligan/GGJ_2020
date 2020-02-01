@@ -159,6 +159,11 @@ PrefabInstance:
       propertyPath: AudioClipsError.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 125b6b1154d086640a235673da7df9a1, type: 3}
+    - target: {fileID: 7170689285348797373, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
+        type: 3}
+      propertyPath: weldSpeedMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7906820457947885319, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2416,6 +2421,11 @@ PrefabInstance:
       propertyPath: AudioClipsError.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 125b6b1154d086640a235673da7df9a1, type: 3}
+    - target: {fileID: 7170689285348797373, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
+        type: 3}
+      propertyPath: weldSpeedMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7906820457947885319, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3065,32 +3075,77 @@ PrefabInstance:
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.ctime1
-      value: 23516
+      value: 8481
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key2.r
-      value: 0.40392157
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key2.g
-      value: 0.40392157
+      value: 0.67058825
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key2.b
-      value: 0.40392157
+      value: 0.1764706
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.ctime2
-      value: 65535
+      value: 23516
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.m_NumColorKeys
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key3.r
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key3.g
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key3.b
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key0.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key0.g
+      value: 0.85882354
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 988d4762f6be4f140bbcb998219f0737, type: 3}
@@ -3116,6 +3171,11 @@ PrefabInstance:
       propertyPath: Collider
       value: 
       objectReference: {fileID: 4660874116014541830}
+    - target: {fileID: 7170689285348797373, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
+        type: 3}
+      propertyPath: weldSpeedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7906820457947885319, guid: ce6a1709a9ff9ef4f9f39a141059c23f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3198,11 +3258,6 @@ PrefabInstance:
       propertyPath: parentBattleBotPart
       value: 
       objectReference: {fileID: 2534866582525426374}
-    - target: {fileID: 1385385254742971289, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7081674234384ec4d94635116e6bc931, type: 2}
     - target: {fileID: 4735513643527423463, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
         type: 3}
       propertyPath: parentBattleBotPart

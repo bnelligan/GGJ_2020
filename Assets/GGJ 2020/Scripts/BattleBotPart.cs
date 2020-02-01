@@ -19,6 +19,7 @@ namespace BrokenBattleBots
         public AudioClip[] AudioClipsAttach;
         public AudioClip[] AudioClipsDetach;
         public AudioClip[] AudioClipsError;
+        public float weldSpeedMultiplier = 1f;
 
         public enum BattleBotPartType
         {
@@ -33,7 +34,11 @@ namespace BrokenBattleBots
 
         public void Weld (float value)
         {
-            this.Welded += value;
+            this.Welded += value * this.weldSpeedMultiplier;
+
+            // Clamp weld value
+
+            UnityEngine.Mathf.Clamp01 (this.Welded);
 
             MeshRenderer meshRenderer = this.GetComponentInChildren <MeshRenderer> ();
 
