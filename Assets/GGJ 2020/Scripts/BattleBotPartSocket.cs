@@ -50,9 +50,6 @@ namespace BrokenBattleBots
                 UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, true);
             }
 
-            // this.battleBotPart.transform.localPosition = Vector3.zero;
-            // this.battleBotPart.transform.localRotation = Quaternion.identity;
-
             this.battleBotPart.PlayAttachSound ();
         }
 

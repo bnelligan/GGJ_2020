@@ -12,6 +12,7 @@ namespace BrokenBattleBots
         public Camera Camera;
         public SpringJoint SpringJoint;
         private BattleBotPart selectedBattleBotPart;
+        public BattleBotPart[] availableParts;
 
         private void Awake ()
         {
@@ -19,6 +20,24 @@ namespace BrokenBattleBots
             {
                 this.Camera = FindObjectOfType <Camera> ();
             }
+        }
+
+        private void LateUpdate ()
+        {
+            Vector3 averagePosition = Vector3.zero;
+
+            foreach (BattleBotPart battleBotPart in this.availableParts)
+            {
+                averagePosition += battleBotPart.transform.position;
+            }
+
+            averagePosition /= (float) this.availableParts.Length;
+
+            Vector3 cameraPosition = averagePosition + new Vector3 (-5.67f, 19.43f, -10.83f);
+
+            cameraPosition.y = 19.43f;
+
+            this.Camera.transform.position = Vector3.Lerp (this.Camera.transform.position, cameraPosition, UnityEngine.Time.deltaTime * 3f);
         }
 
         private void Update ()
@@ -45,21 +64,22 @@ namespace BrokenBattleBots
                         {
                             // If the part is in a socket - detach it
 
-                            if (battleBotPart.Socket != null)
+                            /*if (battleBotPart.Socket != null)
                             {
                                 battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * Random.Range (2f, 8f));
 
                                 this.selectedBattleBotPart = battleBotPart;
 
-                                // this.SpringJoint.connectedBody = this.selectedBattleBotPart.Rigidbody;
+                                if (battleBotPart.Socket.parentBattleBotPart != null)
+                                {
+
+                                }
                             }
-                            else
+                            else*/
                             {
                                 // The part is not in a socket
 
                                 this.selectedBattleBotPart = battleBotPart;
-
-                                // this.SpringJoint.connectedBody = this.selectedBattleBotPart.Rigidbody;
 
                                 UnityEngine.Debug.Log ($"{ this } selected { this.selectedBattleBotPart }");
                             }
@@ -75,8 +95,6 @@ namespace BrokenBattleBots
                 {
                     UnityEngine.Debug.Log ($"{ this } released { this.selectedBattleBotPart }");
 
-                    // this.SpringJoint.connectedBody = null;
-
                     this.selectedBattleBotPart = null;
 
                     return;
@@ -91,8 +109,6 @@ namespace BrokenBattleBots
                     #endif
 
                     this.selectedBattleBotPart.transform.position = Vector3.Lerp (this.selectedBattleBotPart.transform.position, raycastHit.point + Vector3.up * 0.5f, 3f * UnityEngine.Time.deltaTime);
-
-                    // this.SpringJoint.transform.position = raycastHit.point;
                 }
             }
         }
