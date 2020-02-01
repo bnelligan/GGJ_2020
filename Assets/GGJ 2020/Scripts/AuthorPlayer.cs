@@ -7,8 +7,6 @@ using Unity.Mathematics;
 
 namespace BrokenBattleBots
 {
-
-
     public class AuthorPlayer : MonoBehaviour, IConvertGameObjectToEntity
     {
         public float MoveSpeed;
