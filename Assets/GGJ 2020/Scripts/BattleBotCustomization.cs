@@ -50,6 +50,8 @@ namespace BrokenBattleBots
                                 battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * Random.Range (2f, 8f));
 
                                 this.selectedBattleBotPart = battleBotPart;
+
+                                // this.SpringJoint.connectedBody = this.selectedBattleBotPart.Rigidbody;
                             }
                             else
                             {
@@ -73,7 +75,7 @@ namespace BrokenBattleBots
                 {
                     UnityEngine.Debug.Log ($"{ this } released { this.selectedBattleBotPart }");
 
-                    this.SpringJoint.connectedBody = null;
+                    // this.SpringJoint.connectedBody = null;
 
                     this.selectedBattleBotPart = null;
 
@@ -88,7 +90,9 @@ namespace BrokenBattleBots
 
                     #endif
 
-                    this.selectedBattleBotPart.transform.position = raycastHit.point;
+                    this.selectedBattleBotPart.transform.position = Vector3.Lerp (this.selectedBattleBotPart.transform.position, raycastHit.point + Vector3.up * 0.5f, 3f * UnityEngine.Time.deltaTime);
+
+                    // this.SpringJoint.transform.position = raycastHit.point;
                 }
             }
         }
