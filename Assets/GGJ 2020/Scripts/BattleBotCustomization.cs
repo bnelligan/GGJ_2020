@@ -29,7 +29,7 @@ namespace BrokenBattleBots
             { 
                 if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Mouse0) == true)
                 {
-                    if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue))
+                    if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskSelect))
                     {
                         #if UNITY_EDITOR
 
@@ -55,7 +55,7 @@ namespace BrokenBattleBots
 
                                 this.selectedBattleBotPart = battleBotPart;
 
-                                this.SpringJoint.connectedBody = this.selectedBattleBotPart.Rigidbody;
+                                // this.SpringJoint.connectedBody = this.selectedBattleBotPart.Rigidbody;
 
                                 UnityEngine.Debug.Log ($"{ this } selected { this.selectedBattleBotPart }");
                             }
@@ -65,17 +65,6 @@ namespace BrokenBattleBots
             }
             else
             {
-                if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue))
-                {
-                    #if UNITY_EDITOR
-
-                    UnityEngine.Debug.DrawLine (ray.origin, raycastHit.point, Color.blue);
-
-                    #endif
-
-                    this.SpringJoint.anchor = raycastHit.point;
-                }
-
                 // Check if the part has been attached to a socket or released by the user
 
                 if (UnityEngine.Input.GetKeyUp (UnityEngine.KeyCode.Mouse0) == true || this.selectedBattleBotPart.Socket != null)
@@ -85,6 +74,19 @@ namespace BrokenBattleBots
                     this.SpringJoint.connectedBody = null;
 
                     this.selectedBattleBotPart = null;
+
+                    return;
+                }
+
+                if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskDrag))
+                {
+                    #if UNITY_EDITOR
+
+                    UnityEngine.Debug.DrawLine (ray.origin, raycastHit.point, Color.blue);
+
+                    #endif
+
+                    this.selectedBattleBotPart.transform.position = raycastHit.point;
                 }
             }
         }

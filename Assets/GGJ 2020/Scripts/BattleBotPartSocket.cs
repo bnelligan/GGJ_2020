@@ -29,7 +29,7 @@ namespace BrokenBattleBots
 
             // Check if the part is compatible with this socket
 
-            if (this.CompatiblePartTypes.HasFlag (battleBotPart.PartType) == false)
+            if (this.CompatiblePartTypes != battleBotPart.PartType)
             {
                 UnityEngine.Debug.LogWarning ($"{ battleBotPart } is not compatible with { this }");
             }
