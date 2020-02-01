@@ -24,12 +24,28 @@ namespace BrokenBattleBots
 
         private void LateUpdate ()
         {
+            float furthestPartFromCameraDistance = float.MinValue;
+
             Vector3 averagePosition = Vector3.zero;
 
             foreach (BattleBotPart battleBotPart in this.availableParts)
             {
                 averagePosition += battleBotPart.transform.position;
+
+                Vector3 a = battleBotPart.transform.position;
+                a.y = 0f;
+                Vector3 b = this.Camera.transform.position;
+                a.z = 0f;
+
+                float distance = Vector3.Distance (a, b);
+
+                if (distance > furthestPartFromCameraDistance)
+                {
+                    furthestPartFromCameraDistance = distance;
+                }
             }
+
+            this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * 1.4f, UnityEngine.Time.deltaTime * 3f);
 
             averagePosition /= (float) this.availableParts.Length;
 
