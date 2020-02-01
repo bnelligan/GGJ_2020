@@ -4,17 +4,7 @@ namespace BrokenBattleBots
 {
     public class BattleBotCustomization : MonoBehaviour
     {
-        public enum NodeType
-        {
-            Head,
-            ArmLeft,
-            ArmRight,
-            ShoulderLeft,
-            ShoulderRight,
-            Chest,
-            Bottom,
-        }
-
+        /*public Camera mainCamera;
         public Transform nodeHead;
         public Transform nodeArmLeft;
         public Transform nodeArmRight;
@@ -24,7 +14,7 @@ namespace BrokenBattleBots
 
         private void Update ()
         {
-            
-        }
+            Ray ray = this.mainCamera.ScreenPointToRay (UnityEngine.Input.mousePosition);
+        }*/
     }
 }
