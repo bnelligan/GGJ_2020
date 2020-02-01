@@ -74,12 +74,10 @@ public class WeldDraw : MonoBehaviour
 
             if (BrokenBattleBots.BattleBotCustomization.instance != null && BrokenBattleBots.BattleBotCustomization.instance.SelectedBattleBotPart == null)
             {
-                UnityEngine.Debug.Log("a");
                 Ray ray = this.screenSpace.ScreenPointToRay (UnityEngine.Input.mousePosition);
 
                 if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
                 {
-                    UnityEngine.Debug.Log("b");
                     BrokenBattleBots.BattleBotPart battleBotPart = raycastHit.collider.GetComponent <BrokenBattleBots.BattleBotPart> ();
 
                     if (battleBotPart == null)
