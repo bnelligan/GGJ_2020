@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 22327833}
   - component: {fileID: 22327832}
   - component: {fileID: 22327831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Socket Arm Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 879877696}
   - component: {fileID: 879877695}
   - component: {fileID: 879877694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Socket Arm Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 2077971361}
   - component: {fileID: 2077971360}
   - component: {fileID: 2077971359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Socket Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 2395622427542013590}
   - component: {fileID: 4554380918289456044}
   - component: {fileID: 8120715019828614846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Socket Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 7954006168671694603}
   - component: {fileID: 7954006168671694602}
   - component: {fileID: 7954006168671694605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robot Main Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,6 +509,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
   - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
   - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
+  AudioClipsError:
+  - {fileID: 8300000, guid: 125b6b1154d086640a235673da7df9a1, type: 3}
 --- !u!33 &7645777659772387177
 MeshFilter:
   m_ObjectHideFlags: 0

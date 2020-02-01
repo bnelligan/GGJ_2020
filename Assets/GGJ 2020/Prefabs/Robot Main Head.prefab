@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7170689285348797362}
   - component: {fileID: 7170689285348797363}
   - component: {fileID: 7170689285348797360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robot Main Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,6 +73,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
   - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
   - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
+  AudioClipsError:
+  - {fileID: 8300000, guid: 125b6b1154d086640a235673da7df9a1, type: 3}
 --- !u!33 &7492419521064647636
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -14,6 +14,11 @@ namespace BrokenBattleBots
 
         private void AttachPart (BattleBotPart battleBotPart)
         {
+            if (this.parentBattleBotPart != null && this.parentBattleBotPart == battleBotPart)
+            {
+                return;
+            }
+
             // Check if the part is already attached to another socket
 
             if (battleBotPart.Socket != null)
@@ -33,6 +38,10 @@ namespace BrokenBattleBots
             if (this.CompatiblePartTypes != battleBotPart.PartType)
             {
                 UnityEngine.Debug.LogWarning ($"{ battleBotPart } is not compatible with { this }");
+
+                battleBotPart.PlayErrorSound ();
+
+                return;
             }
 
             // Attach the part to this socked

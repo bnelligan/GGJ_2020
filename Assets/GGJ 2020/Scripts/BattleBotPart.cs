@@ -16,6 +16,7 @@ namespace BrokenBattleBots
         public AudioClip[] AudioClipsCollisions;
         public AudioClip[] AudioClipsAttach;
         public AudioClip[] AudioClipsDetach;
+        public AudioClip[] AudioClipsError;
 
         public enum BattleBotPartType
         {
@@ -63,6 +64,16 @@ namespace BrokenBattleBots
             if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
             {
                 this.AudioSource.PlayOneShot (this.AudioClipsDetach[Random.Range (0, this.AudioClipsDetach.Length)]);
+            }
+        }
+
+        public void PlayErrorSound ()
+        {
+            // Play random error sound
+
+            if (this.AudioSource != null && this.AudioClipsError != null && this.AudioClipsError.Length > 0)
+            {
+                this.AudioSource.PlayOneShot (this.AudioClipsError[Random.Range(0, this.AudioClipsError.Length)]);
             }
         }
 
