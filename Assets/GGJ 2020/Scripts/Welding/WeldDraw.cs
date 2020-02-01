@@ -41,7 +41,7 @@ public class WeldDraw : MonoBehaviour
 
         if (this.wasSelectingPart == true)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp (0))
             {
                 this.wasSelectingPart = false;
             }
@@ -51,7 +51,7 @@ public class WeldDraw : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
         {
-            this.audioSourceWeldSound.volume = 0.01f;
+            this.audioSourceWeldSound.volume = 0.1f;
 
             if (this.audioSourceWeldSound.isPlaying == false)
             {
@@ -117,7 +117,7 @@ public class WeldDraw : MonoBehaviour
 
             sparks.Stop ();
 
-            this.audioSourceWeldSound.volume = 0.01f;
+            this.audioSourceWeldSound.volume = 0.1f;
         }
         else if(Input.GetMouseButtonUp(0))
         {

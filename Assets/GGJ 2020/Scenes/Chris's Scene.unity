@@ -3062,6 +3062,36 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1850798291}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.ctime1
+      value: 23516
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key2.r
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key2.g
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key2.b
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 988d4762f6be4f140bbcb998219f0737, type: 3}
 --- !u!1001 &4660874116014541829
@@ -3168,6 +3198,11 @@ PrefabInstance:
       propertyPath: parentBattleBotPart
       value: 
       objectReference: {fileID: 2534866582525426374}
+    - target: {fileID: 1385385254742971289, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7081674234384ec4d94635116e6bc931, type: 2}
     - target: {fileID: 4735513643527423463, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
         type: 3}
       propertyPath: parentBattleBotPart
