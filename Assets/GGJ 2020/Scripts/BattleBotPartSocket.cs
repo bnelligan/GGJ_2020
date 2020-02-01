@@ -11,6 +11,8 @@ namespace BrokenBattleBots
         public BattleBotPart parentBattleBotPart;
         public BattleBotPart.BattleBotPartType CompatiblePartTypes;
         public BattleBotPart battleBotPart { get; private set; }
+        public Vector3 attachPosition;
+        public Vector3 attachRotationEulerAngles;
 
         private void AttachPart (BattleBotPart battleBotPart)
         {
@@ -56,6 +58,8 @@ namespace BrokenBattleBots
             this.battleBotPart.Rigidbody.isKinematic = true;
             this.battleBotPart.Rigidbody.useGravity = false;
             this.battleBotPart.transform.SetParent (this.transform);
+            this.battleBotPart.transform.localPosition = this.attachPosition;
+            this.battleBotPart.transform.localRotation = Quaternion.Euler (this.attachRotationEulerAngles);
 
             if (this.parentBattleBotPart != null)
             {

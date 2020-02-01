@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 22327829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.206, y: 1.03, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6943287072431893434}
   m_RootOrder: 2
@@ -106,7 +106,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &879877692
 GameObject:
@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 879877692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.32, y: 1.03, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6943287072431893434}
   m_RootOrder: 1
@@ -214,7 +214,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2077971357
 GameObject:
@@ -245,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 2077971357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.019, y: -2.63, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6943287072431893434}
   m_RootOrder: 3
@@ -322,7 +322,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2459577393545228247
 GameObject:
@@ -353,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 2459577393545228247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.031, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6943287072431893434}
   m_RootOrder: 0
@@ -430,7 +430,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7954006168671694604
 GameObject:
@@ -512,6 +512,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsError:
   - {fileID: 8300000, guid: 125b6b1154d086640a235673da7df9a1, type: 3}
+  weldSpeedMultiplier: 1
 --- !u!33 &7645777659772387177
 MeshFilter:
   m_ObjectHideFlags: 0
