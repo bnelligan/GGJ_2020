@@ -23,10 +23,9 @@ namespace BrokenBattleBots
             Bottom = 6,
         }
 
-
         #if UNITY_EDITOR
 
-        private void OnValidate()
+        private void OnValidate ()
         {
             // Cache the part's rigidbody
 
