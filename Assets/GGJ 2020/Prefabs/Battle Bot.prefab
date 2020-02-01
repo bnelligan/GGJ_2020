@@ -337,8 +337,18 @@ MonoBehaviour:
   AudioSource: {fileID: 8959088815914096025}
   AudioClipsAttach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsDetach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   CompatiblePartTypes: 1
 --- !u!33 &186631466137715539
 MeshFilter:
@@ -869,8 +879,18 @@ MonoBehaviour:
   AudioSource: {fileID: 2272017459074320742}
   AudioClipsAttach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsDetach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   CompatiblePartTypes: 6
 --- !u!33 &7697458216109550070
 MeshFilter:
@@ -1465,8 +1485,18 @@ MonoBehaviour:
   AudioSource: {fileID: 8155371990899172053}
   AudioClipsAttach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsDetach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   CompatiblePartTypes: 0
 --- !u!33 &6540909432076245743
 MeshFilter:
@@ -1904,8 +1934,18 @@ MonoBehaviour:
   AudioSource: {fileID: 329123701015895979}
   AudioClipsAttach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsDetach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   CompatiblePartTypes: 2
 --- !u!33 &1104636692625278413
 MeshFilter:
@@ -2436,8 +2476,18 @@ MonoBehaviour:
   AudioSource: {fileID: 3244629349941629795}
   AudioClipsAttach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   AudioClipsDetach:
   - {fileID: 8300000, guid: 7d897398eca0cec4cb1d4dce5a0f063f, type: 3}
+  - {fileID: 8300000, guid: 3d6e42c76ba6b0743a2393b9dc6e50c8, type: 3}
+  - {fileID: 8300000, guid: 6c89e369498f3f94480848448c84e1c4, type: 3}
+  - {fileID: 8300000, guid: 70f7a83a28c41494e90de00dac9af5c7, type: 3}
+  - {fileID: 8300000, guid: fab83188636bad54f9439d199bd809f9, type: 3}
+  - {fileID: 8300000, guid: 60052e94b98520140a287d09acab82d7, type: 3}
   CompatiblePartTypes: 5
 --- !u!33 &4595817174791722993
 MeshFilter:
