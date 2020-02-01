@@ -3100,7 +3100,7 @@ PrefabInstance:
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.m_NumColorKeys
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
@@ -3120,22 +3120,22 @@ PrefabInstance:
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key3.r
-      value: 0.40392157
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key3.g
-      value: 0.40392157
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.key3.b
-      value: 0.40392157
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
       propertyPath: WeldGradientPositive.ctime3
-      value: 65535
+      value: 47802
       objectReference: {fileID: 0}
     - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
         type: 3}
@@ -3146,6 +3146,26 @@ PrefabInstance:
         type: 3}
       propertyPath: WeldGradientPositive.key0.g
       value: 0.85882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key4.r
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key4.g
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.key4.b
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012076404074599865, guid: 988d4762f6be4f140bbcb998219f0737,
+        type: 3}
+      propertyPath: WeldGradientPositive.ctime4
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 988d4762f6be4f140bbcb998219f0737, type: 3}
