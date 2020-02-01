@@ -7,6 +7,8 @@ namespace BrokenBattleBots
 {
     public class BattleBotCustomization : MonoBehaviour
     {
+
+        public Gradient WeldGradientPositive;
         public static BattleBotCustomization instance;
         public LayerMask LayerMaskSelect;
         public LayerMask LayerMaskDrag;

@@ -31,8 +31,10 @@ public class WeldDraw : MonoBehaviour
                 sparks.Stop();
                 RemoveTrail();
 
-                this.audioSourceWeldSound.Stop();
+                
             }
+
+            this.audioSourceWeldSound.Stop();
 
             return;
         }
@@ -92,8 +94,15 @@ public class WeldDraw : MonoBehaviour
 
                     if (battleBotPart != null)
                     {
-                        battleBotPart.Welded += UnityEngine.Time.deltaTime;
-
+                        if (battleBotPart.Socket != null)
+                        {
+                            battleBotPart.Weld(UnityEngine.Time.deltaTime);
+                        }
+                        /*else
+                        {
+                            battleBotPart.Weld (-UnityEngine.Time.deltaTime);
+                        }*/
+                        
                         this.audioSourceWeldSound.volume = 1f;
 
                         if (sparks.isPlaying == false)
@@ -128,6 +137,10 @@ public class WeldDraw : MonoBehaviour
 
     void RemoveTrail ()
     {
-        this.weldLine.Clear ();
+        if (this.weldLine != null)
+        {
+            this.weldLine.Clear();
+        }
+        
     }
 }

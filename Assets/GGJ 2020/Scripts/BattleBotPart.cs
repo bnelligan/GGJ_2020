@@ -8,7 +8,7 @@ namespace BrokenBattleBots
     [RequireComponent (typeof (Rigidbody))]
     public class BattleBotPart : MonoBehaviour
     {
-        public float Welded;
+        public float Welded { get; private set; }
         public bool BeingDragged;
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
@@ -29,6 +29,22 @@ namespace BrokenBattleBots
             ShoulderRight = 4,
             Chest = 5,
             Bottom = 6,
+        }
+
+        public void Weld (float value)
+        {
+            this.Welded += value;
+
+            MeshRenderer meshRenderer = this.GetComponentInChildren <MeshRenderer> ();
+
+            if (meshRenderer != null)
+            {
+                // Color color = Color.Lerp (Color.black, Color.red, this.Welded / 10f);
+
+                Color color = BattleBotCustomization.instance.WeldGradientPositive.Evaluate (this.Welded / 10f);
+
+                meshRenderer.material.color = color;
+            }
         }
 
         private void OnCollisionEnter (Collision collision)
