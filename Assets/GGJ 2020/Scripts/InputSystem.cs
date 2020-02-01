@@ -1,24 +1,26 @@
 ﻿using System;
 using Unity.Entities;
+using Unity.Transforms;
 using Unity.Jobs;
 using Unity.Mathematics;
+using Unity.Physics;
 using UnityEngine;
 
-namespace Assets
+namespace BrokenBattleBots
 {
     /// <summary>
     /// Component info for top-down free character movement input
     /// </summary>
     public struct MovementInput : IComponentData
     {
-        public float2 Direction;
+        public float3 Direction;
         public float Magnitude;
     }
 
     /// <summary>
     /// Tag entities to use player input
     /// </summary>
-    public struct UsePlayerMovement : IComponentData
+    public struct UsePlayerInput : IComponentData
     {
         // Nothing, just a tag
     }
@@ -30,7 +32,6 @@ namespace Assets
     /// </summary>
     public struct MovementSpeed : IComponentData
     {
-        public float Max;
         public float Value;
     }
     
@@ -38,12 +39,12 @@ namespace Assets
     /// <summary>
     /// Read game input and transfer it to the player entities
     /// </summary>
-    class PlayerMoveInputSystem : JobComponentSystem
+    class ReadPlayerInputSystem : JobComponentSystem
     {
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            float2 rawMoveInput = new float2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            var applyInputJob = new ApplyMoveInput()
+            float2 rawMoveInput = new float2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            var applyInputJob = new ReadMoveInputJob()
             {
                 rawMoveAxis = rawMoveInput
             };
@@ -51,30 +52,45 @@ namespace Assets
         }
 
         
-        [RequireComponentTag(typeof(UsePlayerMovement))]
-        struct ApplyMoveInput : IJobForEach<MovementInput>
+        [RequireComponentTag(typeof(UsePlayerInput))]
+        struct ReadMoveInputJob : IJobForEach<MovementInput>
         {
             public float2 rawMoveAxis;
             public void Execute(ref MovementInput inputData)
             {
-                inputData.Direction = math.normalize(new float2(rawMoveAxis));
-                inputData.Magnitude = math.max(rawMoveAxis.x, rawMoveAxis.y);
-
+                inputData.Direction = math.normalize(new float3(rawMoveAxis.x, 0, rawMoveAxis.y)); // vertical = forward, horiz = right
+                inputData.Magnitude = math.max(math.abs(rawMoveAxis.x), math.abs(rawMoveAxis.y));
             }
         }
     }
 
-    [UpdateAfter(typeof(PlayerMoveInputSystem))]
-    class ApplyFreeMovementSystem : ComponentSystem
+    /// <summary>
+    /// Read move input and apply it to the physics system
+    /// </summary>
+    [UpdateAfter(typeof(ReadPlayerInputSystem))]
+    class ApplyMoveInputSystem : JobComponentSystem
     {
-        EntityQuery freeMovementInputQuery;
-        protected override void OnCreate()
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            base.OnCreate();
+            ApplyMoveInputJob job = new ApplyMoveInputJob();
+            return job.Schedule(this, inputDeps);
         }
 
-        protected override void OnUpdate()
+        struct ApplyMoveInputJob : IJobForEach<PhysicsVelocity, Rotation, MovementSpeed, MovementInput>
         {
+            public void Execute(ref PhysicsVelocity velocity, ref Rotation rotation, ref MovementSpeed moveSpeed, ref MovementInput input)
+            {
+                // Velocity scales with input and move speed
+                if(math.length(input.Direction) > 0)
+                {
+                    velocity.Linear = input.Direction * input.Magnitude * moveSpeed.Value;
+                    rotation.Value = Quaternion.Euler(input.Direction);
+                }
+                else
+                {
+                    velocity.Linear = float3.zero;
+                }
+            }
         }
     }
    
