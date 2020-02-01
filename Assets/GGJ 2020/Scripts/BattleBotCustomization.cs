@@ -48,6 +48,8 @@ namespace BrokenBattleBots
                             if (battleBotPart.Socket != null)
                             {
                                 battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * Random.Range (2f, 8f));
+
+                                this.selectedBattleBotPart = battleBotPart;
                             }
                             else
                             {
