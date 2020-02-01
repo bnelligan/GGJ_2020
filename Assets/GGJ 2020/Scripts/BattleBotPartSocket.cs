@@ -43,8 +43,8 @@ namespace BrokenBattleBots
             this.battleBotPart.Rigidbody.isKinematic = true;
             this.battleBotPart.Rigidbody.useGravity = false;
             this.battleBotPart.transform.SetParent (this.transform);
-            this.battleBotPart.transform.localPosition = Vector3.zero;
-            this.battleBotPart.transform.localRotation = Quaternion.identity;
+            // this.battleBotPart.transform.localPosition = Vector3.zero;
+            // this.battleBotPart.transform.localRotation = Quaternion.identity;
         }
 
         public void DetachPart (Vector3 force)
@@ -63,6 +63,18 @@ namespace BrokenBattleBots
                 this.battleBotPart.Rigidbody.AddForce (force, UnityEngine.ForceMode.Impulse);
                 this.battleBotPart.Socket = null;
                 this.battleBotPart = null;
+            }
+        }
+
+        private void Update ()
+        {
+            float deltaTime = UnityEngine.Time.deltaTime;
+
+            if (this.battleBotPart != null)
+            {
+                this.battleBotPart.transform.localPosition = Vector3.Lerp (this.battleBotPart.transform.localPosition, Vector3.zero, 6f * deltaTime);
+
+                this.battleBotPart.transform.localRotation = Quaternion.Lerp (this.battleBotPart.transform.localRotation, Quaternion.identity, 6f * deltaTime);
             }
         }
 
