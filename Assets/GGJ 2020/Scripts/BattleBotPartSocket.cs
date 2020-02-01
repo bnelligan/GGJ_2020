@@ -8,6 +8,7 @@ namespace BrokenBattleBots
     [RequireComponent (typeof (Collider))]
     public class BattleBotPartSocket : MonoBehaviour
     {
+        public BattleBotPart parentBattleBotPart;
         public BattleBotPart.BattleBotPartType CompatiblePartTypes;
         private BattleBotPart battleBotPart;
 
@@ -43,6 +44,12 @@ namespace BrokenBattleBots
             this.battleBotPart.Rigidbody.isKinematic = true;
             this.battleBotPart.Rigidbody.useGravity = false;
             this.battleBotPart.transform.SetParent (this.transform);
+
+            if (this.parentBattleBotPart != null)
+            {
+                UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, true);
+            }
+
             // this.battleBotPart.transform.localPosition = Vector3.zero;
             // this.battleBotPart.transform.localRotation = Quaternion.identity;
 
@@ -58,6 +65,11 @@ namespace BrokenBattleBots
                 UnityEngine.Debug.Log ($"{ this } detached { this.battleBotPart }");
 
                 // Detach the part in the socket
+
+                if (this.parentBattleBotPart != null)
+                {
+                    UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, false);
+                }
 
                 this.battleBotPart.PlayDetachSound ();
                 this.battleBotPart.transform.SetParent (null);
@@ -96,5 +108,16 @@ namespace BrokenBattleBots
                 this.AttachPart (battleBotPart);
             }
         }
+
+        #if UNITY_EDITOR
+
+        private void OnValidate ()
+        {
+            // Cache the socket's parent bot part
+
+            this.parentBattleBotPart = this.GetComponentInParent <BattleBotPart> ();
+        }
+
+        #endif
     }
 }

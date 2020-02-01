@@ -10,6 +10,7 @@ namespace BrokenBattleBots
     {
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
+        public Collider Collider;
         public BattleBotPartType PartType;
         public AudioSource AudioSource;
         public AudioClip[] AudioClipsCollisions;
@@ -74,6 +75,12 @@ namespace BrokenBattleBots
             this.Rigidbody = this.GetComponent <Rigidbody> ();
 
             UnityEngine.Assertions.Assert.IsNotNull (this.Rigidbody, "Missing rigidbody");
+
+            // Cache the part's collider
+
+            this.Collider = this.GetComponent <Collider> ();
+
+            UnityEngine.Assertions.Assert.IsNotNull (this.Collider, "Missing collider");
 
             // Cache the socket's audio source
 
