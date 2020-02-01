@@ -6,12 +6,8 @@ using UnityEngine;
 namespace BrokenBattleBots
 {
     [RequireComponent (typeof (Collider))]
-    [RequireComponent (typeof (AudioSource))]
     public class BattleBotPartSocket : MonoBehaviour
     {
-        public AudioSource AudioSource;
-        public AudioClip[] AudioClipsAttach;
-        public AudioClip[] AudioClipsDetach;
         public BattleBotPart.BattleBotPartType CompatiblePartTypes;
         private BattleBotPart battleBotPart;
 
@@ -50,7 +46,7 @@ namespace BrokenBattleBots
             // this.battleBotPart.transform.localPosition = Vector3.zero;
             // this.battleBotPart.transform.localRotation = Quaternion.identity;
 
-            this.PlayAttachSound ();
+            this.battleBotPart.PlayAttachSound ();
         }
 
         public void DetachPart (Vector3 force)
@@ -63,34 +59,13 @@ namespace BrokenBattleBots
 
                 // Detach the part in the socket
 
+                this.battleBotPart.PlayDetachSound ();
                 this.battleBotPart.transform.SetParent (null);
                 this.battleBotPart.Rigidbody.isKinematic = false;
                 this.battleBotPart.Rigidbody.useGravity = true;
                 this.battleBotPart.Rigidbody.AddForce (force, UnityEngine.ForceMode.Impulse);
                 this.battleBotPart.Socket = null;
                 this.battleBotPart = null;
-
-                this.PlayDetachSound ();
-            }
-        }
-
-        private void PlayAttachSound ()
-        {
-            // Play random attach sound
-
-            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
-            {
-                this.AudioSource.PlayOneShot (this.AudioClipsAttach[Random.Range (0, this.AudioClipsAttach.Length)]);
-            }
-        }
-
-        private void PlayDetachSound ()
-        {
-            // Play random detach sound
-
-            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
-            {
-                this.AudioSource.PlayOneShot (this.AudioClipsDetach[Random.Range (0, this.AudioClipsDetach.Length)]);
             }
         }
 
@@ -121,18 +96,5 @@ namespace BrokenBattleBots
                 this.AttachPart (battleBotPart);
             }
         }
-
-        #if UNITY_EDITOR
-
-        private void OnValidate ()
-        {
-            // Cache the socket's audio source
-
-            this.AudioSource = this.GetComponent <AudioSource> ();
-
-            UnityEngine.Assertions.Assert.IsNotNull (this.AudioSource, $"{ this } Missing audio source");
-        }
-
-        #endif
     }
 }

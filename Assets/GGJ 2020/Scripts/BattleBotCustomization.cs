@@ -29,7 +29,7 @@ namespace BrokenBattleBots
             { 
                 if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Mouse0) == true)
                 {
-                    if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskSelect))
+                    if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskSelect))
                     {
                         #if UNITY_EDITOR
 
@@ -71,7 +71,7 @@ namespace BrokenBattleBots
             {
                 // Check if the part has been attached to a socket or released by the user
 
-                if (UnityEngine.Input.GetKeyUp (UnityEngine.KeyCode.Mouse0) == true || this.selectedBattleBotPart.Socket != null)
+                if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.selectedBattleBotPart.Socket != null)
                 {
                     UnityEngine.Debug.Log ($"{ this } released { this.selectedBattleBotPart }");
 
@@ -82,7 +82,7 @@ namespace BrokenBattleBots
                     return;
                 }
 
-                if (UnityEngine.Physics.SphereCast (ray, 1f, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskDrag))
+                if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, this.LayerMaskDrag))
                 {
                     #if UNITY_EDITOR
 

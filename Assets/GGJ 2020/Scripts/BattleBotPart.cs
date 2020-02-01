@@ -11,6 +11,10 @@ namespace BrokenBattleBots
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
         public BattleBotPartType PartType;
+        public AudioSource AudioSource;
+        public AudioClip[] AudioClipsCollisions;
+        public AudioClip[] AudioClipsAttach;
+        public AudioClip[] AudioClipsDetach;
 
         public enum BattleBotPartType
         {
@@ -23,6 +27,44 @@ namespace BrokenBattleBots
             Bottom = 6,
         }
 
+        private void OnCollisionEnter (Collision collision)
+        {
+            if (collision.relativeVelocity.magnitude > 2f)
+            {
+                this.PlayCollisionSound (collision.relativeVelocity.magnitude / 10f);
+            }
+        }
+
+        public void PlayCollisionSound (float volume)
+        {
+            // Play random collision sound
+
+            if (this.AudioSource != null && this.AudioClipsCollisions != null && this.AudioClipsCollisions.Length > 0)
+            {
+                this.AudioSource.PlayOneShot (this.AudioClipsCollisions[Random.Range (0, this.AudioClipsCollisions.Length)], volume);
+            }
+        }
+
+        public void PlayAttachSound ()
+        {
+            // Play random attach sound
+
+            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
+            {
+                this.AudioSource.PlayOneShot (this.AudioClipsAttach[Random.Range (0, this.AudioClipsAttach.Length)]);
+            }
+        }
+
+        public void PlayDetachSound ()
+        {
+            // Play random detach sound
+
+            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
+            {
+                this.AudioSource.PlayOneShot (this.AudioClipsDetach[Random.Range (0, this.AudioClipsDetach.Length)]);
+            }
+        }
+
         #if UNITY_EDITOR
 
         private void OnValidate ()
@@ -32,6 +74,12 @@ namespace BrokenBattleBots
             this.Rigidbody = this.GetComponent <Rigidbody> ();
 
             UnityEngine.Assertions.Assert.IsNotNull (this.Rigidbody, "Missing rigidbody");
+
+            // Cache the socket's audio source
+
+            this.AudioSource = this.GetComponent<AudioSource>();
+
+            UnityEngine.Assertions.Assert.IsNotNull(this.AudioSource, $"{ this } Missing audio source");
         }
 
         #endif
