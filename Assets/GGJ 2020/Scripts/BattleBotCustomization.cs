@@ -10,9 +10,7 @@ namespace BrokenBattleBots
         public LayerMask LayerMaskSelect;
         public LayerMask LayerMaskDrag;
         public Camera Camera;
-        public SpringJoint SpringJoint;
         private BattleBotPart selectedBattleBotPart;
-        public BattleBotPart[] availableParts;
 
         private void Awake ()
         {
@@ -20,40 +18,6 @@ namespace BrokenBattleBots
             {
                 this.Camera = FindObjectOfType <Camera> ();
             }
-        }
-
-        private void LateUpdate ()
-        {
-            float furthestPartFromCameraDistance = float.MinValue;
-
-            Vector3 averagePosition = Vector3.zero;
-
-            foreach (BattleBotPart battleBotPart in this.availableParts)
-            {
-                averagePosition += battleBotPart.transform.position;
-
-                Vector3 a = battleBotPart.transform.position;
-                a.y = 0f;
-                Vector3 b = this.Camera.transform.position;
-                a.z = 0f;
-
-                float distance = Vector3.Distance (a, b);
-
-                if (distance > furthestPartFromCameraDistance)
-                {
-                    furthestPartFromCameraDistance = distance;
-                }
-            }
-
-            this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * 1.4f, UnityEngine.Time.deltaTime * 3f);
-
-            averagePosition /= (float) this.availableParts.Length;
-
-            Vector3 cameraPosition = averagePosition + new Vector3 (-5.67f, 19.43f, -10.83f);
-
-            cameraPosition.y = 19.43f;
-
-            this.Camera.transform.position = Vector3.Lerp (this.Camera.transform.position, cameraPosition, UnityEngine.Time.deltaTime * 3f);
         }
 
         private void Update ()
