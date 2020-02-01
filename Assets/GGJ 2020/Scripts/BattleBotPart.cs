@@ -10,11 +10,13 @@ namespace BrokenBattleBots
     {
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
+        public Collider Collider;
         public BattleBotPartType PartType;
         public AudioSource AudioSource;
         public AudioClip[] AudioClipsCollisions;
         public AudioClip[] AudioClipsAttach;
         public AudioClip[] AudioClipsDetach;
+        public AudioClip[] AudioClipsError;
 
         public enum BattleBotPartType
         {
@@ -65,6 +67,16 @@ namespace BrokenBattleBots
             }
         }
 
+        public void PlayErrorSound ()
+        {
+            // Play random error sound
+
+            if (this.AudioSource != null && this.AudioClipsError != null && this.AudioClipsError.Length > 0)
+            {
+                this.AudioSource.PlayOneShot (this.AudioClipsError[Random.Range(0, this.AudioClipsError.Length)]);
+            }
+        }
+
         #if UNITY_EDITOR
 
         private void OnValidate ()
@@ -74,6 +86,12 @@ namespace BrokenBattleBots
             this.Rigidbody = this.GetComponent <Rigidbody> ();
 
             UnityEngine.Assertions.Assert.IsNotNull (this.Rigidbody, "Missing rigidbody");
+
+            // Cache the part's collider
+
+            this.Collider = this.GetComponent <Collider> ();
+
+            UnityEngine.Assertions.Assert.IsNotNull (this.Collider, "Missing collider");
 
             // Cache the socket's audio source
 
