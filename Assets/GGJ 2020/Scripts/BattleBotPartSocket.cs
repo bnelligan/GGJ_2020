@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿// Created: 2020/02/01
+// Creator: Chris Nobrega
+
+using UnityEngine;
 
 namespace BrokenBattleBots
 {
+    [RequireComponent (typeof (Collider))]
     public class BattleBotPartSocket : MonoBehaviour
     {
-        public BattleBotPart.Type CompatiblePartTypes;
+        public BattleBotPart.BattleBotPartType CompatiblePartTypes;
         private BattleBotPart battleBotPart;
 
         private void AttachPart (BattleBotPart battleBotPart)
@@ -43,7 +47,7 @@ namespace BrokenBattleBots
             this.battleBotPart.transform.localRotation = Quaternion.identity;
         }
 
-        private void DetachPart (Vector3 force)
+        public void DetachPart (Vector3 force)
         {
             // Check if a part is attached to this socket
 
@@ -75,16 +79,5 @@ namespace BrokenBattleBots
                 this.AttachPart (battleBotPart);
             }
         }
-
-        #if UNITY_EDITOR
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = this.battleBotPart == null ? Color.white : Color.blue;
-
-            Gizmos.DrawSphere (this.transform.position, 0.25f);
-        }
-
-        #endif
     }
 }

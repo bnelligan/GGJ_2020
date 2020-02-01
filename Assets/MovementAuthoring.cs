@@ -15,7 +15,7 @@ namespace Assets
         EntityQuery freeMoveQuery;
         protected override void OnUpdate()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
