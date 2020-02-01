@@ -7,13 +7,16 @@ namespace BrokenBattleBots
 {
     public class BattleBotCustomization : MonoBehaviour
     {
+        public static BattleBotCustomization instance;
         public LayerMask LayerMaskSelect;
         public LayerMask LayerMaskDrag;
         public Camera Camera;
-        private BattleBotPart selectedBattleBotPart;
+        public BattleBotPart SelectedBattleBotPart { get; private set; }
 
         private void Awake ()
         {
+            instance = this;
+
             if (this.Camera == null)
             {
                 this.Camera = FindObjectOfType <Camera> ();
@@ -24,7 +27,7 @@ namespace BrokenBattleBots
         {
             Ray ray = this.Camera.ScreenPointToRay (UnityEngine.Input.mousePosition);
 
-            if (this.selectedBattleBotPart == null)
+            if (this.SelectedBattleBotPart == null)
             { 
                 if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Mouse0) == true)
                 {
@@ -56,14 +59,16 @@ namespace BrokenBattleBots
                                 }
                             }
                             else*/
+
+                            if (battleBotPart.Socket == null)
                             {
                                 // The part is not in a socket
 
-                                this.selectedBattleBotPart = battleBotPart;
+                                this.SelectedBattleBotPart = battleBotPart;
 
-                                this.selectedBattleBotPart.BeingDragged = true;
+                                this.SelectedBattleBotPart.BeingDragged = true;
 
-                                UnityEngine.Debug.Log ($"{ this } selected { this.selectedBattleBotPart }");
+                                UnityEngine.Debug.Log ($"{ this } selected { this.SelectedBattleBotPart }");
                             }
                         }
                     }
@@ -73,13 +78,13 @@ namespace BrokenBattleBots
             {
                 // Check if the part has been attached to a socket or released by the user
 
-                if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.selectedBattleBotPart.Socket != null)
+                if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.SelectedBattleBotPart.Socket != null)
                 {
-                    UnityEngine.Debug.Log ($"{ this } released { this.selectedBattleBotPart }");
+                    UnityEngine.Debug.Log ($"{ this } released { this.SelectedBattleBotPart }");
 
-                    this.selectedBattleBotPart.BeingDragged = false;
+                    this.SelectedBattleBotPart.BeingDragged = false;
 
-                    this.selectedBattleBotPart = null;
+                    this.SelectedBattleBotPart = null;
 
                     return;
                 }
@@ -92,7 +97,7 @@ namespace BrokenBattleBots
 
                     #endif
 
-                    this.selectedBattleBotPart.transform.position = Vector3.Lerp (this.selectedBattleBotPart.transform.position, raycastHit.point + Vector3.up * 0.5f, 3f * UnityEngine.Time.deltaTime);
+                    this.SelectedBattleBotPart.transform.position = Vector3.Lerp (this.SelectedBattleBotPart.transform.position, raycastHit.point + Vector3.up * 0.5f, 3f * UnityEngine.Time.deltaTime);
                 }
             }
         }

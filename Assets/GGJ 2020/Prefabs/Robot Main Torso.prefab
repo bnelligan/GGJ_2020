@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Welded: 0
   BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 7954006168671694602}

@@ -13,24 +13,54 @@ public class WeldDraw : MonoBehaviour
     
     private GameObject currentWeld;
     private Vector3 mouseLocation;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AudioSource audioSourceWeldSound;
+
+    bool wasSelectingPart;
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(mouseLocation);
+        // Debug.Log(mouseLocation);
 
-        if (Input.GetMouseButtonDown(0))
+        if (BrokenBattleBots.BattleBotCustomization.instance != null && BrokenBattleBots.BattleBotCustomization.instance.SelectedBattleBotPart != null)
         {
+            this.wasSelectingPart = true;
+
+            if (this.sparks.isPlaying == true)
+            {
+                sparks.Stop();
+                RemoveTrail();
+
+                this.audioSourceWeldSound.Stop();
+            }
+
+            return;
+        }
+
+        if (this.wasSelectingPart == true)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                this.wasSelectingPart = false;
+            }
+
+            return;
+        }
+
+            if (Input.GetMouseButtonDown(0))
+        {
+            this.audioSourceWeldSound.volume = 0.01f;
+
+            if (this.audioSourceWeldSound.isPlaying == false)
+            {
+                this.audioSourceWeldSound.Play();
+            }
+            
             mouseLocation =
                 screenSpace.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
            SpawnTrail();
-           sparksLocaiton.position = mouseLocation;
-           sparks.Play();
+           /*sparksLocaiton.position = mouseLocation;
+           sparks.Play();*/
         }
         else if (Input.GetMouseButton(0))
         {
@@ -41,11 +71,53 @@ public class WeldDraw : MonoBehaviour
             {
                 currentWeld.transform.position = mouseLocation;
             }
+
+            if (BrokenBattleBots.BattleBotCustomization.instance != null && BrokenBattleBots.BattleBotCustomization.instance.SelectedBattleBotPart == null)
+            {
+                UnityEngine.Debug.Log("a");
+                Ray ray = this.screenSpace.ScreenPointToRay (UnityEngine.Input.mousePosition);
+
+                if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
+                {
+                    UnityEngine.Debug.Log("b");
+                    BrokenBattleBots.BattleBotPart battleBotPart = raycastHit.collider.GetComponent <BrokenBattleBots.BattleBotPart> ();
+
+                    if (battleBotPart == null)
+                    {
+                        BrokenBattleBots.BattleBotPartSocket battleBotPartSocket = raycastHit.collider.GetComponent <BrokenBattleBots.BattleBotPartSocket> ();
+
+                        if (battleBotPartSocket != null && battleBotPartSocket.battleBotPart != null)
+                        {
+                            battleBotPart = battleBotPartSocket.battleBotPart;
+                        }
+                    }
+
+                    if (battleBotPart != null)
+                    {
+                        battleBotPart.Welded += UnityEngine.Time.deltaTime;
+
+                        this.audioSourceWeldSound.volume = 1f;
+
+                        if (sparks.isPlaying == false)
+                        {
+                            sparks.Play ();
+                        }
+
+                        return;
+                    }
+                }
+            }
+
+            sparks.Stop ();
+
+            this.audioSourceWeldSound.volume = 0.01f;
         }
         else if(Input.GetMouseButtonUp(0))
         {
             sparks.Stop();
             RemoveTrail();
+
+            this.audioSourceWeldSound.Stop ();
         }
     }
 
@@ -56,8 +128,8 @@ public class WeldDraw : MonoBehaviour
         weldLine = currentWeld.GetComponent<TrailRenderer>();
     }
 
-    void RemoveTrail()
+    void RemoveTrail ()
     {
-        
+        this.weldLine.Clear ();
     }
 }

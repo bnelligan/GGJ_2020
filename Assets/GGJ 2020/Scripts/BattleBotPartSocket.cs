@@ -10,7 +10,7 @@ namespace BrokenBattleBots
     {
         public BattleBotPart parentBattleBotPart;
         public BattleBotPart.BattleBotPartType CompatiblePartTypes;
-        private BattleBotPart battleBotPart;
+        public BattleBotPart battleBotPart { get; private set; }
 
         private void AttachPart (BattleBotPart battleBotPart)
         {
