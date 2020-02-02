@@ -74,7 +74,7 @@ namespace BrokenBattleBots
 
             // Aim input
             Vector3 aimPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-            Debug.Log("AimPoint: " + aimPoint);
+            // Debug.Log("AimPoint: " + aimPoint);
             var readAimJob = new PlayerAimInputJob()
             {
                 AimPoint = new float3(aimPoint.x, 0, aimPoint.z)
