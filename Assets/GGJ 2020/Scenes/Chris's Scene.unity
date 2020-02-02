@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &203972637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1258559824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &278617298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,7 +144,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -189,6 +195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
@@ -370,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -422,6 +433,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
 --- !u!1001 &405784405
@@ -439,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -490,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
@@ -659,6 +680,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &819895742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 405784405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &826383543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 278617298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &832908517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -674,7 +707,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -725,6 +758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
@@ -800,7 +838,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-438346
+  m_Name: pb_Mesh-539496
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -972,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1024,8 +1062,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
+--- !u!1 &1069029590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 367319356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1225880888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1970305833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1258559824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1041,7 +1096,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1092,6 +1147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
@@ -1302,6 +1362,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1584844341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045610522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1624062878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 832908517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1689961657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1317,7 +1389,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1369,6 +1441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
 --- !u!4 &1695713659 stripped
@@ -1377,6 +1454,60 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5939466674496918388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1801182698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801182700}
+  - component: {fileID: 1801182699}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1801182699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801182698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05ab59c485cd6a43827e29ba52574ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawners:
+  - {fileID: 1225880888}
+  - {fileID: 1584844341}
+  - {fileID: 826383543}
+  - {fileID: 2080545827}
+  - {fileID: 1853210615}
+  - {fileID: 2098680391}
+  - {fileID: 203972637}
+  - {fileID: 1069029590}
+  - {fileID: 819895742}
+  - {fileID: 1624062878}
+--- !u!4 &1801182700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801182698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600.1224, y: -153.85165, z: 383.66623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805458253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1676,12 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 9124885623878491680}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1853210615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1859724151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1859724151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1560,7 +1697,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1612,6 +1749,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
 --- !u!43 &1879857599
@@ -1620,7 +1762,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-439052
+  m_Name: pb_Mesh-540194
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1802,7 +1944,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1854,6 +1996,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
 --- !u!1001 &2045610522
@@ -1871,7 +2018,7 @@ PrefabInstance:
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80.26
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191152, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
@@ -1923,8 +2070,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fff2e8ed162c2447b3371554fb3bddb, type: 3}
+--- !u!1 &2080545827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689961657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2098680391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1021879663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2126367757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2251,7 +2415,7 @@ PrefabInstance:
     - target: {fileID: 7843192727123141051, guid: add69aca6508186449e4363f897f8075,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -85.109
+      value: -3.2490005
       objectReference: {fileID: 0}
     - target: {fileID: 7843192727123141051, guid: add69aca6508186449e4363f897f8075,
         type: 3}
