@@ -11,7 +11,8 @@ namespace BrokenBattleBots
         public BattleBotPartSocket socketHead;
         public BattleBotPartSocket socketArmLeft;
         public BattleBotPartSocket socketArmRight;
-        public BattleBotPartSocket sockedLegs;
+        public BattleBotPartSocket socketLegs;
+        public BattleBotPart partTorso;
         public AudioClip[] AudioClipsCollisions;
         public AudioClip[] AudioClipsAttach;
         public AudioClip[] AudioClipsDetach;
@@ -45,8 +46,36 @@ namespace BrokenBattleBots
             UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, false);
         }
 
+        public void StandUp ()
+        {
+            if (this.socketLegs.battleBotPart == null)
+            {
+                UnityEngine.Debug.LogWarning ("No legs can't stand up");
+
+                // TORSO IS GARUNTEED NOT NULL
+
+                this.partTorso.PlayErrorSound ();
+
+                this.partTorso.Rigidbody.AddForce (Vector3.up * 5f, ForceMode.Impulse);
+
+                this.partTorso.Rigidbody.angularVelocity = Random.onUnitSphere * 3f;
+
+                return;
+            }
+        }
+
+        public void FallOver ()
+        {
+
+        }
+
         private void Update ()
         {
+            if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Space))
+            {
+                this.StandUp ();
+            }
+
             Ray ray = this.Camera.ScreenPointToRay (UnityEngine.Input.mousePosition);
 
             if (this.SelectedBattleBotPart == null)

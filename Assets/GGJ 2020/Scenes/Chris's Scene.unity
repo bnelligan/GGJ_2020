@@ -466,10 +466,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7fff3ebf1fe9f45a64593fac1283c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socketHead: {fileID: 0}
-  socketArmLeft: {fileID: 0}
-  socketArmRight: {fileID: 0}
-  sockedLegs: {fileID: 0}
+  socketHead: {fileID: 316788250}
+  socketArmLeft: {fileID: 419138195}
+  socketArmRight: {fileID: 1943319204}
+  socketLegs: {fileID: 1563079111}
+  partTorso: {fileID: 2534866582525426374}
   AudioClipsCollisions:
   - {fileID: 8300000, guid: 9fcb051047ac91d4ca6aea00dc214fb7, type: 3}
   - {fileID: 8300000, guid: 7b3aa2dee00e4944287e8579c44e5d05, type: 3}
@@ -689,6 +690,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &316788250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4735513643527423463, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de28ca585273f7443a099780b623422c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &419138195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 879877697, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de28ca585273f7443a099780b623422c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &448046879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1295,7 +1320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 588153795}
   Collider: {fileID: 588153796}
@@ -1867,7 +1891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 800733099}
   Collider: {fileID: 800733100}
@@ -2424,6 +2447,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fd3ce1a2e524c84bbc772727cf7ce70, type: 3}
+--- !u!114 &1563079111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2077971362, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de28ca585273f7443a099780b623422c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1565185349
 Mesh:
   m_ObjectHideFlags: 0
@@ -2701,7 +2736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 1572824557}
   Collider: {fileID: 1572824558}
@@ -3072,6 +3106,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 9124885623878491680}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1943319204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 22327834, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de28ca585273f7443a099780b623422c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1970950022
 Mesh:
   m_ObjectHideFlags: 0
@@ -3776,7 +3822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 2447329447249671242}
   Collider: {fileID: 2447329447249671240}
@@ -4136,7 +4181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingDragged: 0
   Socket: {fileID: 0}
   Rigidbody: {fileID: 7258758887439926556}
   Collider: {fileID: 7258758887439926554}
