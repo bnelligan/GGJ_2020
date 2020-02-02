@@ -209,6 +209,7 @@ namespace BrokenBattleBots
             return aimJob.Schedule(this, inputDeps);
         }
 
+        [ExcludeComponent(typeof(Tag_Dead))]
         struct ApplyAimInputJob : IJobForEach<Rotation, Translation, AimInput>
         {
             public void Execute(ref Rotation rotation, [ReadOnly] ref Translation translation, [ReadOnly] ref AimInput input)

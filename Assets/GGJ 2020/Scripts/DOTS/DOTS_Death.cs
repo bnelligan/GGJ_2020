@@ -19,7 +19,7 @@ namespace BrokenBattleBots
             Entities.ForEach((Entity e, ref Tag_Dead dead, ref Tag_Generator deadGenerator) =>
             {
                 Debug.Log("Dead Gen");
-                EntityManager.DestroyEntity(e);
+                // EntityManager.DestroyEntity(e);
             
             });
         }
