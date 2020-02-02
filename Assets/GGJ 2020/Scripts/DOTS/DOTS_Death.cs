@@ -18,14 +18,9 @@ namespace BrokenBattleBots
         {
             Entities.ForEach((Entity e, ref Tag_Dead dead, ref Tag_Generator deadGenerator) =>
             {
-                //Debug.Log("Dead Gen");
-                //EntityManager.DestroyEntity(e);
-                //switch (deadGenerator.ID)
-                //{
-                //    case 1:
-                //        GUI_Info.Gen1HP_Current = 
-                //}
-
+                Debug.Log("Dead Gen");
+                EntityManager.DestroyEntity(e);
+            
             });
         }
     }

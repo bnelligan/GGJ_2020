@@ -53,9 +53,41 @@ namespace BrokenBattleBots
             base.OnCreate();
             Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
             {
-                
-                GUI_Info.Gen1HP_Current = 0;
+                switch (gen.ID)
+                {
+                    case 1:
+                        GUI_Info.Gen1HP_Current = hp.Current;
+                        GUI_Info.Gen1HP_Max = hp.Max;
+                        break;
+                    case 2:
+                        GUI_Info.Gen2HP_Current = hp.Current;
+                        GUI_Info.Gen2HP_Max = hp.Max;
+                        break;
+                    case 3:
+                        GUI_Info.Gen3HP_Current = hp.Current;
+                        GUI_Info.Gen3HP_Max = hp.Max;
+                        break;
+                }
             });
+
+            //Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
+            //{
+            //    switch (gen.ID)
+            //    {
+            //        case 1:
+            //            GUI_Info.Gen1HP_Current = hp.Current;
+            //            GUI_Info.Gen1HP_Max = hp.Max;
+            //            break;
+            //        case 2:
+            //            GUI_Info.Gen2HP_Current = hp.Current;
+            //            GUI_Info.Gen2HP_Max = hp.Max;
+            //            break;
+            //        case 3:
+            //            GUI_Info.Gen3HP_Current = hp.Current;
+            //            GUI_Info.Gen3HP_Max = hp.Max;
+            //            break;
+            //    }
+            //});
         }
         protected override void OnUpdate()
         {
