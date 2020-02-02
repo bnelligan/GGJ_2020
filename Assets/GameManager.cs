@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
             instructionText.SetActive(false);
             canvas.SetActive(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         
     }
 }
