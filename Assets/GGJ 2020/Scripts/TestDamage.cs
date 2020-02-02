@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BrokenBattleBots;
 using Unity.Entities;
@@ -17,6 +18,14 @@ public class TestDamage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Generator"))
+        {
+            Debug.Log("Hit Generator");
         }
     }
 }
