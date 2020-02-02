@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GGJ 2020/Scenes/Chris's Scene.unity
     guid: f69dbf1e83fde61479735ccbb367defa
+  - enabled: 1
+    path: Assets/GGJ 2020/Scenes/Nick Scene.unity
+    guid: 850c10639cad2f8419a2ee8f23549a1e
   m_configObjects: {}
