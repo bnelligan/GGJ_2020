@@ -48,7 +48,7 @@ namespace BrokenBattleBots
 
         public void SpawnRandomParts ()
         {
-            float range = 10f;
+            float range = 5f;
 
             Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
             Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
@@ -98,26 +98,18 @@ namespace BrokenBattleBots
                 return;
             }
 
-            if (this.socketArmLeft.battleBotPart != null && this.socketArmLeft.battleBotPart.Welded < 9f)
-            {
-                this.DetachPart (this.socketArmLeft.battleBotPart);
-            }
-
-            if (this.socketArmRight.battleBotPart != null && this.socketArmRight.battleBotPart.Welded < 9f)
-            {
-                this.DetachPart (this.socketArmRight.battleBotPart);
-            }
-
-            if (this.socketHead.battleBotPart != null && this.socketHead.battleBotPart.Welded < 9f)
-            {
-                this.DetachPart (this.socketHead.battleBotPart);
-            }
+            bool legsUnwelded = false;
 
             if (this.socketLegs.battleBotPart != null && this.socketLegs.battleBotPart.Welded < 9f)
             {
-                this.FallOver ();
+                legsUnwelded = true;
+            }
 
-                this.DetachPart (this.socketLegs.battleBotPart);
+            this.DetachUnweldedParts ();
+
+            if (legsUnwelded == true)
+            {
+                this.FallOver ();
 
                 return;
             }
@@ -129,6 +121,49 @@ namespace BrokenBattleBots
             this.CameraFollow.FollowTargets[0] = this.partTorso.transform;
 
             this.Standing = true;
+        }
+
+        public void DetachUnweldedParts (BattleBotPart ignore = null)
+        {
+            if (this.socketArmLeft.battleBotPart != null && this.socketArmLeft.battleBotPart.Welded < 9f)
+            {
+                if (ignore != null && this.socketArmLeft.battleBotPart == ignore)
+                {
+                    return;
+                }
+
+                this.DetachPart (this.socketArmLeft.battleBotPart);
+            }
+
+            if (this.socketArmRight.battleBotPart != null && this.socketArmRight.battleBotPart.Welded < 9f)
+            {
+                if (ignore != null && this.socketArmRight.battleBotPart == ignore)
+                {
+                    return;
+                }
+
+                this.DetachPart (this.socketArmRight.battleBotPart);
+            }
+
+            if (this.socketHead.battleBotPart != null && this.socketHead.battleBotPart.Welded < 9f)
+            {
+                if (ignore != null && this.socketHead.battleBotPart == ignore)
+                {
+                    return;
+                }
+
+                this.DetachPart (this.socketHead.battleBotPart);
+            }
+
+            if (this.socketLegs.battleBotPart != null && this.socketLegs.battleBotPart.Welded < 9f)
+            {
+                if (ignore != null && this.socketLegs.battleBotPart == ignore)
+                {
+                    return;
+                }
+
+                this.DetachPart (this.socketLegs.battleBotPart);
+            }
         }
 
         public void FallOver ()
