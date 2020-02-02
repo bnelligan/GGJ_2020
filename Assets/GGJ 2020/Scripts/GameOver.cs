@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour
     private bool moveUp;
     public Button MainMenu;
     public Button PlayAgain;
+    public Button Quit;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,7 @@ public class GameOver : MonoBehaviour
         } else if(canv1.color.a >= 1) {
             MainMenu.gameObject.SetActive(true);
             PlayAgain.gameObject.SetActive(true);
+            Quit.gameObject.SetActive(true);
         } else {
             timeToChange -= Time.deltaTime;
         }

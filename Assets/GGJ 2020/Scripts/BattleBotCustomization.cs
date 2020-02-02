@@ -42,19 +42,44 @@ namespace BrokenBattleBots
             this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
         }
 
-        private void Start ()
+        /*private void Start ()
         {
             this.SpawnRandomParts ();
-        }
+        }*/
 
         public void SpawnRandomParts ()
         {
-            float range = 5f;
+            this.SpawnRandomArms ();
+            this.SpawnRandomHead();
+            this.SpawnRandomLegs ();
+        }
 
-            Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
-            Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
-            Instantiate (this.headPrefabs[Random.Range (0, this.headPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
-            Instantiate (this.legPrefabs[Random.Range (0, this.legPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
+        public void SpawnRandomArms (int count = 2)
+        {
+            for (int index = 0; index < count; index += 1)
+            {
+                Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], this.GetRandomPartSpawnPosition (), Quaternion.identity);
+            }
+        }
+
+        public void SpawnRandomLegs ()
+        {
+            Instantiate (this.legPrefabs[Random.Range (0, this.legPrefabs.Length)], this.GetRandomPartSpawnPosition (), Quaternion.identity);
+        }
+
+        public void SpawnRandomHead ()
+        {
+            Instantiate (this.headPrefabs[Random.Range (0, this.headPrefabs.Length)], this.GetRandomPartSpawnPosition (), Quaternion.identity);
+        }
+
+        private Vector3 GetRandomPartSpawnPosition ()
+        {
+            Vector3 position = this.partTorso.transform.position;
+            position.y += 20f;
+            position.x += Random.Range (-5f, 5f);
+            position.z += Random.Range (-5f, 5f);
+
+            return position;
         }
 
         public struct IgnoreCollisionPair
@@ -212,6 +237,71 @@ namespace BrokenBattleBots
                 averagePosition /= 4f;
 
                 this.CameraFollow.TargetPosition = averagePosition;
+
+                // Spawn any parts not in vicinity
+
+                int arms = 0;
+                int legs = 0;
+                int heads = 0;
+
+                Collider[] overlapShereResults = UnityEngine.Physics.OverlapSphere (this.partTorso.transform.position, 20f, this.LayerMaskSelect);
+
+                foreach (Collider collider in overlapShereResults)
+                {
+                    BattleBotPart battleBotPart = collider.GetComponent <BattleBotPart> ();
+
+                    if (battleBotPart != null)
+                    {
+                        // if (battleBotPart.Socket == null)
+                        {
+                            switch (battleBotPart.PartType)
+                            {
+                                case BattleBotPart.BattleBotPartType.Arm:
+                                {
+                                    arms += 1;
+
+                                    break;
+                                }
+
+                                case BattleBotPart.BattleBotPartType.Bottom:
+                                {
+                                    legs += 1;
+
+                                    break;
+                                }
+
+                                case BattleBotPart.BattleBotPartType.Head:
+                                {
+                                    heads += 1;
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (this.partTorso.Rigidbody.velocity.y >= 0f)
+                {
+                    if (arms == 0)
+                    {
+                        this.SpawnRandomArms (2);
+                    }
+                    else if (arms == 1)
+                    {
+                        this.SpawnRandomArms (1);
+                    }
+
+                    if (legs == 0)
+                    {
+                        this.SpawnRandomLegs ();
+                    }
+
+                    if (heads == 0)
+                    {
+                        this.SpawnRandomHead ();
+                    }
+                }
             }
 
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.R))
