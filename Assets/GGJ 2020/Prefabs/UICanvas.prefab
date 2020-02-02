@@ -502,7 +502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemies Killed:'
+  m_text: 'Enemies Defeated:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ecc3c477126c0964c98e5474ad757674, type: 2}
   m_sharedMaterial: {fileID: -4794598909081283346, guid: ecc3c477126c0964c98e5474ad757674,
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5737638765148339425}
-    characterCount: 15
+    characterCount: 17
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 5737638765578006305}
   - component: {fileID: 5737638765578006304}
   - component: {fileID: 5737638765578006307}
+  - component: {fileID: 2000016275}
   m_Layer: 0
   m_Name: UICanvas
   m_TagString: Untagged
@@ -696,6 +697,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2000016275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737638765578006317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c323e96135c6c45a51145e065ff31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gen1Fill: {fileID: 5737638765802974452}
+  gen2Fill: {fileID: 5737638765744030042}
+  gen3Fill: {fileID: 5737638765757228454}
+  healthBarFill: {fileID: 5737638765119332821}
 --- !u!1 &5737638765744030020
 GameObject:
   m_ObjectHideFlags: 0
