@@ -127,6 +127,13 @@ namespace BrokenBattleBots
 
         private void OnTriggerEnter (Collider collider)
         {
+            // Don't attach if already standing
+
+            if (BattleBotCustomization.instance.Standing == true)
+            {
+                return;
+            }
+
             // Check if the collider is a battle bot part
 
             BattleBotPart battleBotPart = collider.GetComponent <BattleBotPart> ();
