@@ -4,6 +4,8 @@ using Unity.Transforms;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Collections;
+using Unity.Burst;
 using UnityEngine;
 
 namespace BrokenBattleBots
@@ -60,21 +62,25 @@ namespace BrokenBattleBots
     /// </summary>
     class PlayerInputSystem : JobComponentSystem
     {
-        
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
+            // Move input
             float2 rawMoveInput = new float2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             var readMoveJob = new PlayerMoveInputJob()
             {
                 RawMoveAxis = rawMoveInput
             };
-            Vector3 aimPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10));
+            inputDeps = readMoveJob.Schedule(this, inputDeps);
+
+            // Aim input
+            Vector3 aimPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+            Debug.Log("AimPoint: " + aimPoint);
             var readAimJob = new PlayerAimInputJob()
             {
-                AimPoint = new float3(aimPoint.x, aimPoint.y, aimPoint.z)
+                AimPoint = new float3(aimPoint.x, 0, aimPoint.z)
             };
-
-            return readMoveJob.Schedule(this, inputDeps);
+            inputDeps = readAimJob.Schedule(this, inputDeps);
+            return inputDeps;
         }
 
         /// <summary>
@@ -112,7 +118,6 @@ namespace BrokenBattleBots
                 aim.AimPoint = AimPoint;
             }
         }
-
     }
 
     /// <summary>
@@ -127,15 +132,14 @@ namespace BrokenBattleBots
             return job.Schedule(this, inputDeps);
         }
 
-        struct ApplyMoveInputJob : IJobForEach<PhysicsVelocity, Rotation, MovementSpeed, MovementInput>
+        struct ApplyMoveInputJob : IJobForEach<PhysicsVelocity, MovementSpeed, MovementInput>
         {
-            public void Execute(ref PhysicsVelocity velocity, ref Rotation rotation, ref MovementSpeed moveSpeed, ref MovementInput input)
+            public void Execute(ref PhysicsVelocity velocity, ref MovementSpeed moveSpeed, ref MovementInput input)
             {
                 // Velocity scales with input and move speed
                 if(math.length(input.Direction) > 0)
                 {
                     velocity.Linear = input.Direction * input.Magnitude * moveSpeed.Value;
-                    rotation.Value = Quaternion.Euler(input.Direction);
                 }
                 else
                 {
@@ -145,4 +149,28 @@ namespace BrokenBattleBots
         }
     }
    
+    /// <summary>
+    /// Read aim input and apply to the aim input sus
+    /// </summary>
+    [UpdateAfter(typeof(ApplyMoveInputSystem))]
+    class ApplyAimInputSystem : JobComponentSystem
+    {
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+            ApplyAimInputJob aimJob = new ApplyAimInputJob();
+            return aimJob.Schedule(this, inputDeps);
+        }
+
+        struct ApplyAimInputJob : IJobForEach<Rotation, Translation, AimInput, AimSettings>
+        {
+            public void Execute(ref Rotation rotation, [ReadOnly] ref Translation translation, [ReadOnly] ref AimInput input, [ReadOnly] ref AimSettings settings)
+            {
+                float3 look = input.AimPoint - new float3(translation.Value.x, 0f, translation.Value.z);
+                quaternion rot = Quaternion.LookRotation(look);
+                
+                rotation.Value = math.normalize(new quaternion(0, rot.value.y, 0, rot.value.w));
+            }
+        }
+
+    }
 }

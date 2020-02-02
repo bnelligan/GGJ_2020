@@ -17,7 +17,9 @@ namespace BrokenBattleBots
         public int DecayAmount;
         public int DecayInterval;
 
-
+        public int RotationFriction;
+        public int RotationSmoothness;
+        public int RotationSpeed;
 
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -29,7 +31,9 @@ namespace BrokenBattleBots
                 typeof(Health),
                 typeof(HealthDecay),
                 typeof(PlayerScore),
-                typeof(RepairCap)
+                typeof(RepairCap),
+                typeof(AimInput),
+                typeof(AimSettings)
             });
 
             //dstManager.SetArchetype(entity, playerArchetype);
@@ -53,6 +57,16 @@ namespace BrokenBattleBots
             });
             dstManager.AddComponentData(entity, new RepairCap() {
                 MaxHealthFromRepair = Health
+            });
+            dstManager.AddComponentData(entity, new AimInput()
+            {
+                AimPoint = Vector3.zero
+            });
+            dstManager.AddComponentData(entity, new AimSettings()
+            {
+                RotationFriction = RotationFriction,
+                RotationSmoothness = RotationSmoothness,
+                RotationSpeed = RotationSpeed
             });
 
         }

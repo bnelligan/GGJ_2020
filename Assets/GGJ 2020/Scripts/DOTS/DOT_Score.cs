@@ -59,9 +59,8 @@ namespace BrokenBattleBots
                 ecb = ecb_EndSim.CreateCommandBuffer().ToConcurrent(),
                 score = playerScoreQuery.GetSingleton<PlayerScore>()
             };
-            inputDeps = claimJob.Schedule(this, inputDeps);
+            claimJob.Schedule(this, inputDeps).Complete();
             
-            playerScoreQuery.GetSingleton<PlayerScore>();
             return inputDeps;
         }
 
@@ -82,6 +81,7 @@ namespace BrokenBattleBots
                     score.BestScore = score.Score;
                 }
                 ecb.RemoveComponent(index, entity, typeof(Tag_ClaimScore));
+                
             }
         }
         
