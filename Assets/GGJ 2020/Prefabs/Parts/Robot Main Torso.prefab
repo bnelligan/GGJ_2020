@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBattleBotPart: {fileID: 0}
   CompatiblePartTypes: 6
+  Collider: {fileID: 1315721748267478482}
   attachPosition: {x: 0, y: 0, z: 0}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!33 &1315721748267478508
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBattleBotPart: {fileID: 0}
   CompatiblePartTypes: 1
+  Collider: {fileID: 1315721749447811187}
   attachPosition: {x: 0, y: -1.71, z: 0.49}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!33 &1315721749447811085
@@ -268,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBattleBotPart: {fileID: 0}
   CompatiblePartTypes: 1
+  Collider: {fileID: 1315721750305229914}
   attachPosition: {x: 0, y: -1.71, z: 0.49}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!33 &1315721750305229908
@@ -378,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBattleBotPart: {fileID: 0}
   CompatiblePartTypes: 0
+  Collider: {fileID: 7129465103697979635}
   attachPosition: {x: 0, y: 0, z: 0}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!33 &3710002999133714651
@@ -456,6 +460,7 @@ GameObject:
   - component: {fileID: 8944201095880069440}
   - component: {fileID: 155842208639510035}
   - component: {fileID: 6849280399200649919}
+  - component: {fileID: 729893942}
   m_Layer: 8
   m_Name: Robot Main Torso
   m_TagString: Untagged
@@ -557,7 +562,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8944201095880069441}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -687,9 +692,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7fff3ebf1fe9f45a64593fac1283c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armPrefabs: []
-  legPrefabs: []
-  headPrefabs: []
+  armPrefabs:
+  - {fileID: 1400340765110987508, guid: 81c74aadc7ad28e47b4ec3b50e6e40f5, type: 3}
+  - {fileID: 6886627766799815291, guid: fc0186b793ec2ab40909bfedcc06937d, type: 3}
+  legPrefabs:
+  - {fileID: 5612079047701837889, guid: 4d9c552129a5f6e49871a103d2c5158d, type: 3}
+  - {fileID: 5068569106019523529, guid: 05319d99c41dc9a44b08e97fb193c10c, type: 3}
+  headPrefabs:
+  - {fileID: 2897295778024822370, guid: 2c56fcdb503474f489e2b5cb2305b9bd, type: 3}
   socketHead: {fileID: 6049897136555932586}
   socketArmLeft: {fileID: 1315721749447811084}
   socketArmRight: {fileID: 1315721750305229911}
@@ -752,3 +762,23 @@ MonoBehaviour:
     m_Bits: 1
   Camera: {fileID: 0}
   CameraFollow: {fileID: 0}
+  playerSpawn: {fileID: 0}
+--- !u!114 &729893942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944201095880069441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c42f3e3a46d0a4fae53f7226e348a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
+  Health: 100
+  DecayAmount: 0
+  DecayInterval: 10
+  RotationFriction: 0
+  RotationSmoothness: 1
+  RotationSpeed: 2
