@@ -7333,7 +7333,7 @@ Canvas:
   m_GameObject: {fileID: 1257170638}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 219504133}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -7385,6 +7385,8 @@ MonoBehaviour:
   dropParts: {fileID: 429057308}
   startButton: {fileID: 1449628892}
   rFall: {fileID: 781274257}
+  music: {fileID: 1382850397}
+  fadeFactor: 0.001
 --- !u!1 &1267086197
 GameObject:
   m_ObjectHideFlags: 0
@@ -8409,9 +8411,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ddd31f7a3349404499d825e54f02fe1c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c19e19f330dbbfd40b263fdb5a651c1a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.695
   m_Pitch: 1
   Loop: 1
   Mute: 0
