@@ -48,7 +48,6 @@ public class LightningOut : MonoBehaviour
                 GameObject bullet = Instantiate(miniBullet, FirstEnemy.transform.position, Quaternion.identity);
                 bullet.GetComponent<BulletAttack>().speed = 2.5f;
                 bullet.GetComponent<BulletAttack>().target = other.gameObject;
-                Debug.Log("SPAWNED BULLET!");
             }
         }
     }
