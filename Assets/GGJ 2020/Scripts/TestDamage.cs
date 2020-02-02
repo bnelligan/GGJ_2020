@@ -5,7 +5,7 @@ using BrokenBattleBots;
 using Unity.Entities;
 using UnityEngine;
 
-public class TestDamage : MonoBehaviour
+public class TestDamage : MonoBehaviour, IConvertGameObjectToEntity
 {
     // Start is called before the first frame update
     void Start()
@@ -21,11 +21,16 @@ public class TestDamage : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Generator"))
         {
             Debug.Log("Hit Generator");
         }
+    }
+
+    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    {
+      
     }
 }
