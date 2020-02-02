@@ -612,7 +612,7 @@ MonoBehaviour:
   Collider: {fileID: 875308776151045593}
   PartType: 6
   AudioSource: {fileID: 5153491521009883407}
-  weldSpeedMultiplier: 5
+  weldSpeedMultiplier: 3
   attachPosition: {x: 0, y: 0.28, z: 0}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
   standHeightOffset: 8.34
