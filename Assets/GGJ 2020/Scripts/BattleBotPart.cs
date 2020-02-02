@@ -5,27 +5,24 @@ using UnityEngine;
 
 namespace BrokenBattleBots
 {
-    [RequireComponent (typeof (Rigidbody))]
     public class BattleBotPart : MonoBehaviour
     {
         public float Welded { get; private set; }
-        public bool BeingDragged;
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
         public Collider Collider;
         public BattleBotPartType PartType;
         public AudioSource AudioSource;
-        public AudioClip[] AudioClipsCollisions;
-        public AudioClip[] AudioClipsAttach;
-        public AudioClip[] AudioClipsDetach;
-        public AudioClip[] AudioClipsError;
         public float weldSpeedMultiplier = 1f;
+        public Vector3 attachPosition;
+        public Vector3 attachRotationEulerAngles;
 
         public enum BattleBotPartType
         {
             Head = 0,
-            ArmLeft = 1,
-            ArmRight = 2,
+            Arm = 1,
+            // ArmLeft = 1,
+            // ArmRight = 2,
             ShoulderLeft = 3,
             ShoulderRight = 4,
             Chest = 5,
@@ -40,9 +37,9 @@ namespace BrokenBattleBots
 
             UnityEngine.Mathf.Clamp01 (this.Welded);
 
-            MeshRenderer meshRenderer = this.GetComponentInChildren <MeshRenderer> ();
+            MeshRenderer[] meshRenderers = this.GetComponentsInChildren <MeshRenderer> ();
 
-            if (meshRenderer != null)
+            foreach (MeshRenderer meshRenderer in meshRenderers)
             {
                 // Color color = Color.Lerp (Color.black, Color.red, this.Welded / 10f);
 
@@ -54,7 +51,7 @@ namespace BrokenBattleBots
 
         private void OnCollisionEnter (Collision collision)
         {
-            if (collision.relativeVelocity.magnitude > 2f)
+            if (collision.relativeVelocity.magnitude > 1f)
             {
                 this.PlayCollisionSound (collision.relativeVelocity.magnitude / 10f);
             }
@@ -64,9 +61,9 @@ namespace BrokenBattleBots
         {
             // Play random collision sound
 
-            if (this.AudioSource != null && this.AudioClipsCollisions != null && this.AudioClipsCollisions.Length > 0)
+            if (this.AudioSource != null && BattleBotCustomization.instance.AudioClipsCollisions != null && BattleBotCustomization.instance.AudioClipsCollisions.Length > 0)
             {
-                this.AudioSource.PlayOneShot (this.AudioClipsCollisions[Random.Range (0, this.AudioClipsCollisions.Length)], volume);
+                this.AudioSource.PlayOneShot (BattleBotCustomization.instance.AudioClipsCollisions[Random.Range (0, BattleBotCustomization.instance.AudioClipsCollisions.Length)], volume);
             }
         }
 
@@ -74,9 +71,9 @@ namespace BrokenBattleBots
         {
             // Play random attach sound
 
-            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
+            if (this.AudioSource != null && BattleBotCustomization.instance.AudioClipsAttach != null && BattleBotCustomization.instance.AudioClipsAttach.Length > 0)
             {
-                this.AudioSource.PlayOneShot (this.AudioClipsAttach[Random.Range (0, this.AudioClipsAttach.Length)]);
+                this.AudioSource.PlayOneShot (BattleBotCustomization.instance.AudioClipsAttach[Random.Range (0, BattleBotCustomization.instance.AudioClipsAttach.Length)]);
             }
         }
 
@@ -84,9 +81,9 @@ namespace BrokenBattleBots
         {
             // Play random detach sound
 
-            if (this.AudioSource != null && this.AudioClipsAttach != null && this.AudioClipsAttach.Length > 0)
+            if (this.AudioSource != null && BattleBotCustomization.instance.AudioClipsAttach != null && BattleBotCustomization.instance.AudioClipsAttach.Length > 0)
             {
-                this.AudioSource.PlayOneShot (this.AudioClipsDetach[Random.Range (0, this.AudioClipsDetach.Length)]);
+                this.AudioSource.PlayOneShot (BattleBotCustomization.instance.AudioClipsDetach[Random.Range (0, BattleBotCustomization.instance.AudioClipsDetach.Length)]);
             }
         }
 
@@ -94,9 +91,9 @@ namespace BrokenBattleBots
         {
             // Play random error sound
 
-            if (this.AudioSource != null && this.AudioClipsError != null && this.AudioClipsError.Length > 0)
+            if (this.AudioSource != null && BattleBotCustomization.instance.AudioClipsError != null && BattleBotCustomization.instance.AudioClipsError.Length > 0)
             {
-                this.AudioSource.PlayOneShot (this.AudioClipsError[Random.Range(0, this.AudioClipsError.Length)]);
+                this.AudioSource.PlayOneShot (BattleBotCustomization.instance.AudioClipsError[Random.Range(0, BattleBotCustomization.instance.AudioClipsError.Length)]);
             }
         }
 
