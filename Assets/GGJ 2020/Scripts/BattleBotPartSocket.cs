@@ -74,7 +74,7 @@ namespace BrokenBattleBots
             {
                 Vector3 direction = this.battleBotPart.transform.position - this.parentBattleBotPart.transform.position;
 
-                this.parentBattleBotPart.Rigidbody.AddForce (-direction * 100f, ForceMode.Force);
+                this.parentBattleBotPart.Rigidbody.AddForce (Vector3.up * Random.Range (100f, 200f), ForceMode.Force);
             }
         }
 

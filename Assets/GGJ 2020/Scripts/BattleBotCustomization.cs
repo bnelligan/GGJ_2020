@@ -199,6 +199,10 @@ namespace BrokenBattleBots
             }
             else
             {
+                this.partTorso.Rigidbody.velocity = Vector3.zero;
+
+                this.partTorso.Rigidbody.angularVelocity = Vector3.zero;
+
                 // Check if the part has been attached to a socket or released by the user
 
                 if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.SelectedBattleBotPart.Socket != null)
