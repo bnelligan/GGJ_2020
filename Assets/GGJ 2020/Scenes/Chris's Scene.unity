@@ -1512,6 +1512,7 @@ MonoBehaviour:
   - {fileID: 1624062878}
   StartFighting: 0
   Robot: {fileID: 743932282}
+  instructionText: {fileID: 1805458253}
 --- !u!4 &1801182700
 Transform:
   m_ObjectHideFlags: 0
