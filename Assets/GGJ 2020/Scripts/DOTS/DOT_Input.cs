@@ -18,11 +18,30 @@ namespace BrokenBattleBots
     }
 
     /// <summary>
+    /// Aim point in world space
+    /// </summary>
+    public struct AimInput : IComponentData
+    {
+        public float3 AimPoint;
+    }
+
+    /// <summary>
+    /// Aim settings for the player
+    /// </summary>
+    public struct AimSettings : IComponentData
+    {
+        public float RotationFriction;
+        public float RotationSpeed;
+        public float RotationSmoothness;
+    }
+
+
+    /// <summary>
     /// Tag entities to use player input
     /// </summary>
     public struct UsePlayerInput : IComponentData
     {
-        // Nothing, just a tag
+        public int PlayerID;
     }
 
 
@@ -39,35 +58,67 @@ namespace BrokenBattleBots
     /// <summary>
     /// Read game input and transfer it to the player entities
     /// </summary>
-    class ReadPlayerInputSystem : JobComponentSystem
+    class PlayerInputSystem : JobComponentSystem
     {
+        
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
             float2 rawMoveInput = new float2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            var applyInputJob = new ReadMoveInputJob()
+            var readMoveJob = new PlayerMoveInputJob()
             {
-                rawMoveAxis = rawMoveInput
+                RawMoveAxis = rawMoveInput
             };
-            return applyInputJob.Schedule(this, inputDeps);
+            Vector3 aimPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10));
+            var readAimJob = new PlayerAimInputJob()
+            {
+                AimPoint = new float3(aimPoint.x, aimPoint.y, aimPoint.z)
+            };
+
+            return readMoveJob.Schedule(this, inputDeps);
         }
 
-        
+        /// <summary>
+        /// Apply player move input to entities
+        /// </summary>
         [RequireComponentTag(typeof(UsePlayerInput))]
-        struct ReadMoveInputJob : IJobForEach<MovementInput>
+        struct PlayerMoveInputJob : IJobForEach<MovementInput>
         {
-            public float2 rawMoveAxis;
+            public float2 RawMoveAxis;
             public void Execute(ref MovementInput inputData)
             {
-                inputData.Direction = math.normalize(new float3(rawMoveAxis.x, 0, rawMoveAxis.y)); // vertical = forward, horiz = right
-                inputData.Magnitude = math.max(math.abs(rawMoveAxis.x), math.abs(rawMoveAxis.y));
+                float3 moveAxis = new float3(RawMoveAxis.x, 0, RawMoveAxis.y);
+                if(math.length(moveAxis) > 0)
+                {
+                    moveAxis = math.normalize(moveAxis);
+                }
+                else
+                {
+                    moveAxis = new float3(0, 0, 1);
+                }
+                inputData.Direction = math.normalize(new float3(RawMoveAxis.x, 0, RawMoveAxis.y)); // vertical = forward, horiz = right
+                inputData.Magnitude = math.max(math.abs(RawMoveAxis.x), math.abs(RawMoveAxis.y));
             }
         }
+
+        /// <summary>
+        /// Apply player aim input to entities
+        /// </summary>
+        [RequireComponentTag(typeof(UsePlayerInput))]
+        struct PlayerAimInputJob : IJobForEach<AimInput>
+        {
+            public float3 AimPoint;
+            public void Execute(ref AimInput aim)
+            {
+                aim.AimPoint = AimPoint;
+            }
+        }
+
     }
 
     /// <summary>
     /// Read move input and apply it to the physics system
     /// </summary>
-    [UpdateAfter(typeof(ReadPlayerInputSystem))]
+    [UpdateAfter(typeof(PlayerInputSystem))]
     class ApplyMoveInputSystem : JobComponentSystem
     {
         protected override JobHandle OnUpdate(JobHandle inputDeps)

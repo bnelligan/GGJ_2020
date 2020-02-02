@@ -24,7 +24,7 @@ namespace BrokenBattleBots
     public struct ScoreBounty : IComponentData
     {
         public int Score;
-        public bool IsClaimed;
+        public Entity Player;
     }
 
     /// <summary>
@@ -81,7 +81,6 @@ namespace BrokenBattleBots
                 {
                     score.BestScore = score.Score;
                 }
-                bounty.IsClaimed = true;
                 ecb.RemoveComponent(index, entity, typeof(Tag_ClaimScore));
             }
         }

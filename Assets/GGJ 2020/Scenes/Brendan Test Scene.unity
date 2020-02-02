@@ -398,13 +398,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063310086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: -0.03, y: 8.11, z: -1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1 &1466428739
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c42f3e3a46d0a4fae53f7226e348a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 10
+  MoveSpeed: 19.84
+  Health: 130
+  DecayAmount: 0
+  DecayInterval: 0
 --- !u!135 &1466428741
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -661,7 +664,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1694806052}
-  - component: {fileID: 1694806051}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Untagged
@@ -669,18 +671,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1694806051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694806050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc38f1c03c120b479f18fd1d28bdba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1694806052
 Transform:
   m_ObjectHideFlags: 0
