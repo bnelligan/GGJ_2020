@@ -69,9 +69,12 @@ namespace BrokenBattleBots
             {
                 // Color color = Color.Lerp (Color.black, Color.red, this.Welded / 10f);
 
-                Color color = BattleBotCustomization.instance.WeldGradientPositive.Evaluate (this.Welded / 10f);
+                Color newWeldedColor = BattleBotCustomization.instance.WeldGradientPositive.Evaluate (this.Welded / 10f);
 
-                meshRenderer.material.color = color;
+                for (int index = 0; index < meshRenderer.materials.Length; index += 1)
+                {
+                    meshRenderer.materials[index].color = newWeldedColor;
+                }
             }
         }
 

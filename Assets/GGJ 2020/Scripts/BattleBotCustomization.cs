@@ -187,17 +187,6 @@ namespace BrokenBattleBots
 
         public void FallOver ()
         {
-            // Update camera follow targets to parts
-
-            /*BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
-
-            this.CameraFollow.FollowTargets = new Transform[parts.Length];
-
-            for (int index = 0; index < parts.Length; index += 1)
-            {
-                this.CameraFollow.FollowTargets[index] = parts[index].transform;
-            }*/
-
             this.CameraFollow.IsRobotStanding = false;
 
             this.Standing = false;
