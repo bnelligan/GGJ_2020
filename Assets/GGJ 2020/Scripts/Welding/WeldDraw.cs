@@ -63,14 +63,7 @@ public class WeldDraw : MonoBehaviour
 
                 if (battleBotPart != null)
                 {
-                    if (battleBotPart.Socket != null)
-                    {
-                        battleBotPart.Weld(UnityEngine.Time.deltaTime);
-                    }
-                    /*else
-                    {
-                        battleBotPart.Weld (-UnityEngine.Time.deltaTime);
-                    }*/
+                    battleBotPart.Weld (UnityEngine.Time.deltaTime);
 
                     this.audioSourceWeldSound.volume = 1f;
 
