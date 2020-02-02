@@ -707,6 +707,7 @@ MonoBehaviour:
   - {fileID: 3512604827834757484, guid: c801df3d83d1cd847a83ef42378f08ad, type: 3}
   - {fileID: 8502792762462662186, guid: ab2af88ca0c2e5d418058a4051041a87, type: 3}
   - {fileID: 2333560422543299970, guid: 74b1c6e12755f644f9b9d46c4a66f2e2, type: 3}
+  - {fileID: 6581901686724133248, guid: 54814fce9d490324ebcdf945d4305fe2, type: 3}
   socketHead: {fileID: 6049897136555932586}
   socketArmLeft: {fileID: 1315721749447811084}
   socketArmRight: {fileID: 1315721750305229911}
