@@ -524,7 +524,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32214
+  m_Name: pb_Mesh-309874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -728,6 +728,12 @@ PrefabInstance:
       propertyPath: screenSpace
       value: 
       objectReference: {fileID: 1850798291}
+    - target: {fileID: 123086662929722956, guid: c6a974f473eee494186c11f1a2a0d7b4,
+        type: 3}
+      propertyPath: postProcessProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: f1ca1933239364b4e9cb6d0f9f73ea13,
+        type: 2}
     - target: {fileID: 123086662929722957, guid: c6a974f473eee494186c11f1a2a0d7b4,
         type: 3}
       propertyPath: m_Name
@@ -1527,6 +1533,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 425175233, guid: 94981667837b6694d9f04ea9a5c31bfa, type: 3}
+      propertyPath: antialiasingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9124885625651621617, guid: 94981667837b6694d9f04ea9a5c31bfa,
         type: 3}
       propertyPath: m_Name

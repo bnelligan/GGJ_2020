@@ -365,6 +365,10 @@ namespace BrokenBattleBots
 
                                 this.SelectedBattleBotPart = battleBotPart;
 
+                                this.partTorso.Rigidbody.velocity = Vector3.zero;
+
+                                this.partTorso.Rigidbody.angularVelocity = Vector3.zero;
+
                                 UnityEngine.Debug.Log ($"{ this } selected { this.SelectedBattleBotPart }");
                             }
                         }
@@ -373,10 +377,6 @@ namespace BrokenBattleBots
             }
             else
             {
-                // this.partTorso.Rigidbody.velocity = Vector3.zero;
-
-                this.partTorso.Rigidbody.angularVelocity = Vector3.zero;
-
                 // Check if the part has been attached to a socket or released by the user
 
                 if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.SelectedBattleBotPart.Socket != null)
