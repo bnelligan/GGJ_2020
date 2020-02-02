@@ -15,41 +15,12 @@ public class WeldDraw : MonoBehaviour
     private Vector3 mouseLocation;
     public AudioSource audioSourceWeldSound;
 
-    bool wasSelectingPart;
-
     // Update is called once per frame
     void Update()
     {
         // Debug.Log(mouseLocation);
 
-        if (BrokenBattleBots.BattleBotCustomization.instance != null && BrokenBattleBots.BattleBotCustomization.instance.SelectedBattleBotPart != null)
-        {
-            this.wasSelectingPart = true;
-
-            if (this.sparks.isPlaying == true)
-            {
-                sparks.Stop();
-                RemoveTrail();
-
-                
-            }
-
-            this.audioSourceWeldSound.Stop();
-
-            return;
-        }
-
-        if (this.wasSelectingPart == true)
-        {
-            if (Input.GetMouseButtonUp (0))
-            {
-                this.wasSelectingPart = false;
-            }
-
-            return;
-        }
-
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
         {
             this.audioSourceWeldSound.volume = 0.1f;
 
@@ -64,7 +35,7 @@ public class WeldDraw : MonoBehaviour
            /*sparksLocaiton.position = mouseLocation;
            sparks.Play();*/
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(1))
         {
             mouseLocation =
                 screenSpace.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
@@ -74,44 +45,41 @@ public class WeldDraw : MonoBehaviour
                 currentWeld.transform.position = mouseLocation;
             }
 
-            if (BrokenBattleBots.BattleBotCustomization.instance != null && BrokenBattleBots.BattleBotCustomization.instance.SelectedBattleBotPart == null)
+            Ray ray = this.screenSpace.ScreenPointToRay(UnityEngine.Input.mousePosition);
+
+            if (UnityEngine.Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
             {
-                Ray ray = this.screenSpace.ScreenPointToRay (UnityEngine.Input.mousePosition);
+                BrokenBattleBots.BattleBotPart battleBotPart = raycastHit.collider.GetComponent<BrokenBattleBots.BattleBotPart>();
 
-                if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
+                if (battleBotPart == null)
                 {
-                    BrokenBattleBots.BattleBotPart battleBotPart = raycastHit.collider.GetComponent <BrokenBattleBots.BattleBotPart> ();
+                    BrokenBattleBots.BattleBotPartSocket battleBotPartSocket = raycastHit.collider.GetComponent<BrokenBattleBots.BattleBotPartSocket>();
 
-                    if (battleBotPart == null)
+                    if (battleBotPartSocket != null && battleBotPartSocket.battleBotPart != null)
                     {
-                        BrokenBattleBots.BattleBotPartSocket battleBotPartSocket = raycastHit.collider.GetComponent <BrokenBattleBots.BattleBotPartSocket> ();
+                        battleBotPart = battleBotPartSocket.battleBotPart;
+                    }
+                }
 
-                        if (battleBotPartSocket != null && battleBotPartSocket.battleBotPart != null)
-                        {
-                            battleBotPart = battleBotPartSocket.battleBotPart;
-                        }
+                if (battleBotPart != null)
+                {
+                    if (battleBotPart.Socket != null)
+                    {
+                        battleBotPart.Weld(UnityEngine.Time.deltaTime);
+                    }
+                    /*else
+                    {
+                        battleBotPart.Weld (-UnityEngine.Time.deltaTime);
+                    }*/
+
+                    this.audioSourceWeldSound.volume = 1f;
+
+                    if (sparks.isPlaying == false)
+                    {
+                        sparks.Play();
                     }
 
-                    if (battleBotPart != null)
-                    {
-                        if (battleBotPart.Socket != null)
-                        {
-                            battleBotPart.Weld(UnityEngine.Time.deltaTime);
-                        }
-                        /*else
-                        {
-                            battleBotPart.Weld (-UnityEngine.Time.deltaTime);
-                        }*/
-                        
-                        this.audioSourceWeldSound.volume = 1f;
-
-                        if (sparks.isPlaying == false)
-                        {
-                            sparks.Play ();
-                        }
-
-                        return;
-                    }
+                    return;
                 }
             }
 
@@ -119,7 +87,7 @@ public class WeldDraw : MonoBehaviour
 
             this.audioSourceWeldSound.volume = 0.1f;
         }
-        else if(Input.GetMouseButtonUp(0))
+        else if(Input.GetMouseButtonUp(1))
         {
             sparks.Stop();
             RemoveTrail();
@@ -141,6 +109,5 @@ public class WeldDraw : MonoBehaviour
         {
             this.weldLine.Clear();
         }
-        
     }
 }
