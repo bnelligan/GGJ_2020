@@ -6,6 +6,7 @@ public class C4Controller : MonoBehaviour
 {
     public GameObject c4;
     public GameObject lazer;
+    public GameObject shotgunBullet;
     public int c4Limit;
     private List<GameObject> c4List = new List<GameObject>();
     public GameObject spawnPoint;
@@ -30,6 +31,28 @@ public class C4Controller : MonoBehaviour
 
             GameObject laz = Instantiate(lazer, spawnPoint.transform.position, Quaternion.identity);
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Vector3 pos = new Vector3(10, 0, 10);
+            GameObject centerlaz = Instantiate(shotgunBullet, spawnPoint.transform.position, Quaternion.identity);
+            centerlaz.GetComponent<ShotgunShell>().BulletTime = .5f;
+            centerlaz.GetComponent<ShotgunShell>().speed = 3;
+            centerlaz.GetComponent<ShotgunShell>().hit = pos;
+
+            for (int i = 1; i <= 5; i++)
+            {
+                GameObject laz = Instantiate(shotgunBullet, spawnPoint.transform.position, Quaternion.identity);
+                laz.GetComponent<ShotgunShell>().BulletTime = .5f;
+                laz.GetComponent<ShotgunShell>().speed = 3;
+                laz.GetComponent<ShotgunShell>().hit = new Vector3(pos.x + (2 * i), 0, pos.z - (2 * i));
+
+                GameObject altlaz = Instantiate(shotgunBullet, spawnPoint.transform.position, Quaternion.identity);
+                altlaz.GetComponent<ShotgunShell>().BulletTime = .5f;
+                altlaz.GetComponent<ShotgunShell>().speed = 3;
+                altlaz.GetComponent<ShotgunShell>().hit = new Vector3(pos.x - (2 * i), 0, pos.z + (2 * i));
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.U))
