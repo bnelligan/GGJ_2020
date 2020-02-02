@@ -32,6 +32,7 @@ public class CountdownSystem : ComponentSystem
     {
         Entities.ForEach((Entity e, ref Countdown countdown) =>
         {
+            countdown.TimeLeft -= Time.DeltaTime;
             if(countdown.TimeLeft <= 0)
             {
                 EntityManager.AddComponent(e, typeof(Tag_CountdownElapsed));
@@ -41,47 +42,70 @@ public class CountdownSystem : ComponentSystem
 }
 
 [UpdateAfter(typeof(CountdownSystem))]
-public class SpawnSystem : JobComponentSystem
+public class SpawnSystem : ComponentSystem
 {
-    EndSimulationEntityCommandBufferSystem ecb_EndSim;
-
-    protected override void OnCreate()
+    protected override void OnUpdate()
     {
-        base.OnCreate();
-        ecb_EndSim = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-    }
-
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
-    {
-
-        SpawnAfterCountdown spawnAfterCountdownJob = new SpawnAfterCountdown()
+        Entities.ForEach((Entity e, ref Tag_CountdownElapsed countdownElapsed, ref SpawnPoint spawnInfo, ref SpawnInterval spawnInterval, ref Countdown countdown) =>
         {
-            ecb = ecb_EndSim.CreateCommandBuffer().ToConcurrent()
-        };
-        inputDeps = spawnAfterCountdownJob.Schedule(this, inputDeps);
-        return inputDeps;
-    }
+            EntityManager.Instantiate(spawnInfo.Spawn);
+            spawnInterval.Value = spawnInterval.Value * 0.95f;
+        });
 
-    [RequireComponentTag(typeof(Tag_CountdownElapsed))]
-    struct SpawnAfterCountdown : IJobForEachWithEntity<SpawnPoint, SpawnInterval, Countdown>
-    {
-        public EntityCommandBuffer.Concurrent ecb;
-        public void Execute(Entity entity, int index, [ReadOnly] ref SpawnPoint spawnInfo, [ReadOnly] ref SpawnInterval interval, ref Countdown countdown)
+        Entities.ForEach((Entity e, ref Tag_CountdownElapsed countdownElapsed, ref SpawnPoint spawnInfo, ref SpawnInterval interval, ref Countdown countdown) =>
         {
-            // Remove countdown tag and reset timer
-            ecb.RemoveComponent(index, entity, typeof(Tag_CountdownElapsed));
+            EntityManager.RemoveComponent(e, typeof(Tag_CountdownElapsed));
             countdown.TimeLeft += interval.Value;
-            if(countdown.TimeLeft < 0)
+            if (countdown.TimeLeft < 0)
             {
                 // just in case 
                 countdown.TimeLeft = interval.Value;
             }
-            // Create spawn entity
-            ecb.Instantiate(index, entity);
-            // Reduce spawn interval by 5% each time
-            interval.Value = interval.Value * 0.95f;
-        }
+        });
+
+        //spawnAfterCountdownJob.Schedule(this, inputDeps).Complete();
+        //ResetCountdownJob resetCountdownJob = new ResetCountdownJob()
+        //{
+        //    ecb = ecb_EndSim.CreateCommandBuffer()
+        //};
+        //resetCountdownJob.Schedule(this, inputDeps).Complete();
+        
+        
+        //return inputDeps;
     }
+
+    //[RequireComponentTag(typeof(Tag_CountdownElapsed))]
+    //struct SpawnAfterCountdown : IJobForEachWithEntity<SpawnPoint, SpawnInterval, Countdown>
+    //{
+    //    [ReadOnly] public EntityCommandBuffer ecb;
+    //    public void Execute(Entity entity, int index, [ReadOnly] ref SpawnPoint spawnInfo, [ReadOnly] ref SpawnInterval interval, ref Countdown countdown)
+    //    {
+            
+    //        // Create spawn entity
+    //        ecb.Instantiate(spawnInfo.Spawn);
+    //        // Reduce spawn interval by 5% each time
+    //        interval.Value = interval.Value * 0.95f;
+            
+    //    }
+    //}
+
+    //[RequireComponentTag(typeof(Tag_CountdownElapsed))]
+    //struct ResetCountdownJob : IJobForEachWithEntity<SpawnPoint, SpawnInterval, Countdown>
+    //{
+    //    [ReadOnly] public EntityCommandBuffer ecb;
+    //    public void Execute(Entity entity, int index, [ReadOnly] ref SpawnPoint spawnInfo, [ReadOnly] ref SpawnInterval interval, ref Countdown countdown)
+    //    {
+    //        // Remove countdown tag and reset timer
+    //        ecb.RemoveComponent(entity, typeof(Tag_CountdownElapsed));
+    //        countdown.TimeLeft += interval.Value;
+    //        if (countdown.TimeLeft < 0)
+    //        {
+    //            // just in case 
+    //            countdown.TimeLeft = interval.Value;
+    //        }
+            
+    //    }
+    //}
 
 }
  

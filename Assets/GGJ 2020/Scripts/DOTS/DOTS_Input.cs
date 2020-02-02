@@ -124,14 +124,19 @@ namespace BrokenBattleBots
     /// Read move input and apply it to the physics system
     /// </summary>
     [UpdateAfter(typeof(PlayerInputSystem))]
+    [UpdateAfter(typeof(EnemyAiSystem))]
     class ApplyMoveInputSystem : JobComponentSystem
     {
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            ApplyMoveInputJob job = new ApplyMoveInputJob();
-            return job.Schedule(this, inputDeps);
+            ApplyMoveInputJob moveInputJob = new ApplyMoveInputJob();
+            ApplyMovePositionJob movePositionJob = new ApplyMovePositionJob();
+            
+            inputDeps = movePositionJob.Schedule(this, inputDeps);
+            return moveInputJob.Schedule(this, inputDeps);
         }
 
+        [ExcludeComponent(typeof(MoveDestination))]
         struct ApplyMoveInputJob : IJobForEach<PhysicsVelocity, MovementSpeed, MovementInput>
         {
             public void Execute(ref PhysicsVelocity velocity, ref MovementSpeed moveSpeed, ref MovementInput input)
@@ -147,6 +152,28 @@ namespace BrokenBattleBots
                 }
             }
         }
+
+        [ExcludeComponent(typeof(MovementInput))]
+        struct ApplyMovePositionJob : IJobForEach<Translation, PhysicsVelocity, MovementSpeed, MoveDestination>
+        {
+
+            public void Execute([ReadOnly] ref Translation translation, ref PhysicsVelocity velocity, ref MovementSpeed speed, ref MoveDestination dest)
+            {
+                float3 toDestVec = new float3(dest.Position.x, 0, dest.Position.z) - new float3(translation.Value.x, 0f, translation.Value.z);
+
+                float mag = math.length(toDestVec);
+                if (mag <= dest.CloseEnoughThreshold)
+                {
+                    dest.IsReached = true;
+                    toDestVec = float3.zero;
+                }
+                else
+                {
+                    velocity.Linear = math.normalize(toDestVec) * speed.Value;
+                }
+            }
+        }
+
     }
    
     /// <summary>

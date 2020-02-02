@@ -56,7 +56,7 @@ namespace BrokenBattleBots
             // Schedule claim score job
             ClaimScoreJob claimJob = new ClaimScoreJob()
             {
-                ecb = ecb_EndSim.CreateCommandBuffer().ToConcurrent(),
+                ecb = ecb_EndSim.CreateCommandBuffer(),
                 score = playerScoreQuery.GetSingleton<PlayerScore>()
             };
             claimJob.Schedule(this, inputDeps).Complete();
@@ -70,7 +70,7 @@ namespace BrokenBattleBots
         [RequireComponentTag(typeof(Tag_ClaimScore))]
         struct ClaimScoreJob : IJobForEachWithEntity<ScoreBounty>
         {
-            public EntityCommandBuffer.Concurrent ecb;
+            public EntityCommandBuffer ecb;
             public PlayerScore score;
             
             public void Execute(Entity entity, int index, ref ScoreBounty bounty)
@@ -80,7 +80,7 @@ namespace BrokenBattleBots
                 {
                     score.BestScore = score.Score;
                 }
-                ecb.RemoveComponent(index, entity, typeof(Tag_ClaimScore));
+                ecb.RemoveComponent(entity, typeof(Tag_ClaimScore));
                 
             }
         }
