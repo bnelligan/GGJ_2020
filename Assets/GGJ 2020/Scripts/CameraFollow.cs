@@ -9,7 +9,7 @@ namespace BrokenBattleBots
         public Transform[] FollowTargets;
         public Vector3 offset = new Vector3 (-5.67f, 19.43f, -10.83f);
 
-        private void Awake()
+        /*private void Awake()
         {
             BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
 
@@ -22,7 +22,7 @@ namespace BrokenBattleBots
                     this.FollowTargets[index] = parts[index].transform;
                 }
             }
-        }
+        }*/
 
         private void LateUpdate ()
         {

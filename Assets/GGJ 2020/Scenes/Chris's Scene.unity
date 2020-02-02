@@ -528,6 +528,12 @@ MonoBehaviour:
     m_Bits: 1
   Camera: {fileID: 1850798291}
   CameraFollow: {fileID: 0}
+--- !u!4 &178153792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6943287072431893434, guid: 1f0fbb24cd5d684418ef562e1e3f8cf4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5570928335533282766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &286065842
 Mesh:
   m_ObjectHideFlags: 0
@@ -4282,5 +4288,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9124885625651621621, guid: 94981667837b6694d9f04ea9a5c31bfa,
+        type: 3}
+      propertyPath: FollowTargets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124885625651621621, guid: 94981667837b6694d9f04ea9a5c31bfa,
+        type: 3}
+      propertyPath: FollowTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 178153792}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94981667837b6694d9f04ea9a5c31bfa, type: 3}

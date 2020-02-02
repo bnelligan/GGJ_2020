@@ -38,7 +38,7 @@ namespace BrokenBattleBots
             this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
         }
 
-        private IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
+        public IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
         {
             UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, true);
 
@@ -52,21 +52,6 @@ namespace BrokenBattleBots
 
         public void StandUp ()
         {
-            if (this.socketLegs.battleBotPart == null)
-            {
-                UnityEngine.Debug.LogWarning ("No legs can't stand up");
-
-                // TORSO IS GARUNTEED NOT NULL
-
-                this.partTorso.PlayErrorSound ();
-
-                this.partTorso.Rigidbody.AddForce (Vector3.up * 5f, ForceMode.Impulse);
-
-                this.partTorso.Rigidbody.angularVelocity = Random.onUnitSphere * 3f;
-
-                return;
-            }
-
             // The bot has legs, disable physics and go into the upright position
 
             this.partTorso.Rigidbody.isKinematic = true;
@@ -77,9 +62,47 @@ namespace BrokenBattleBots
 
             Vector3 position = this.partTorso.transform.position;
 
-            position.y = this.socketLegs.battleBotPart.standHeightOffset;
+            if (this.socketLegs.battleBotPart != null)
+            {
+                position.y = this.socketLegs.battleBotPart.standHeightOffset;
+            }
+            else
+            {
+                position.y = 3f;
+            }
 
             this.partTorso.transform.position = position;
+
+            if (this.socketLegs.battleBotPart == null)
+            {
+                this.FallOver ();
+
+                return;
+            }
+
+            if (this.socketArmLeft.battleBotPart != null && this.socketArmLeft.battleBotPart.Welded < 9f)
+            {
+                this.DetachPart (this.socketArmLeft.battleBotPart);
+            }
+
+            if (this.socketArmRight.battleBotPart != null && this.socketArmRight.battleBotPart.Welded < 9f)
+            {
+                this.DetachPart (this.socketArmRight.battleBotPart);
+            }
+
+            if (this.socketHead.battleBotPart != null && this.socketHead.battleBotPart.Welded < 9f)
+            {
+                this.DetachPart (this.socketHead.battleBotPart);
+            }
+
+            if (this.socketLegs.battleBotPart != null && this.socketLegs.battleBotPart.Welded < 9f)
+            {
+                this.FallOver ();
+
+                this.DetachPart (this.socketLegs.battleBotPart);
+
+                return;
+            }
 
             // Update camera follow targets to torso
 
@@ -94,14 +117,14 @@ namespace BrokenBattleBots
         {
             // Update camera follow targets to parts
 
-            BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
+            /*BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
 
             this.CameraFollow.FollowTargets = new Transform[parts.Length];
 
             for (int index = 0; index < parts.Length; index += 1)
             {
                 this.CameraFollow.FollowTargets[index] = parts[index].transform;
-            }
+            }*/
 
             this.Standing = false;
 
