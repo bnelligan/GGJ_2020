@@ -502,6 +502,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191158, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: SpawnOffset.x
+      value: 32.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813364681718191158, guid: 8fff2e8ed162c2447b3371554fb3bddb,
+        type: 3}
+      propertyPath: SpawnOffset.z
+      value: 126.24
+      objectReference: {fileID: 0}
     - target: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
         type: 3}
       propertyPath: m_Name
@@ -2560,6 +2570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot Main Torso
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944201095880069441, guid: 5891399f9d141b545957729614549b7c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5891399f9d141b545957729614549b7c, type: 3}
