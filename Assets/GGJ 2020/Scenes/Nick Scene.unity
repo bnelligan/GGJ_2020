@@ -22487,12 +22487,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f9c84335442d542978de177fc52bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeFrequency: 0.05
-  alphaUp: 0.2
-  alphaDown: 0.16
+  changeFrequency: 0.18
+  alphaUp: 0.25
+  alphaDown: 0.15
   canv1: {fileID: 301862029}
   canv2: {fileID: 1843964713}
-  aud: {fileID: 1492456420}
+  MainMenu: {fileID: 0}
+  PlayAgain: {fileID: 0}
 --- !u!4 &1492456419
 Transform:
   m_ObjectHideFlags: 0
