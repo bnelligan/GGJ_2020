@@ -193,16 +193,18 @@ namespace BrokenBattleBots
     {
         protected override void OnUpdate()
         {
-            Entities.ForEach((Entity e, ref Tag_CountdownElapsed countdownTag, ref AggroInfo info) => {
+            Entities.ForEach((Entity e, ref Countdown countdown, ref Tag_CountdownElapsed countdownTag, ref AggroInfo info) => {
                 
                 if(info.DoAttack)
                 {
                     Entity dmg = EntityManager.CreateEntity(typeof(Damage), typeof(DamageSource));
-                    EntityManager.SetComponentData(dmg,  new Damage() {  Amount = info.AttackDamage, Target = info.Target });
-                    EntityManager.SetComponentData(dmg, new DamageSource() { Source = e });
+                    EntityManager.AddComponentData(dmg,  new Damage() {  Amount = info.AttackDamage, Target = info.Target });
+                    EntityManager.AddComponentData(dmg, new DamageSource() { Source = e });
+                    dmg = EntityManager.Instantiate(dmg);
                     info.DoAttack = false;
+                    EntityManager.RemoveComponent(e, typeof(Tag_CountdownElapsed));
+                    countdown.TimeLeft += info.AttackFrequency;
                 }
-                EntityManager.RemoveComponent(e, typeof(Tag_CountdownElapsed));
             });
         }
     }

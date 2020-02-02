@@ -56,11 +56,6 @@ public class SpawnSystem : ComponentSystem
         {
             EntityManager.RemoveComponent(e, typeof(Tag_CountdownElapsed));
             countdown.TimeLeft += interval.Value;
-            if (countdown.TimeLeft < 0)
-            {
-                // just in case 
-                countdown.TimeLeft = interval.Value;
-            }
         });
 
         //spawnAfterCountdownJob.Schedule(this, inputDeps).Complete();

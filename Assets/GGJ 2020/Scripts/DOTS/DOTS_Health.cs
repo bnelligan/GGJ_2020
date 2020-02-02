@@ -203,6 +203,7 @@ namespace BrokenBattleBots
                     hp.Current = 0;
                     EntityManager.AddComponentData(dmg.Target, new Tag_Dead());
                 }
+                EntityManager.SetComponentData(dmg.Target, hp);
                 EntityManager.DestroyEntity(e);
             });
         }
