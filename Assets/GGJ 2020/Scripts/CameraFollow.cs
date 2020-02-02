@@ -26,7 +26,20 @@ namespace BrokenBattleBots
             this.Camera = this.GetComponent <Camera> ();
         }
 
-        #endif
+#endif
+
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F1))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            }
+        }
 
         private void Awake()
         {
