@@ -151,7 +151,7 @@ namespace BrokenBattleBots
 
             this.Standing = true;
 
-            this.CameraFollow.CameraFieldOfView = 60f;
+            this.CameraFollow.IsRobotStanding = true;
         }
 
         public void DetachUnweldedParts (BattleBotPart ignore = null, float weldDetachThreshold = 9f)
@@ -202,7 +202,7 @@ namespace BrokenBattleBots
                 this.CameraFollow.FollowTargets[index] = parts[index].transform;
             }*/
 
-            this.CameraFollow.CameraFieldOfView = 32f;
+            this.CameraFollow.IsRobotStanding = false;
 
             this.Standing = false;
 

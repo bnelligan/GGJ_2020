@@ -10,12 +10,22 @@ namespace BrokenBattleBots
     {
         public Camera Camera;
         public Transform FollowTarget;
-        public float CameraHeight = 19.43f;
-        public float CameraFieldOfView = 32f;
+        public bool IsRobotStanding;
 
         public bool useECS;
 
         private EntityManager dotManager;
+
+        #if UNITY_EDITOR
+
+        private void OnValidate()
+        {
+            // Cache the camera
+
+            this.Camera = this.GetComponent <Camera> ();
+        }
+
+        #endif
 
         private void Start ()
         {
@@ -28,26 +38,26 @@ namespace BrokenBattleBots
             {
                 Vector3 cameraPosition = this.transform.position;
 
+                float cameraHeight = 19.43f;
+
+                float cameraFieldOfView = 32f;
+
+                if (this.IsRobotStanding == true)
+                {
+                    cameraHeight = 19.43f;
+
+                    cameraFieldOfView = 64f;
+                }
+
                 if (this.FollowTarget != null)
                 {
-                    cameraPosition = this.FollowTarget.position + new Vector3 (-5.67f, this.CameraHeight, -10.83f);
+                    cameraPosition = this.FollowTarget.position + new Vector3 (-5.67f, cameraHeight, -10.83f);
                 }
 
                 this.transform.position = Vector3.Lerp (this.transform.position, cameraPosition, Time.deltaTime * 3f);
 
-                this.Camera.fieldOfView = Mathf.Lerp (this.Camera.fieldOfView, this.CameraFieldOfView, Time.deltaTime * 3f);
+                this.Camera.fieldOfView = Mathf.Lerp (this.Camera.fieldOfView, cameraFieldOfView, Time.deltaTime * 3f);
             }
         }
-
-        #if UNITY_EDITOR
-
-        private void OnValidate()
-        {
-            // Cache the camera
-
-            this.Camera = this.GetComponent <Camera> ();
-        }
-
-        #endif
     }
 }
