@@ -211,7 +211,7 @@ namespace BrokenBattleBots
 
         private void Update ()
         {
-            if (this.Standing == true)
+            if (this.Standing == false)
             {
                 // Update camera follow targets to torso
 
