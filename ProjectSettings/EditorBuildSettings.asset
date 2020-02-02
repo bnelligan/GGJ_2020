@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GGJ 2020/Scenes/StartMenu.unity
+    guid: 5df4933c7a8897049bd489b23334f46a
+  - enabled: 1
+    path: Assets/GGJ 2020/Scenes/Chris's Scene.unity
+    guid: f69dbf1e83fde61479735ccbb367defa
   m_configObjects: {}
