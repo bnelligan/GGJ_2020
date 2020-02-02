@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace BrokenBattleBots
 {
-    struct Tag_Generator : IComponentData{}
+    struct Tag_Generator : IComponentData{ public int ID; }
 
     
     class DeathSystem : ComponentSystem

@@ -7,6 +7,7 @@ using UnityEngine;
 public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
 {
     public int Health;
+    public int GenID = 1;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
@@ -20,6 +21,7 @@ public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
             Max = 100
         });
 
-        dstManager.AddComponentData(entity, new Tag_Generator());
+        dstManager.AddComponentData(entity, new Tag_Generator() { ID = GenID});
+        GenID++;
     }
 }
