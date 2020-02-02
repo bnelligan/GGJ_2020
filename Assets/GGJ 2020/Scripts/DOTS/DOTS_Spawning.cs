@@ -2,74 +2,87 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
-using Unity.Mathematics;
+using Unity.Transforms;
 using Unity.Jobs;
+using Unity.Mathematics;
+using Unity.Physics;
+using Unity.Collections;
+using Unity.Burst;
 
-struct TimingSettings : IComponentData
+struct SpawnPoint : IComponentData
 {
-    public float Timer;
-    public float TimeVariation;
+    public float3 Location;
+    public Entity Spawn;
+}
+struct SpawnInterval : IComponentData
+{
+    public float Value;
 }
 
-struct Timing : IComponentData
+struct Countdown : IComponentData
 {
-    public float TimeToZero;
+    public float TimeLeft;
 }
 
-public struct EnemySpawnTag : IComponentData
+struct Tag_CountdownElapsed : IComponentData { }
+
+public class CountdownSystem : ComponentSystem
 {
-    // Nothing, just a tag
+    protected override void OnUpdate()
+    {
+        Entities.ForEach((Entity e, ref Countdown countdown) =>
+        {
+            if(countdown.TimeLeft <= 0)
+            {
+                EntityManager.AddComponent(e, typeof(Tag_CountdownElapsed));
+            }
+        });
+    }
 }
 
-
+[UpdateAfter(typeof(CountdownSystem))]
 public class SpawnSystem : JobComponentSystem
 {
-    protected override void OnStartRunning()
-    {
-        float timeSetting = 2.5f;
-        float timeVarSetting = .5f;
-        var applyInputJob = new CalculateTiming()
-        {
-            ts = new TimingSettings { Timer = timeSetting, TimeVariation = timeVarSetting }
-        };
-    }
+    EndSimulationEntityCommandBufferSystem ecb_EndSim;
 
+    protected override void OnCreate()
+    {
+        base.OnCreate();
+        ecb_EndSim = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+    }
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
 
-        var applyInputJob = new ReduceTimeToZero()
+        SpawnAfterCountdown spawnAfterCountdownJob = new SpawnAfterCountdown()
         {
-            TimeToReduce = Time.DeltaTime
+            ecb = ecb_EndSim.CreateCommandBuffer().ToConcurrent()
         };
-        return applyInputJob.Schedule(this, inputDeps);
+        inputDeps = spawnAfterCountdownJob.Schedule(this, inputDeps);
+        return inputDeps;
     }
 
-    [RequireComponentTag(typeof(EnemySpawnTag))]
-    struct CalculateTiming : IJobForEach<Timing>
+    [RequireComponentTag(typeof(Tag_CountdownElapsed))]
+    struct SpawnAfterCountdown : IJobForEachWithEntity<SpawnPoint, SpawnInterval, Countdown>
     {
-        public TimingSettings ts;
-        public void Execute(ref Timing inputData)
+        public EntityCommandBuffer.Concurrent ecb;
+        public void Execute(Entity entity, int index, [ReadOnly] ref SpawnPoint spawnInfo, [ReadOnly] ref SpawnInterval interval, ref Countdown countdown)
         {
-            inputData.TimeToZero = ts.Timer + UnityEngine.Random.Range(ts.Timer - ts.TimeVariation, ts.Timer + ts.TimeVariation);
+            // Remove countdown tag and reset timer
+            ecb.RemoveComponent(index, entity, typeof(Tag_CountdownElapsed));
+            countdown.TimeLeft += interval.Value;
+            if(countdown.TimeLeft < 0)
+            {
+                // just in case 
+                countdown.TimeLeft = interval.Value;
+            }
+            // Create spawn entity
+            ecb.Instantiate(index, entity);
+            // Reduce spawn interval by 5% each time
+            interval.Value = interval.Value * 0.95f;
         }
     }
 
-    struct ReduceTimeToZero : IJobForEach<Timing>
-    {
-        public float TimeToReduce;
-        public void Execute(ref Timing inputData)
-        {
-            if (inputData.TimeToZero > 0)
-            {
-                inputData.TimeToZero -= TimeToReduce;
-            }
-            else if (inputData.TimeToZero < 0)
-            {
-                inputData.TimeToZero = 0;
-            }
-        }
-    }
 }
  
 
