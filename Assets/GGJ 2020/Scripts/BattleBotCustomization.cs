@@ -212,6 +212,11 @@ namespace BrokenBattleBots
 
         private void Update ()
         {
+            if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.R))
+            {
+                this.SpawnRandomParts ();
+            }
+
             this.UpdateIgnoreCollisionTillClearPairs ();
 
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Space))
@@ -276,7 +281,7 @@ namespace BrokenBattleBots
             }
             else
             {
-                this.partTorso.Rigidbody.velocity = Vector3.zero;
+                // this.partTorso.Rigidbody.velocity = Vector3.zero;
 
                 this.partTorso.Rigidbody.angularVelocity = Vector3.zero;
 

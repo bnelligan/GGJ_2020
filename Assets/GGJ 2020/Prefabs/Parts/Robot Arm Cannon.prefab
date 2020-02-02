@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1400340765110987508}
   - component: {fileID: 1663533276710107805}
   - component: {fileID: 7941161686671922797}
-  - component: {fileID: 1400340765110987511}
   - component: {fileID: 1400340765110987509}
   - component: {fileID: 1400340765110987510}
+  - component: {fileID: 4488194605115097020}
   m_Layer: 8
   m_Name: Robot Arm Cannon
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400340765110987512}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.18, y: 23.62, z: 8.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Socket: {fileID: 0}
   Rigidbody: {fileID: 1400340765110987509}
-  Collider: {fileID: 1400340765110987511}
+  Collider: {fileID: 4488194605115097020}
   PartType: 1
   AudioSource: {fileID: 1400340765110987510}
   weldSpeedMultiplier: 1
@@ -104,20 +104,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1400340765110987511
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400340765110987512}
-  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 2a91c109fbe51bc41866017ab5597220, type: 3}
 --- !u!54 &1400340765110987509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -230,3 +216,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4488194605115097020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400340765110987512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4785973, y: 4.512678, z: 5.10473}
+  m_Center: {x: -0.0051451325, y: 0.19025993, z: 1.2601969}
