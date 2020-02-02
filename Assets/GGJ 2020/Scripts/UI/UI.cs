@@ -21,6 +21,6 @@ public class UI : MonoBehaviour
         gen1Fill.fillAmount = (float)GUI_Info.Gen1HP_Current / GUI_Info.Gen1HP_Max;
         gen2Fill.fillAmount = (float)GUI_Info.Gen2HP_Current / GUI_Info.Gen2HP_Max;
         gen3Fill.fillAmount =(float) GUI_Info.Gen3HP_Current / GUI_Info.Gen3HP_Max;
-        healthBarFill.fillAmount = 1 - (GUI_Info.PlayerHP_Current / GUI_Info.Gen1HP_Max);
+        healthBarFill.fillAmount =1- ((float)GUI_Info.PlayerHP_Current / (float)100) ;
     }
 }

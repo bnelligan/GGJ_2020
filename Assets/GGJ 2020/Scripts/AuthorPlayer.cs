@@ -49,7 +49,8 @@ namespace BrokenBattleBots
                 PlayerID = 1
             });
             dstManager.AddComponentData(entity, new Health(){
-                Current = Health
+                Current = Health,
+                Max = 100
             });
             dstManager.AddComponentData(entity, new HealthDecay() {
                 DecayAmount = DecayAmount,
