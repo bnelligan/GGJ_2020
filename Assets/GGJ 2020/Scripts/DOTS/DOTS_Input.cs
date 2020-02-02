@@ -30,12 +30,12 @@ namespace BrokenBattleBots
     /// <summary>
     /// Aim settings for the player
     /// </summary>
-    public struct AimSettings : IComponentData
-    {
-        public float RotationFriction;
-        public float RotationSpeed;
-        public float RotationSmoothness;
-    }
+    //public struct AimSettings : IComponentData
+    //{
+    //    public float RotationFriction;
+    //    public float RotationSpeed;
+    //    public float RotationSmoothness;
+    //}
 
 
     /// <summary>
@@ -156,7 +156,6 @@ namespace BrokenBattleBots
         [ExcludeComponent(typeof(MovementInput))]
         struct ApplyMovePositionJob : IJobForEach<Translation, PhysicsVelocity, MovementSpeed, MoveDestination>
         {
-
             public void Execute([ReadOnly] ref Translation translation, ref PhysicsVelocity velocity, ref MovementSpeed speed, ref MoveDestination dest)
             {
                 float3 toDestVec = new float3(dest.Position.x, 0, dest.Position.z) - new float3(translation.Value.x, 0f, translation.Value.z);
@@ -166,9 +165,11 @@ namespace BrokenBattleBots
                 {
                     dest.IsReached = true;
                     toDestVec = float3.zero;
+                    velocity.Linear = float3.zero;
                 }
                 else
                 {
+                    dest.IsReached = false;
                     velocity.Linear = math.normalize(toDestVec) * speed.Value;
                 }
             }
@@ -188,9 +189,9 @@ namespace BrokenBattleBots
             return aimJob.Schedule(this, inputDeps);
         }
 
-        struct ApplyAimInputJob : IJobForEach<Rotation, Translation, AimInput, AimSettings>
+        struct ApplyAimInputJob : IJobForEach<Rotation, Translation, AimInput>
         {
-            public void Execute(ref Rotation rotation, [ReadOnly] ref Translation translation, [ReadOnly] ref AimInput input, [ReadOnly] ref AimSettings settings)
+            public void Execute(ref Rotation rotation, [ReadOnly] ref Translation translation, [ReadOnly] ref AimInput input)
             {
                 float3 look = input.AimPoint - new float3(translation.Value.x, 0f, translation.Value.z);
                 quaternion rot = Quaternion.LookRotation(look);

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2506703498452938474}
   - component: {fileID: 6886627766799815290}
   - component: {fileID: 6886627766799815293}
-  - component: {fileID: 1145291391430167576}
+  - component: {fileID: 2005681419574199689}
   m_Layer: 8
   m_Name: Robot Arm Fist
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Socket: {fileID: 0}
   Rigidbody: {fileID: 6886627766799815290}
-  Collider: {fileID: 1145291391430167576}
+  Collider: {fileID: 2005681419574199689}
   PartType: 1
   AudioSource: {fileID: 6886627766799815293}
   weldSpeedMultiplier: 5
@@ -216,8 +216,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &1145291391430167576
-BoxCollider:
+--- !u!64 &2005681419574199689
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -226,6 +226,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.765504, y: 3.859946, z: 3.8457088}
-  m_Center: {x: 0, y: 0.51662695, z: 0.63068646}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 43f10f4ca4e702d47bd9fbf73b55cf52, type: 3}

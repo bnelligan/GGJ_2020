@@ -33,7 +33,7 @@ namespace BrokenBattleBots
                 typeof(PlayerScore),
                 // typeof(RepairCap),
                 typeof(AimInput),
-                typeof(AimSettings),
+                // typeof(AimSettings),
                 typeof(EnemyTarget)
             });
 
@@ -63,12 +63,12 @@ namespace BrokenBattleBots
             {
                 AimPoint = Vector3.zero
             });
-            dstManager.AddComponentData(entity, new AimSettings()
-            {
-                RotationFriction = RotationFriction,
-                RotationSmoothness = RotationSmoothness,
-                RotationSpeed = RotationSpeed
-            });
+            //dstManager.AddComponentData(entity, new AimSettings()
+            //{
+            //    RotationFriction = RotationFriction,
+            //    RotationSmoothness = RotationSmoothness,
+            //    RotationSpeed = RotationSpeed
+            //});
             dstManager.AddComponentData(entity, new EnemyTarget()
             {
                 IsPriority = true

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeldDraw : MonoBehaviour
 {
+    public UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile;
     public GameObject weldPrefab;
     public TrailRenderer weldLine;
     public Camera screenSpace;
@@ -15,12 +16,22 @@ public class WeldDraw : MonoBehaviour
     private Vector3 mouseLocation;
     public AudioSource audioSourceWeldSound;
 
-    // Update is called once per frame
-    void Update()
+    private void Update ()
     {
-        // Debug.Log(mouseLocation);
+        if (Input.GetMouseButton (1) && this.sparks.isPlaying == true)
+        {
+            this.UpdateChromaticAbberation (1);
 
-            if (Input.GetMouseButtonDown(1))
+            this.UpdateLensDistortion (60f);
+        }
+        else
+        {
+            this.UpdateChromaticAbberation (0f);
+
+            this.UpdateLensDistortion (0f);
+        }
+
+        if (Input.GetMouseButtonDown (1))
         {
             this.audioSourceWeldSound.volume = 0.1f;
 
@@ -29,11 +40,9 @@ public class WeldDraw : MonoBehaviour
                 this.audioSourceWeldSound.Play();
             }
             
-            mouseLocation =
-                screenSpace.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-           SpawnTrail();
-           /*sparksLocaiton.position = mouseLocation;
-           sparks.Play();*/
+            mouseLocation = screenSpace.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+
+            SpawnTrail ();
         }
         else if (Input.GetMouseButton(1))
         {
@@ -47,7 +56,7 @@ public class WeldDraw : MonoBehaviour
 
             Ray ray = this.screenSpace.ScreenPointToRay(UnityEngine.Input.mousePosition);
 
-            if (UnityEngine.Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
+            if (UnityEngine.Physics.Raycast (ray, out RaycastHit raycastHit, float.MaxValue, BrokenBattleBots.BattleBotCustomization.instance.LayerMaskSelect))
             {
                 BrokenBattleBots.BattleBotPart battleBotPart = raycastHit.collider.GetComponent<BrokenBattleBots.BattleBotPart>();
 
@@ -102,5 +111,27 @@ public class WeldDraw : MonoBehaviour
         {
             this.weldLine.Clear();
         }
+    }
+
+    private void UpdateChromaticAbberation (float intensity, bool force = false)
+    {
+        if (this.postProcessProfile.TryGetSettings <UnityEngine.Rendering.PostProcessing.ChromaticAberration> (out var chromaticAberration))
+        {
+            chromaticAberration.intensity.value = Mathf.Lerp (chromaticAberration.intensity.value, intensity, 3f * Time.deltaTime);
+        }
+    }
+
+    private void UpdateLensDistortion (float intensity, bool force = false )
+    {
+        if (this.postProcessProfile.TryGetSettings <UnityEngine.Rendering.PostProcessing.LensDistortion> (out var lensDistortion))
+        {
+            lensDistortion.intensity.value = Mathf.Lerp (lensDistortion.intensity.value, intensity, 3f * Time.deltaTime);
+        }
+    }
+
+    private void OnApplicationQuit ()
+    {
+        this.UpdateChromaticAbberation (0f);
+        this.UpdateLensDistortion (0f);
     }
 }
