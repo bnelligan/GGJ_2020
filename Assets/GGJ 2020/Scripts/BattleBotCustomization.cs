@@ -22,6 +22,8 @@ namespace BrokenBattleBots
         public LayerMask LayerMaskSelect;
         public LayerMask LayerMaskDrag;
         public Camera Camera;
+        public CameraFollow CameraFollow;
+        private bool standing;
         public BattleBotPart SelectedBattleBotPart { get; private set; }
 
         private void Awake ()
@@ -32,6 +34,8 @@ namespace BrokenBattleBots
             {
                 this.Camera = FindObjectOfType <Camera> ();
             }
+
+            this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
         }
 
         private IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
@@ -76,18 +80,55 @@ namespace BrokenBattleBots
             position.y = this.socketLegs.battleBotPart.standHeightOffset;
 
             this.partTorso.transform.position = position;
+
+            // Update camera follow targets to torso
+
+            this.CameraFollow.FollowTargets = new Transform[1];
+
+            this.CameraFollow.FollowTargets[0] = this.partTorso.transform;
+
+            this.standing = true;
         }
 
         public void FallOver ()
         {
+            // Update camera follow targets to parts
 
+            BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
+
+            this.CameraFollow.FollowTargets = new Transform[parts.Length];
+
+            for (int index = 0; index < parts.Length; index += 1)
+            {
+                this.CameraFollow.FollowTargets[index] = parts[index].transform;
+            }
+
+            this.standing = false;
+
+            this.partTorso.Rigidbody.isKinematic = false;
+
+            this.partTorso.Rigidbody.useGravity = true;
+
+            this.partTorso.Rigidbody.AddForce (-this.partTorso.transform.forward * 3f, ForceMode.Impulse);
         }
 
         private void Update ()
         {
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Space))
             {
-                this.StandUp ();
+                if (this.standing == true)
+                {
+                    this.FallOver();
+                }
+                else
+                {
+                    this.StandUp ();
+                } 
+            }
+
+            if (this.standing == true)
+            {
+                return;
             }
 
             Ray ray = this.Camera.ScreenPointToRay (UnityEngine.Input.mousePosition);

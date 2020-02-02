@@ -7,6 +7,7 @@ namespace BrokenBattleBots
     {
         public Camera Camera;
         public Transform[] FollowTargets;
+        public Vector3 offset = new Vector3 (-5.67f, 19.43f, -10.83f);
 
         private void Awake()
         {
@@ -54,7 +55,7 @@ namespace BrokenBattleBots
 
             // Move the camera based on the center of all the parts
 
-            Vector3 cameraPosition = averagePosition + new Vector3 (-5.67f, 19.43f, -10.83f);
+            Vector3 cameraPosition = averagePosition + this.offset;
 
             // cameraPosition.y = 19.43f;
 
