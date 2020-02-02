@@ -10,9 +10,11 @@ namespace BrokenBattleBots
     {
         public BattleBotPart parentBattleBotPart;
         public BattleBotPart.BattleBotPartType CompatiblePartTypes;
+        public Collider Collider;
         public BattleBotPart battleBotPart { get; private set; }
         public Vector3 attachPosition;
         public Vector3 attachRotationEulerAngles;
+
 
         private void AttachPart (BattleBotPart battleBotPart)
         {
@@ -93,7 +95,7 @@ namespace BrokenBattleBots
                     // UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, false);
                 }
 
-                this.battleBotPart.Weld (0f, true);
+                // this.battleBotPart.Weld (0f, true);
                 this.battleBotPart.PlayCollisionSound (1f);
                 this.battleBotPart.PlayDetachSound ();
                 this.battleBotPart.transform.SetParent (null);
@@ -153,6 +155,8 @@ namespace BrokenBattleBots
             // Cache the socket's parent bot part
 
             this.parentBattleBotPart = this.GetComponentInParent <BattleBotPart> ();
+
+            this.Collider = this.GetComponent <Collider> ();
         }
 
         #endif

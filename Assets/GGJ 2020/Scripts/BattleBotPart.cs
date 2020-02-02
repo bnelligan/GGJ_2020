@@ -44,8 +44,6 @@ namespace BrokenBattleBots
                 // Shake the torso
 
                 this.transform.root.GetComponent <Rigidbody> ().angularVelocity = Random.onUnitSphere * Random.Range (0f, 3f);
-                
-                
             }
 
             BattleBotCustomization.instance.DetachUnweldedParts (this);
