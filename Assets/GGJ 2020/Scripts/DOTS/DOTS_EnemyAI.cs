@@ -43,7 +43,7 @@ namespace BrokenBattleBots
     {
         public bool IsPriority;
     }
-    
+
 
     public class EnemyAiSystem : JobComponentSystem
     {
@@ -71,8 +71,8 @@ namespace BrokenBattleBots
             return inputDeps;
         }
 
-        
-        struct AiStateUpdate : IJobForEachWithEntity<EnemyAI, Translation, RoamRadius, ChaseTarget, MoveDestination>
+
+        struct AiStateUpdate : IJobForEachWithEntity<EnemyAI, Translation, AimInput, RoamRadius, ChaseTarget, MoveDestination>
         {
             [ReadOnly] public ComponentDataFromEntity<Translation> translationFromEntity;
             [ReadOnly] public ComponentDataFromEntity<Tag_Dead> tagDeadFromEntity;
@@ -80,7 +80,7 @@ namespace BrokenBattleBots
             [ReadOnly] public NativeArray<Entity> potentialTargets;
             public Unity.Mathematics.Random rng;
 
-            public void Execute(Entity entity, int index, ref EnemyAI ai, [ReadOnly] ref Translation position, 
+            public void Execute(Entity entity, int index, ref EnemyAI ai, [ReadOnly] ref Translation position, ref AimInput aim,
                 [ReadOnly] ref RoamRadius roamBounds, ref ChaseTarget chase, ref MoveDestination moveDest)
             {
                 // Handle state change
@@ -91,12 +91,12 @@ namespace BrokenBattleBots
                 }
 
                 // Check for a valid chase target
-                switch(ai.Ai_State)
+                switch (ai.Ai_State)
                 {
                     // Roam State
                     case 1:
                         // Check if reached destination
-                        if(moveDest.IsReached)
+                        if (moveDest.IsReached)
                         {
                             // Choose next destination
                             moveDest.Position = GetNewRoamPoint(roamBounds.Value);
@@ -120,7 +120,7 @@ namespace BrokenBattleBots
                                         aggroTarget = e;
                                         bestSqDist = sqDist;
                                     }
-                                    else if(sqDist < bestSqDist || enemyTargetFromEntity[e].IsPriority)
+                                    else if (sqDist < bestSqDist || enemyTargetFromEntity[e].IsPriority)
                                     {
                                         aggroTarget = e;
                                     }
@@ -143,7 +143,7 @@ namespace BrokenBattleBots
                             ai.Next_State = 1;
                             chase.Target = Entity.Null;
                         }
-                        else if(sqDist(translationFromEntity[chase.Target].Value, position.Value) > chase.MaxDistance * chase.MaxDistance)
+                        else if (sqDist(translationFromEntity[chase.Target].Value, position.Value) > chase.MaxDistance * chase.MaxDistance)
                         {
                             // Target excaped, switch to roaming
                             ai.Next_State = 1;
@@ -155,13 +155,15 @@ namespace BrokenBattleBots
                         }
                         break;
                 }
+
+                aim.AimPoint = moveDest.Position;
             }
-            
+
             private float sqDist(float3 v1, float3 v2)
             {
                 return math.lengthsq(v1 - v2);
             }
-            
+
             private float3 GetNewRoamPoint(float maxDist)
             {
                 float distFromCenter = rng.NextFloat(0, maxDist);
@@ -171,9 +173,4 @@ namespace BrokenBattleBots
         }
         
     }
-
-    //public class EnemyAttackSystem : ComponentSystem
-    //{
-
-    //}
 }

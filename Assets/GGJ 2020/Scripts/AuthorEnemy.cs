@@ -28,6 +28,8 @@ namespace BrokenBattleBots
                 typeof(MoveDestination),
                 typeof(RoamRadius),
                 typeof(ChaseTarget),
+                typeof(Rotation),
+                typeof(AimInput)
             });
 
 
@@ -60,6 +62,10 @@ namespace BrokenBattleBots
                 AggroDistance = AggroDist,
                 MaxDistance = MaxChaseDist,
                 Target = Entity.Null
+            });
+            dstManager.AddComponentData(entity, new AimInput()
+            {
+                AimPoint = float3.zero
             });
         }
 
