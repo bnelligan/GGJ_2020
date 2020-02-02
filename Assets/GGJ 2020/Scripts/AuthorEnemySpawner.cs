@@ -8,14 +8,44 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Collections;
 
-public class AuthorEnemySpawner : MonoBehaviour, IConvertGameObjectToEntity
+namespace BrokenBattleBots
 {
-    public GameObject SpawnPrefab;
-    public GameObject SpawnFrequency;
-
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    public class AuthorEnemySpawner : MonoBehaviour, IConvertGameObjectToEntity, IDeclareReferencedPrefabs
     {
+        public GameObject SpawnPrefab;
+        public float SpawnFrequency;
+        public Vector3 SpawnOffset;
+
+        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        {
+
+            var enemyEntity = conversionSystem.GetPrimaryEntity(SpawnPrefab);
+
+
+            EntityArchetype spawnerArchetype = dstManager.CreateArchetype(new ComponentType[] {
+                typeof(SpawnPoint),
+                typeof(SpawnInterval),
+                typeof(Countdown) 
+            });
+
+            dstManager.AddComponentData(entity, new SpawnPoint() {
+                Location = transform.position + SpawnOffset,
+                Spawn = enemyEntity
+            });
+            dstManager.AddComponentData(entity, new SpawnInterval()
+            {
+                Value = SpawnFrequency
+            });
+            dstManager.AddComponentData(entity, new Countdown()
+            {
+                TimeLeft = SpawnFrequency
+            });
+        }
+
+        public void DeclareReferencedPrefabs(List<GameObject> prefabs)
+        {
+            prefabs.Add(SpawnPrefab);
+        }
 
     }
-    
 }

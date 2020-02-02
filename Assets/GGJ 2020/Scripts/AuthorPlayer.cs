@@ -31,9 +31,10 @@ namespace BrokenBattleBots
                 typeof(Health),
                 typeof(HealthDecay),
                 typeof(PlayerScore),
-                typeof(RepairCap),
+                // typeof(RepairCap),
                 typeof(AimInput),
-                typeof(AimSettings)
+                typeof(AimSettings),
+                typeof(EnemyTarget)
             });
 
             //dstManager.SetArchetype(entity, playerArchetype);
@@ -68,6 +69,11 @@ namespace BrokenBattleBots
                 RotationSmoothness = RotationSmoothness,
                 RotationSpeed = RotationSpeed
             });
+            dstManager.AddComponentData(entity, new EnemyTarget()
+            {
+                IsPriority = true
+            });
+            
 
         }
     }
