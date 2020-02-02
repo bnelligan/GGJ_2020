@@ -696,6 +696,7 @@ MonoBehaviour:
   - {fileID: 1400340765110987508, guid: 81c74aadc7ad28e47b4ec3b50e6e40f5, type: 3}
   - {fileID: 6886627766799815291, guid: fc0186b793ec2ab40909bfedcc06937d, type: 3}
   - {fileID: 3964751839183824116, guid: fa02b4a8bfa3ab541abdfa847d1a32e5, type: 3}
+  - {fileID: 6451008259900789585, guid: c76fd2a5a526f4f458303d08ca624359, type: 3}
   legPrefabs:
   - {fileID: 5612079047701837889, guid: 4d9c552129a5f6e49871a103d2c5158d, type: 3}
   - {fileID: 5068569106019523529, guid: 05319d99c41dc9a44b08e97fb193c10c, type: 3}
