@@ -51,6 +51,7 @@ namespace BrokenBattleBots
         protected override void OnCreate()
         {
             base.OnCreate();
+
             Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
             {
                 switch (gen.ID)
@@ -68,6 +69,12 @@ namespace BrokenBattleBots
                         GUI_Info.Gen3HP_Max = hp.Max;
                         break;
                 }
+            });
+
+            Entities.ForEach((ref Health hp, ref UsePlayerInput player) =>
+            {
+                GUI_Info.PlayerHP_Current = hp.Current;
+                GUI_Info.PlayerHP_Max = hp.Max;
             });
 
             //Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
@@ -103,7 +110,31 @@ namespace BrokenBattleBots
                     EntityManager.SetComponentData(dmgEntity, new Damage() { Target = e, Amount = decay.DecayAmount });
                 }
             });
-            
+
+            Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
+            {
+                switch (gen.ID)
+                {
+                    case 1:
+                        GUI_Info.Gen1HP_Current = hp.Current;
+                        GUI_Info.Gen1HP_Max = hp.Max;
+                        break;
+                    case 2:
+                        GUI_Info.Gen2HP_Current = hp.Current;
+                        GUI_Info.Gen2HP_Max = hp.Max;
+                        break;
+                    case 3:
+                        GUI_Info.Gen3HP_Current = hp.Current;
+                        GUI_Info.Gen3HP_Max = hp.Max;
+                        break;
+                }
+            });
+
+            Entities.ForEach((ref Health hp, ref UsePlayerInput player) =>
+            {
+                GUI_Info.PlayerHP_Current = hp.Current;
+                GUI_Info.PlayerHP_Max = hp.Max;
+            });
         }
         
     }

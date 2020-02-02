@@ -32,16 +32,20 @@ namespace BrokenBattleBots
         public float Value;
     }
 
-    public struct ChaseTarget : IComponentData
+    public struct AggroInfo : IComponentData
     {
         public Entity Target;
         public float AggroDistance;
         public float MaxDistance;
+        public float AttackRange;
+        public float AttackFrequency;
+        public int AttackDamage;
+        public bool DoAttack;
     }
 
     public struct EnemyTarget : IComponentData
     {
-        public bool IsPriority;
+        public bool IsPriority;       
     }
 
 
@@ -67,12 +71,13 @@ namespace BrokenBattleBots
             };
             // possibleTargetsQuery.Dispose();
             updateStatesJob.Schedule(this, inputDeps).Complete();
+
             updateStatesJob.potentialTargets.Dispose();
             return inputDeps;
         }
 
 
-        struct AiStateUpdate : IJobForEachWithEntity<EnemyAI, Translation, AimInput, RoamRadius, ChaseTarget, MoveDestination>
+        struct AiStateUpdate : IJobForEachWithEntity<EnemyAI, Translation, AimInput, RoamRadius, AggroInfo, MoveDestination>
         {
             [ReadOnly] public ComponentDataFromEntity<Translation> translationFromEntity;
             [ReadOnly] public ComponentDataFromEntity<Tag_Dead> tagDeadFromEntity;
@@ -81,7 +86,7 @@ namespace BrokenBattleBots
             public Unity.Mathematics.Random rng;
 
             public void Execute(Entity entity, int index, ref EnemyAI ai, [ReadOnly] ref Translation position, ref AimInput aim,
-                [ReadOnly] ref RoamRadius roamBounds, ref ChaseTarget chase, ref MoveDestination moveDest)
+                [ReadOnly] ref RoamRadius roamBounds, ref AggroInfo chase, ref MoveDestination moveDest)
             {
                 // Handle state change
                 if (ai.Next_State != 0)
@@ -153,9 +158,19 @@ namespace BrokenBattleBots
                         {
                             moveDest.Position = translationFromEntity[chase.Target].Value;
                         }
+
+                        // Attack check
+                        if (sqDist(translationFromEntity[chase.Target].Value, position.Value) < chase.AttackRange * chase.AttackRange)
+                        {
+                            chase.DoAttack = true;
+                        }
+                        else
+                        {
+                            chase.DoAttack = false;
+                        }
                         break;
                 }
-
+                // Rotate towards the player
                 aim.AimPoint = moveDest.Position;
             }
 
@@ -171,6 +186,24 @@ namespace BrokenBattleBots
                 return new float3(math.cos(degree) * distFromCenter, 0, math.sin(degree) * distFromCenter);
             }
         }
-        
+    }
+
+    [UpdateAfter(typeof(EnemyAiSystem))]
+    public class EnemyAttackSystem : ComponentSystem
+    {
+        protected override void OnUpdate()
+        {
+            Entities.ForEach((Entity e, ref Tag_CountdownElapsed countdownTag, ref AggroInfo info) => {
+                
+                if(info.DoAttack)
+                {
+                    Entity dmg = EntityManager.CreateEntity(typeof(Damage), typeof(DamageSource));
+                    EntityManager.SetComponentData(dmg,  new Damage() {  Amount = info.AttackDamage, Target = info.Target });
+                    EntityManager.SetComponentData(dmg, new DamageSource() { Source = e });
+                    info.DoAttack = false;
+                }
+                EntityManager.RemoveComponent(e, typeof(Tag_CountdownElapsed));
+            });
+        }
     }
 }
