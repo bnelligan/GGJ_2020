@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6816385771340271261}
   - component: {fileID: 1594075438492353223}
   - component: {fileID: 4644439155210311266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.foot.Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1299474116408254227}
   - component: {fileID: 1872950576043540437}
   - component: {fileID: 1250828957585560102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.lowerLeg.Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4490801582841648615}
   - component: {fileID: 6674822424544530782}
   - component: {fileID: 4599259644396828313}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.upper.Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1742910859024732972}
   - component: {fileID: 2639019362193498391}
   - component: {fileID: 4424135388627802504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg.topJoint.Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 3137366413512656147}
   - component: {fileID: 366047487386156084}
   - component: {fileID: 7458949143147862042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg.topJoint.Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 6355056841770704449}
   - component: {fileID: 7965773569888549531}
   - component: {fileID: 2861804464984347216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.foot.Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 2446926748259911217}
   - component: {fileID: 760303921389368178}
   - component: {fileID: 121123719822433902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.lowerLeg.Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 875308776151045593}
   - component: {fileID: 6377588624489528690}
   - component: {fileID: 5153491521009883407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robot Legs 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 6041761262467121949}
   - component: {fileID: 782789438709442156}
   - component: {fileID: 5302082871300837078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: leg_3.upper.Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
