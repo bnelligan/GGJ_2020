@@ -4162,6 +4162,9 @@ MonoBehaviour:
   RoamRadius: 25
   MaxChaseDist: 20
   AggroDist: 10
+  AttackDelay: 2
+  AttackDamage: 1
+  AttackRange: 5
 --- !u!1 &4129604469776262083
 GameObject:
   m_ObjectHideFlags: 0

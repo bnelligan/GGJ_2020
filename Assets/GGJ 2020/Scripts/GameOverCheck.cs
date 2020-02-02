@@ -8,7 +8,7 @@ public class GameOverCheck : MonoBehaviour
     private float gen1Health;
     private float gen2Health;
     private float gen3Health;
-    
+    public GameObject end;
     public float Gen1Health
     {
         get => gen1Health;
@@ -76,9 +76,11 @@ public class GameOverCheck : MonoBehaviour
         Debug.Log("health " + playerHealth );
         Debug.Log(gen3Health);
 
-        if (gen1Dead && gen2Dead && gen3Dead)
+        if (playerHealth <=0 && !gen1Dead)
         {
+            end.SetActive(true);
             Debug.Log("Game Over");
+            gen1Dead = true;
         }
     }
 }
