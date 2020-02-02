@@ -3,6 +3,7 @@ using Unity.Transforms;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Collections;
 using UnityEngine;
 
 namespace BrokenBattleBots
@@ -10,10 +11,7 @@ namespace BrokenBattleBots
     /// <summary>
     /// Tag things that are dead
     /// </summary>
-    struct Tag_Dead : IComponentData
-    {
-
-    }
+    struct Tag_Dead : IComponentData { }
 
     /// <summary>
     /// Health data
@@ -50,8 +48,6 @@ namespace BrokenBattleBots
     [UpdateBefore(typeof(HealthRepairSystem))]
     class HealthDecaySystem : ComponentSystem
     {
-        ComponentDataFromEntity<HealthDecay> decayFromEntity;
-        
         protected override void OnUpdate()
         {
             Entities.ForEach((Entity e, ref HealthDecay decay) =>
@@ -76,23 +72,20 @@ namespace BrokenBattleBots
     [UpdateBefore(typeof(DamageSystem))]
     class HealthRepairSystem : ComponentSystem
     {
-        ComponentDataFromEntity<RepairCap> repairCapFromEntity;
-        ComponentDataFromEntity<Health> healthFromEntity;
-
         protected override void OnUpdate()
         {
-            Entities.ForEach((ref Repair repair) =>
+            Entities.ForEach((Entity e, ref Repair repair) =>
             {
                 // Make sure target has HP
-                if(healthFromEntity.HasComponent(repair.Target))
+                if(EntityManager.HasComponent<Health>(repair.Target))
                 {
                     // Check for a repair cap
-                    Health health = healthFromEntity[repair.Target];
-                    bool isRepairCapped = repairCapFromEntity.HasComponent(repair.Target);
+                    Health health = EntityManager.GetComponentData<Health>(repair.Target);
+                    bool isRepairCapped = EntityManager.HasComponent<RepairCap>(repair.Target);
                     int maxRepair = health.Max;
                     if (isRepairCapped)
                     {
-                        maxRepair = repairCapFromEntity[repair.Target].MaxHealthFromRepair;
+                        maxRepair = EntityManager.GetComponentData<RepairCap>(repair.Target).MaxHealthFromRepair;
                     }
                     
                     // Perform repair
@@ -103,18 +96,45 @@ namespace BrokenBattleBots
                     }
                     health.Current = newHp;
                 }
+
+                // Destroy repair entity
+                EntityManager.DestroyEntity(e);
             });
         }
     }
 
-
+    /// <summary>
+    /// Apply damage to targets and destroy damage entities
+    /// </summary>
     class DamageSystem : ComponentSystem
     {
+        //public EntityCommandBuffer.Concurrent ecb_BeginSim;
+        //public EntityCommandBuffer.Concurrent ecb_EndSim;
+
+        //protected override void OnCreate()
+        //{
+        //    base.OnCreate();
+        //    ecb_BeginSim = World.GetOrCreateSystem<BeginSimulationEntityCommandBufferSystem>().CreateCommandBuffer().ToConcurrent();
+        //    ecb_EndSim = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer().ToConcurrent();
+           
+        //}
+
         protected override void OnUpdate()
         {
-            throw new System.NotImplementedException();
+            Entities.ForEach((Entity e, ref Damage dmg) =>
+            {
+                Health hp = EntityManager.GetComponentData<Health>(dmg.Target);
+                hp.Current -= dmg.Amount;
+                if(hp.Current <= 0)
+                {
+                    hp.Current = 0;
+                    EntityManager.AddComponentData(dmg.Target, new Tag_Dead());
+                }
+                EntityManager.DestroyEntity(e);
+            });
         }
     }
+    
 
 
 }
