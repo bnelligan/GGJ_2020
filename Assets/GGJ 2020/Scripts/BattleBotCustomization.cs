@@ -8,6 +8,9 @@ namespace BrokenBattleBots
 {
     public class BattleBotCustomization : MonoBehaviour
     {
+        public BattleBotPart[] armPrefabs;
+        public BattleBotPart[] legPrefabs;
+        public BattleBotPart[] headPrefabs;
         public BattleBotPartSocket socketHead;
         public BattleBotPartSocket socketArmLeft;
         public BattleBotPartSocket socketArmRight;
@@ -36,6 +39,21 @@ namespace BrokenBattleBots
             }
 
             this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
+        }
+
+        private void Start ()
+        {
+            this.SpawnRandomParts ();
+        }
+
+        public void SpawnRandomParts ()
+        {
+            float range = 10f;
+
+            Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
+            Instantiate (this.armPrefabs[Random.Range (0, this.armPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
+            Instantiate (this.headPrefabs[Random.Range (0, this.headPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
+            Instantiate (this.legPrefabs[Random.Range (0, this.legPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
         }
 
         public IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
