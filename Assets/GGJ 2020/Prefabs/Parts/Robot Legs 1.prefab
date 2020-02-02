@@ -248,11 +248,11 @@ GameObject:
   - component: {fileID: 619430654945325347}
   - component: {fileID: 9027562250568404152}
   - component: {fileID: 5612079047701837888}
-  - component: {fileID: 5612079047701837895}
   - component: {fileID: 5612079047701837890}
   - component: {fileID: 5612079047701837889}
+  - component: {fileID: 3662251994628741592}
   m_Layer: 8
-  m_Name: Robot Legs
+  m_Name: Robot Legs 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,19 +309,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5612079047701837895
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4522723703570957104}
-  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.243351, y: 6.479345, z: 2.1003036}
-  m_Center: {x: 0.07141495, y: -2.5023615, z: -0.097465515}
 --- !u!82 &5612079047701837890
 AudioSource:
   m_ObjectHideFlags: 0
@@ -432,13 +419,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Socket: {fileID: 0}
   Rigidbody: {fileID: 5612079047701837888}
-  Collider: {fileID: 5612079047701837895}
+  Collider: {fileID: 3662251994628741592}
   PartType: 6
   AudioSource: {fileID: 5612079047701837890}
   weldSpeedMultiplier: 5
   attachPosition: {x: 0, y: 0, z: 0}
   attachRotationEulerAngles: {x: 0, y: 0, z: 0}
   standHeightOffset: 8.34
+--- !u!64 &3662251994628741592
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522723703570957104}
+  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 10f8799ed9373ab45acd21d4482f4e80, type: 3}
 --- !u!1 &4986910907496268256
 GameObject:
   m_ObjectHideFlags: 0

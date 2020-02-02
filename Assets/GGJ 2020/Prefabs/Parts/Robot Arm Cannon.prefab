@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7941161686671922797}
   - component: {fileID: 1400340765110987509}
   - component: {fileID: 1400340765110987510}
-  - component: {fileID: 4488194605115097020}
+  - component: {fileID: 7108372830501478155}
   m_Layer: 8
   m_Name: Robot Arm Cannon
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Socket: {fileID: 0}
   Rigidbody: {fileID: 1400340765110987509}
-  Collider: {fileID: 4488194605115097020}
+  Collider: {fileID: 7108372830501478155}
   PartType: 1
   AudioSource: {fileID: 1400340765110987510}
   weldSpeedMultiplier: 5
@@ -216,8 +216,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &4488194605115097020
-BoxCollider:
+--- !u!64 &7108372830501478155
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -226,6 +226,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4785973, y: 4.512678, z: 5.10473}
-  m_Center: {x: -0.0051451325, y: 0.19025993, z: 1.2601969}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 2a91c109fbe51bc41866017ab5597220, type: 3}
