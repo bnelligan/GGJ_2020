@@ -31,7 +31,14 @@ namespace BrokenBattleBots
             Bottom = 6,
         }
 
-        public void Weld (float value, bool reset = false)
+        public void ResetWeld ()
+        {
+            this.Welded = 0f;
+
+            this.ChangeColor ();
+        }
+
+        public void Weld (float value)
         {
             this.Welded += value * this.weldSpeedMultiplier;
 
@@ -52,11 +59,11 @@ namespace BrokenBattleBots
 
             UnityEngine.Mathf.Clamp01 (this.Welded);
 
-            if (reset == true)
-            {
-                this.Welded = 0f;
-            }
+            this.ChangeColor ();
+        }
 
+        public void ChangeColor ()
+        {
             MeshRenderer[] meshRenderers = this.GetComponentsInChildren <MeshRenderer> ();
 
             foreach (MeshRenderer meshRenderer in meshRenderers)

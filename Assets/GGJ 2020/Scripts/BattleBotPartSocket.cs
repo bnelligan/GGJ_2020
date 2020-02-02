@@ -95,7 +95,7 @@ namespace BrokenBattleBots
                     // UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, false);
                 }
 
-                // this.battleBotPart.Weld (0f, true);
+                this.battleBotPart.ResetWeld ();
                 this.battleBotPart.PlayCollisionSound (1f);
                 this.battleBotPart.PlayDetachSound ();
                 this.battleBotPart.transform.SetParent (null);
