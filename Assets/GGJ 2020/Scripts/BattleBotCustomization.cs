@@ -26,6 +26,7 @@ namespace BrokenBattleBots
         public LayerMask LayerMaskDrag;
         public Camera Camera;
         public CameraFollow CameraFollow;
+        public Transform playerSpawn;
         public bool Standing { get; private set; }
         public BattleBotPart SelectedBattleBotPart { get; private set; }
 
@@ -112,7 +113,7 @@ namespace BrokenBattleBots
 
             if (this.socketLegs.battleBotPart != null)
             {
-                position.y = this.socketLegs.battleBotPart.standHeightOffset;
+                position = playerSpawn.position;
             }
             else
             {
