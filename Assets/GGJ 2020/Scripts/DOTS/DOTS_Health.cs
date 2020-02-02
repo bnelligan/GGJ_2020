@@ -48,6 +48,15 @@ namespace BrokenBattleBots
     [UpdateBefore(typeof(HealthRepairSystem))]
     class HealthDecaySystem : ComponentSystem
     {
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Entities.ForEach((ref Health hp, ref Tag_Generator gen) =>
+            {
+                
+                GUI_Info.Gen1HP_Current = 0;
+            });
+        }
         protected override void OnUpdate()
         {
             Entities.ForEach((Entity e, ref HealthDecay decay) =>
@@ -62,6 +71,7 @@ namespace BrokenBattleBots
                     EntityManager.SetComponentData(dmgEntity, new Damage() { Target = e, Amount = decay.DecayAmount });
                 }
             });
+            
         }
         
     }
