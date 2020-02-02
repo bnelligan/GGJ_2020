@@ -34,7 +34,7 @@ namespace BrokenBattleBots
 
         private void LateUpdate ()
         {
-            if (!useECS)
+            if (this.useECS == false)
             {
                 Vector3 cameraPosition = this.transform.position;
 
