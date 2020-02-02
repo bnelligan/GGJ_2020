@@ -56,7 +56,7 @@ namespace BrokenBattleBots
 
             Vector3 cameraPosition = averagePosition + new Vector3 (-5.67f, 19.43f, -10.83f);
 
-            cameraPosition.y = 19.43f;
+            // cameraPosition.y = 19.43f;
 
             this.Camera.transform.position = Vector3.Lerp (this.Camera.transform.position, cameraPosition, UnityEngine.Time.deltaTime * 3f);
         }

@@ -7,7 +7,14 @@ namespace BrokenBattleBots
 {
     public class BattleBotCustomization : MonoBehaviour
     {
-
+        public BattleBotPartSocket socketHead;
+        public BattleBotPartSocket socketArmLeft;
+        public BattleBotPartSocket socketArmRight;
+        public BattleBotPartSocket sockedLegs;
+        public AudioClip[] AudioClipsCollisions;
+        public AudioClip[] AudioClipsAttach;
+        public AudioClip[] AudioClipsDetach;
+        public AudioClip[] AudioClipsError;
         public Gradient WeldGradientPositive;
         public static BattleBotCustomization instance;
         public LayerMask LayerMaskSelect;

@@ -58,15 +58,24 @@ namespace BrokenBattleBots
             this.battleBotPart.Rigidbody.isKinematic = true;
             this.battleBotPart.Rigidbody.useGravity = false;
             this.battleBotPart.transform.SetParent (this.transform);
-            this.battleBotPart.transform.localPosition = this.attachPosition;
-            this.battleBotPart.transform.localRotation = Quaternion.Euler (this.attachRotationEulerAngles);
+            /*this.battleBotPart.transform.localPosition = this.attachPosition;
+            this.battleBotPart.transform.localRotation = Quaternion.Euler (this.attachRotationEulerAngles);*/
 
             if (this.parentBattleBotPart != null)
             {
-                UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, true);
+                // NEED TO REMOVE RIGIDBODY BECAUSE UNITY COO
+
+                Destroy (this.battleBotPart.Rigidbody);
             }
 
             this.battleBotPart.PlayAttachSound ();
+
+            if (this.parentBattleBotPart != null)
+            {
+                Vector3 direction = this.battleBotPart.transform.position - this.parentBattleBotPart.transform.position;
+
+                this.parentBattleBotPart.Rigidbody.AddForce (-direction * 100f, ForceMode.Force);
+            }
         }
 
         public void DetachPart (Vector3 force)
@@ -81,11 +90,18 @@ namespace BrokenBattleBots
 
                 if (this.parentBattleBotPart != null)
                 {
-                    UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, false);
+                    // UnityEngine.Physics.IgnoreCollision (this.battleBotPart.Collider, this.parentBattleBotPart.Collider, false);
                 }
 
+                this.battleBotPart.PlayCollisionSound (1f);
                 this.battleBotPart.PlayDetachSound ();
                 this.battleBotPart.transform.SetParent (null);
+                
+                if (this.battleBotPart.Rigidbody == null)
+                {
+                    this.battleBotPart.Rigidbody = this.battleBotPart.gameObject.AddComponent<Rigidbody>();
+                }
+                
                 this.battleBotPart.Rigidbody.isKinematic = false;
                 this.battleBotPart.Rigidbody.useGravity = true;
                 this.battleBotPart.Rigidbody.AddForce (force, UnityEngine.ForceMode.Impulse);
@@ -102,9 +118,9 @@ namespace BrokenBattleBots
 
             if (this.battleBotPart != null)
             {
-                this.battleBotPart.transform.localPosition = Vector3.Lerp (this.battleBotPart.transform.localPosition, Vector3.zero, 6f * deltaTime);
+                this.battleBotPart.transform.localPosition = Vector3.Lerp (this.battleBotPart.transform.localPosition, this.attachPosition, 6f * deltaTime);
 
-                this.battleBotPart.transform.localRotation = Quaternion.Lerp (this.battleBotPart.transform.localRotation, Quaternion.identity, 6f * deltaTime);
+                this.battleBotPart.transform.localRotation = Quaternion.Lerp (this.battleBotPart.transform.localRotation, Quaternion.Euler (this.attachRotationEulerAngles), 6f * deltaTime);
             }
         }
 
