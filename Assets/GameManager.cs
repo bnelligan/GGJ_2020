@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool StartFighting;
     public GameObject Robot;
     public GameObject instructionText;
+
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
             StartFighting = true;
             Robot.AddComponent<ConvertToEntity>();
             instructionText.SetActive(false);
+            canvas.SetActive(true);
         }
         
     }

@@ -26,11 +26,11 @@ public class SpawnGenerators : MonoBehaviour
         
         int index2 = Random.Range(0, generator2Points.Count - 1);
         generator2= Instantiate(generatorPrefab, generator2Points[index2].position, Quaternion.identity);
-        generator1.GetComponent<AuthorGenerator>().GenID = 2;
+        generator2.GetComponent<AuthorGenerator>().GenID = 2;
         
         int index3 = Random.Range(0, generator3Points.Count - 1);
         generator3 = Instantiate(generatorPrefab, generator3Points[index3].position, Quaternion.identity);
-        generator1.GetComponent<AuthorGenerator>().GenID = 3;
+        generator3.GetComponent<AuthorGenerator>().GenID = 3;
         
     }
 }
