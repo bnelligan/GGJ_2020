@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -56,5 +57,20 @@ public class GameOver : MonoBehaviour
         } else {
             timeToChange -= Time.deltaTime;
         }
+    }
+
+    public void MainMenuScene()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void ReloadGameScene()
+    {
+        SceneManager.LoadScene("Chris's Scene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
