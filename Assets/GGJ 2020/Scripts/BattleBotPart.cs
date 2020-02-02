@@ -8,7 +8,6 @@ namespace BrokenBattleBots
     public class BattleBotPart : MonoBehaviour
     {
         public float Welded { get; private set; }
-        public bool BeingDragged;
         public BattleBotPartSocket Socket;
         public Rigidbody Rigidbody;
         public Collider Collider;

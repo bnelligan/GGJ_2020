@@ -2,6 +2,7 @@
 // Creator: Chris Nobrega
 
 using UnityEngine;
+using System.Collections;
 
 namespace BrokenBattleBots
 {
@@ -32,6 +33,18 @@ namespace BrokenBattleBots
             }
         }
 
+        private IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
+        {
+            UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, true);
+
+            while (UnityEngine.Physics.ComputePenetration (colliderA, colliderA.transform.position, colliderA.transform.rotation, colliderB, colliderB.transform.position, colliderB.transform.rotation, out Vector3 direction, out float distance))
+            {
+                yield return null;
+            }
+
+            UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, false);
+        }
+
         private void Update ()
         {
             Ray ray = this.Camera.ScreenPointToRay (UnityEngine.Input.mousePosition);
@@ -56,26 +69,20 @@ namespace BrokenBattleBots
                         {
                             // If the part is in a socket - detach it
 
-                            /*if (battleBotPart.Socket != null)
+                            if (battleBotPart.Socket != null)
                             {
-                                battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * Random.Range (2f, 8f));
+                                // this.SelectedBattleBotPart = battleBotPart;
 
-                                this.selectedBattleBotPart = battleBotPart;
+                                // this.SelectedBattleBotPart.BeingDragged = true;
 
-                                if (battleBotPart.Socket.parentBattleBotPart != null)
-                                {
-
-                                }
+                                this.DetachPart (battleBotPart);
+                                
                             }
-                            else*/
-
-                            if (battleBotPart.Socket == null)
+                            else
                             {
                                 // The part is not in a socket
 
                                 this.SelectedBattleBotPart = battleBotPart;
-
-                                this.SelectedBattleBotPart.BeingDragged = true;
 
                                 UnityEngine.Debug.Log ($"{ this } selected { this.SelectedBattleBotPart }");
                             }
@@ -90,8 +97,6 @@ namespace BrokenBattleBots
                 if (UnityEngine.Input.GetKey (UnityEngine.KeyCode.Mouse0) == false || this.SelectedBattleBotPart.Socket != null)
                 {
                     UnityEngine.Debug.Log ($"{ this } released { this.SelectedBattleBotPart }");
-
-                    this.SelectedBattleBotPart.BeingDragged = false;
 
                     this.SelectedBattleBotPart = null;
 
@@ -109,6 +114,13 @@ namespace BrokenBattleBots
                     this.SelectedBattleBotPart.transform.position = Vector3.Lerp (this.SelectedBattleBotPart.transform.position, raycastHit.point + Vector3.up * 0.5f, 3f * UnityEngine.Time.deltaTime);
                 }
             }
+        }
+
+        private void DetachPart (BattleBotPart battleBotPart)
+        {
+            this.StartCoroutine (this.IgnoreCollisionsTillNotOverlapping (battleBotPart.Socket.GetComponent <Collider> (), battleBotPart.Collider));
+
+            battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * 10f);
         }
     }
 }
