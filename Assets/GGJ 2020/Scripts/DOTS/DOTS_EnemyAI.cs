@@ -208,4 +208,39 @@ namespace BrokenBattleBots
             });
         }
     }
+    [UpdateAfter(typeof(EnemyAttackSystem))]
+    public class ShootSystem : ComponentSystem
+    {
+        public float radius = 4;
+        public int damage = 25;
+        protected override void OnUpdate()
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                float3 clickPoint = float3.zero;
+                Entity playerEntity = Entity.Null;
+                Entities.ForEach((Entity ePlayer, ref AimInput aim, ref UsePlayerInput player) =>
+                {
+                    GameObject explosion = Resources.Load<GameObject>("ShittyExplosion");
+                    GameObject.Instantiate(explosion, new Vector3(aim.AimPoint.x, aim.AimPoint.y, aim.AimPoint.z), explosion.transform.rotation);
+                    clickPoint = aim.AimPoint;
+                    playerEntity = ePlayer;
+                });
+
+                Entities.ForEach((Entity enemyEntity, ref EnemyAI enemy, ref Translation position) =>
+                {
+                    float dist = math.length(position.Value - clickPoint);
+                    if(dist < radius)
+                    {
+                        Entity dmg = EntityManager.CreateEntity(typeof(Damage), typeof(DamageSource));
+                        EntityManager.AddComponentData(dmg, new Damage() { Amount = damage, Target = enemyEntity });
+                        EntityManager.AddComponentData(dmg, new DamageSource() { Source = playerEntity });
+                        dmg = EntityManager.Instantiate(dmg);
+                    }
+                });
+                    
+            }
+        }
+    }
+
 }

@@ -135,7 +135,7 @@ namespace BrokenBattleBots
         {
             Entities.ForEach ((ref Translation translate, ref UsePlayerInput player) =>
             {
-                CameraFollow.Instance.UpdateTargetPosition (translate.Value);
+                CameraFollow.Instance?.UpdateTargetPosition (translate.Value);
             });
         }
     }
