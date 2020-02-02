@@ -135,7 +135,7 @@ namespace BrokenBattleBots
         {
             Entities.ForEach ((ref Translation translate, ref UsePlayerInput player) =>
             {
-                CameraFollow.Instance.UpdateTargetPosition (translate.Value);
+                CameraFollow.Instance?.UpdateTargetPosition (translate.Value);
             });
         }
     }
@@ -156,7 +156,7 @@ namespace BrokenBattleBots
             return moveInputJob.Schedule(this, inputDeps);
         }
 
-        [ExcludeComponent(typeof(MoveDestination))]
+        [ExcludeComponent(typeof(MoveDestination), typeof(Tag_Dead))]
         struct ApplyMoveInputJob : IJobForEach<PhysicsVelocity, MovementSpeed, MovementInput>
         {
             public void Execute(ref PhysicsVelocity velocity, ref MovementSpeed moveSpeed, ref MovementInput input)
@@ -173,7 +173,7 @@ namespace BrokenBattleBots
             }
         }
 
-        [ExcludeComponent(typeof(MovementInput))]
+        [ExcludeComponent(typeof(MovementInput), typeof(Tag_Dead))]
         struct ApplyMovePositionJob : IJobForEach<Translation, PhysicsVelocity, MovementSpeed, MoveDestination>
         {
             public void Execute([ReadOnly] ref Translation translation, ref PhysicsVelocity velocity, ref MovementSpeed speed, ref MoveDestination dest)

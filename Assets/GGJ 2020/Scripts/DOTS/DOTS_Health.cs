@@ -108,6 +108,7 @@ namespace BrokenBattleBots
                     EntityArchetype dmgArchetype = EntityManager.CreateArchetype(typeof(Damage));                    
                     Entity dmgEntity = EntityManager.CreateEntity(dmgArchetype);
                     EntityManager.SetComponentData(dmgEntity, new Damage() { Target = e, Amount = decay.DecayAmount });
+                    EntityManager.Instantiate(dmgEntity);
                 }
             });
 
