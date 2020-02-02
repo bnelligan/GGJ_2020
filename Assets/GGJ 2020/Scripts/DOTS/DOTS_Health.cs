@@ -207,10 +207,6 @@ namespace BrokenBattleBots
                 EntityManager.SetComponentData(dmg.Target, hp);
                 EntityManager.DestroyEntity(e);
             });
-            Entities.ForEach((Entity e, ref Tag_Dead dead) =>
-            {
-
-            });
         }
     }
     
