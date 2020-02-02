@@ -31,13 +31,29 @@ namespace BrokenBattleBots
             Bottom = 6,
         }
 
-        public void Weld (float value)
+        public void Weld (float value, bool reset = false)
         {
             this.Welded += value * this.weldSpeedMultiplier;
+
+            if (this.Rigidbody != null)
+            {
+                this.Rigidbody.angularVelocity = Random.onUnitSphere;
+            }
+            else
+            {
+                // Shake the torso
+
+                this.transform.root.GetComponent <Rigidbody> ().angularVelocity = Random.onUnitSphere * Random.Range (0f, 3f);
+            }
 
             // Clamp weld value
 
             UnityEngine.Mathf.Clamp01 (this.Welded);
+
+            if (reset == true)
+            {
+                this.Welded = 0f;
+            }
 
             MeshRenderer[] meshRenderers = this.GetComponentsInChildren <MeshRenderer> ();
 
