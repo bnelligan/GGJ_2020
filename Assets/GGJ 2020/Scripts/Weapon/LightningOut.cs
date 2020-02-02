@@ -8,15 +8,20 @@ public class LightningOut : MonoBehaviour
     public GameObject FirstEnemy;
     private bool explode;
     private float timeToExplosion;
+    private float speed = 3f;
+    private Vector3 targetLocation;
     // Start is called before the first frame update
     void Start()
     {
-        timeToExplosion = .25f;
+        timeToExplosion = .05f;
+        targetLocation = new Vector3(1.909973f, 1.01001f, 2.976f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, targetLocation, step); 
         if (explode && timeToExplosion > 0)
         {
             timeToExplosion -= Time.deltaTime;
@@ -41,7 +46,7 @@ public class LightningOut : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 GameObject bullet = Instantiate(miniBullet, FirstEnemy.transform.position, Quaternion.identity);
-                bullet.GetComponent<BulletAttack>().speed = 2f;
+                bullet.GetComponent<BulletAttack>().speed = 2.5f;
                 bullet.GetComponent<BulletAttack>().target = other.gameObject;
                 Debug.Log("SPAWNED BULLET!");
             }

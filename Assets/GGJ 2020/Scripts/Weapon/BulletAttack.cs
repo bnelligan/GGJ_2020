@@ -6,6 +6,7 @@ public class BulletAttack : MonoBehaviour
 {
     public GameObject target;
     public float speed;
+    public TrailRenderer trail;
     // Start is called before the first frame update
     void Start()
     {
