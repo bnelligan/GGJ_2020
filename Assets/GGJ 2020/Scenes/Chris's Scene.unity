@@ -541,31 +541,6 @@ Transform:
   m_Father: {fileID: 1609863469}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &729893941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8944201095880069441, guid: 5891399f9d141b545957729614549b7c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6849280399109581699}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &729893942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729893941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c42f3e3a46d0a4fae53f7226e348a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  Health: 100
-  DecayAmount: 0
-  DecayInterval: 10
-  RotationFriction: 0
-  RotationSmoothness: 1
-  RotationSpeed: 2
 --- !u!1 &770142660
 GameObject:
   m_ObjectHideFlags: 0
@@ -8904,7 +8879,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6849280399109581699}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729893941}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}
@@ -19979,54 +19954,9 @@ PrefabInstance:
       objectReference: {fileID: 2534866582525426374}
     - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
         type: 3}
-      propertyPath: armPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: headPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: legPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 1850798291}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: armPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1400340765110987508, guid: 81c74aadc7ad28e47b4ec3b50e6e40f5,
-        type: 3}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: armPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6886627766799815291, guid: fc0186b793ec2ab40909bfedcc06937d,
-        type: 3}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: headPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 2897295778024822370, guid: 2c56fcdb503474f489e2b5cb2305b9bd,
-        type: 3}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: legPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 5612079047701837889, guid: 4d9c552129a5f6e49871a103d2c5158d,
-        type: 3}
-    - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
-        type: 3}
-      propertyPath: legPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 5068569106019523529, guid: 05319d99c41dc9a44b08e97fb193c10c,
-        type: 3}
     - target: {fileID: 6849280399200649919, guid: 5891399f9d141b545957729614549b7c,
         type: 3}
       propertyPath: playerSpawn

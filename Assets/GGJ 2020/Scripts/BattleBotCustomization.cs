@@ -40,6 +40,10 @@ namespace BrokenBattleBots
             }
 
             this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
+
+            // Update camera follow targets to torso
+
+            this.CameraFollow.FollowTarget = this.partTorso.transform;
         }
 
         private void Start ()
@@ -145,13 +149,9 @@ namespace BrokenBattleBots
                 return;
             }
 
-            // Update camera follow targets to torso
-
-            this.CameraFollow.FollowTargets = new Transform[1];
-
-            this.CameraFollow.FollowTargets[0] = this.partTorso.transform;
-
             this.Standing = true;
+
+            this.CameraFollow.CameraFieldOfView = 60f;
         }
 
         public void DetachUnweldedParts (BattleBotPart ignore = null, float weldDetachThreshold = 9f)
@@ -201,6 +201,8 @@ namespace BrokenBattleBots
             {
                 this.CameraFollow.FollowTargets[index] = parts[index].transform;
             }*/
+
+            this.CameraFollow.CameraFieldOfView = 32f;
 
             this.Standing = false;
 

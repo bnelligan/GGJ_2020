@@ -9,28 +9,15 @@ namespace BrokenBattleBots
     public class CameraFollow : MonoBehaviour
     {
         public Camera Camera;
-        public Transform[] FollowTargets;
-        public Vector3 offset = new Vector3 (-5.67f, 19.43f, -10.83f);
+        public Transform FollowTarget;
+        public float CameraHeight = 19.43f;
+        public float CameraFieldOfView = 32f;
 
         public bool useECS;
 
         private EntityManager dotManager;
-        /*private void Awake()
-        {
-            BattleBotPart[] parts = FindObjectsOfType <BattleBotPart> ();
 
-            if (this.FollowTargets == null || this.FollowTargets.Length == 0)
-            {
-                this.FollowTargets = new Transform[parts.Length];
-
-                for (int index = 0; index < parts.Length; index += 1)
-                {
-                    this.FollowTargets[index] = parts[index].transform;
-                }
-            }
-        }*/
-
-        private void Start()
+        private void Start ()
         {
             dotManager = World.Active.EntityManager;
         }
@@ -39,50 +26,16 @@ namespace BrokenBattleBots
         {
             if (!useECS)
             {
-                float furthestPartFromCameraDistance = float.MinValue;
+                Vector3 cameraPosition = this.transform.position;
 
-                Vector3 averagePosition = Vector3.zero;
-
-                int count = 0;
-
-                foreach (Transform followTarget in this.FollowTargets)
+                if (this.FollowTarget != null)
                 {
-                    
-                    // Only count objects visible by camera (roughly)
-                
-                    Vector3 a = followTarget.transform.position;
-                    a.y = 0f;
-                    Vector3 b = this.Camera.transform.position;
-                    a.z = 0f;
-
-                    float distance = Vector3.Distance (a, b);
-
-                    // if (distance < 50f)
-                    {
-                        averagePosition += followTarget.transform.position;
-
-                        count += 1;
-
-                        if (distance > furthestPartFromCameraDistance)
-                        {
-                            furthestPartFromCameraDistance = distance;
-                        }
-                    }
+                    cameraPosition = this.FollowTarget.position + new Vector3 (-5.67f, this.CameraHeight, -10.83f);
                 }
 
-                averagePosition /= (float) count;
+                this.transform.position = Vector3.Lerp (this.transform.position, cameraPosition, Time.deltaTime * 3f);
 
-                // Scale camera field of view based on the furthest part (from the camera)
-
-                this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * (BattleBotCustomization.instance.Standing ? 2f : 1.4f), UnityEngine.Time.deltaTime * 3f);
-
-                // Move the camera based on the center of all the parts
-
-                Vector3 cameraPosition = averagePosition + this.offset;
-
-                // cameraPosition.y = 19.43f;
-
-                this.Camera.transform.position = Vector3.Lerp (this.Camera.transform.position, cameraPosition, UnityEngine.Time.deltaTime * 3f);   
+                this.Camera.fieldOfView = Mathf.Lerp (this.Camera.fieldOfView, this.CameraFieldOfView, Time.deltaTime * 3f);
             }
         }
 
