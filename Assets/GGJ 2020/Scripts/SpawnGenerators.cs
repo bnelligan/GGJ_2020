@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
 public class SpawnGenerators : MonoBehaviour
 {
@@ -27,5 +28,6 @@ public class SpawnGenerators : MonoBehaviour
         
         int index3 = Random.Range(0, generator3Points.Count - 1);
         generator3 = Instantiate(generatorPrefab, generator3Points[index3].position, Quaternion.identity);
+        
     }
 }
