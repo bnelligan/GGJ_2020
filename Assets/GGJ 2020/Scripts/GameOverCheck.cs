@@ -71,9 +71,9 @@ public class GameOverCheck : MonoBehaviour
         Gen1Health = GUI_Info.Gen1HP_Current;
         Gen2Health = GUI_Info.Gen2HP_Current;
         Gen3Health = GUI_Info.Gen3HP_Current;
-        
+        float playerHealth = GUI_Info.PlayerHP_Current;
         Debug.Log(gen1Health);
-        Debug.Log(gen2Health);
+        Debug.Log("health " + playerHealth );
         Debug.Log(gen3Health);
 
         if (gen1Dead && gen2Dead && gen3Dead)
