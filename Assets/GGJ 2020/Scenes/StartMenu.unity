@@ -7386,7 +7386,7 @@ MonoBehaviour:
   startButton: {fileID: 1449628892}
   rFall: {fileID: 781274257}
   music: {fileID: 1382850397}
-  fadeFactor: 0.001
+  fadeFactor: 0.04
 --- !u!1 &1267086197
 GameObject:
   m_ObjectHideFlags: 0
