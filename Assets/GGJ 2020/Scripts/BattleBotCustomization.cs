@@ -291,13 +291,11 @@ namespace BrokenBattleBots
                     {
                         this.SpawnRandomArms (1);
                     }
-
-                    if (legs == 0)
+                    else if (legs == 0)
                     {
                         this.SpawnRandomLegs ();
                     }
-
-                    if (heads == 0)
+                    else if (heads == 0)
                     {
                         this.SpawnRandomHead ();
                     }
