@@ -204,7 +204,14 @@ namespace BrokenBattleBots
             {
                 // Update camera follow targets to torso
 
-                this.CameraFollow.TargetPosition = this.partTorso.transform.position;
+                Vector3 averagePosition = Vector3.zero;
+                averagePosition += this.socketHead.transform.position;
+                averagePosition += this.socketLegs.transform.position;
+                averagePosition += this.socketArmLeft.transform.position;
+                averagePosition += this.socketArmRight.transform.position;
+                averagePosition /= 4f;
+
+                this.CameraFollow.TargetPosition = averagePosition;
             }
 
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.R))
@@ -255,7 +262,7 @@ namespace BrokenBattleBots
 
                             if (battleBotPart.Socket != null)
                             {
-                                // this.SelectedBattleBotPart = battleBotPart;
+                                // this.SelectedBattleBotPart = battleBotPart;FFAB2D
 
                                 // this.SelectedBattleBotPart.BeingDragged = true;
 

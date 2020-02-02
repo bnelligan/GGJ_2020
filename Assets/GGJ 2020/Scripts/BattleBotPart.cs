@@ -40,8 +40,6 @@ namespace BrokenBattleBots
 
         public void Weld (float value)
         {
-            this.Welded += value * this.weldSpeedMultiplier;
-
             // Shake the torso
 
             if (this.Rigidbody != null)
@@ -53,12 +51,17 @@ namespace BrokenBattleBots
                 this.transform.root.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere * Random.Range(0f, 3f);
             }
 
-            if (this.Welded < 10f)
+            if (this.Socket != null)
             {
-                BattleBotCustomization.instance.DetachUnweldedParts (this);
-            }
+                this.Welded += value * this.weldSpeedMultiplier;
 
-            this.ChangeColor ();
+                if (this.Welded < 10f)
+                {
+                    BattleBotCustomization.instance.DetachUnweldedParts(this);
+                }
+
+                this.ChangeColor ();
+            }
         }
 
         public void ChangeColor ()
