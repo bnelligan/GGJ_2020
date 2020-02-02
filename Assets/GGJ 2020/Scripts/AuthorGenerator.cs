@@ -7,17 +7,18 @@ using UnityEngine;
 public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
 {
     public int Health;
-    public int GenID = 1;
+    public int GenID = 0;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
         EntityArchetype generatorArchetype = dstManager.CreateArchetype(new ComponentType[]
         {
-            typeof(Health)
+            typeof(Health),
+            typeof(HealthDecay)
         });
         
         dstManager.AddComponentData(entity, new Health(){
-            Current = Health,
+            Current = 100,
             Max = 100
         });
 
