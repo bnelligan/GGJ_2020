@@ -120,6 +120,26 @@ namespace BrokenBattleBots
         }
     }
 
+    [UpdateAfter (typeof (PlayerInputSystem))]
+    [UpdateAfter (typeof (EnemyAiSystem))]
+    [UpdateAfter (typeof (ApplyMoveInputSystem))]
+    [UpdateAfter (typeof (ApplyAimInputSystem))]
+    class ApplyCameraFollowSystem : ComponentSystem
+    {
+        public ApplyCameraFollowSystem ()
+        {
+
+        }
+
+        protected override void OnUpdate ()
+        {
+            Entities.ForEach ((ref Translation translate, ref UsePlayerInput player) =>
+            {
+                CameraFollow.Instance.UpdateTargetPosition (translate.Value);
+            });
+        }
+    }
+
     /// <summary>
     /// Read move input and apply it to the physics system
     /// </summary>
@@ -131,7 +151,7 @@ namespace BrokenBattleBots
         {
             ApplyMoveInputJob moveInputJob = new ApplyMoveInputJob();
             ApplyMovePositionJob movePositionJob = new ApplyMovePositionJob();
-            
+
             inputDeps = movePositionJob.Schedule(this, inputDeps);
             return moveInputJob.Schedule(this, inputDeps);
         }
