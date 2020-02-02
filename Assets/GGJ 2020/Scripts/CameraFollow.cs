@@ -30,10 +30,12 @@ namespace BrokenBattleBots
 
             Vector3 averagePosition = Vector3.zero;
 
+            int count = 0;
+
             foreach (Transform followTarget in this.FollowTargets)
             {
-                averagePosition += followTarget.transform.position;
-
+                // Only count objects visible by camera (roughly)
+                
                 Vector3 a = followTarget.transform.position;
                 a.y = 0f;
                 Vector3 b = this.Camera.transform.position;
@@ -41,17 +43,24 @@ namespace BrokenBattleBots
 
                 float distance = Vector3.Distance (a, b);
 
-                if (distance > furthestPartFromCameraDistance)
+                // if (distance < 50f)
                 {
-                    furthestPartFromCameraDistance = distance;
+                    averagePosition += followTarget.transform.position;
+
+                    count += 1;
+
+                    if (distance > furthestPartFromCameraDistance)
+                    {
+                        furthestPartFromCameraDistance = distance;
+                    }
                 }
             }
+
+            averagePosition /= (float) count;
 
             // Scale camera field of view based on the furthest part (from the camera)
 
             this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * 1.4f, UnityEngine.Time.deltaTime * 3f);
-
-            averagePosition /= (float) this.FollowTargets.Length;
 
             // Move the camera based on the center of all the parts
 

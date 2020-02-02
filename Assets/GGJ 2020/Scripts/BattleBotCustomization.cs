@@ -23,7 +23,7 @@ namespace BrokenBattleBots
         public LayerMask LayerMaskDrag;
         public Camera Camera;
         public CameraFollow CameraFollow;
-        private bool standing;
+        public bool Standing { get; private set; }
         public BattleBotPart SelectedBattleBotPart { get; private set; }
 
         private void Awake ()
@@ -87,7 +87,7 @@ namespace BrokenBattleBots
 
             this.CameraFollow.FollowTargets[0] = this.partTorso.transform;
 
-            this.standing = true;
+            this.Standing = true;
         }
 
         public void FallOver ()
@@ -103,7 +103,7 @@ namespace BrokenBattleBots
                 this.CameraFollow.FollowTargets[index] = parts[index].transform;
             }
 
-            this.standing = false;
+            this.Standing = false;
 
             this.partTorso.Rigidbody.isKinematic = false;
 
@@ -116,7 +116,7 @@ namespace BrokenBattleBots
         {
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Space))
             {
-                if (this.standing == true)
+                if (this.Standing == true)
                 {
                     this.FallOver();
                 }
@@ -126,7 +126,7 @@ namespace BrokenBattleBots
                 } 
             }
 
-            if (this.standing == true)
+            if (this.Standing == true)
             {
                 return;
             }
