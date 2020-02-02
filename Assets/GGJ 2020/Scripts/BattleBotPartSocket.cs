@@ -118,9 +118,9 @@ namespace BrokenBattleBots
 
             if (this.battleBotPart != null)
             {
-                this.battleBotPart.transform.localPosition = Vector3.Lerp (this.battleBotPart.transform.localPosition, this.attachPosition, 6f * deltaTime);
+                this.battleBotPart.transform.localPosition = Vector3.Lerp (this.battleBotPart.transform.localPosition, this.battleBotPart.attachPosition, 6f * deltaTime);
 
-                this.battleBotPart.transform.localRotation = Quaternion.Lerp (this.battleBotPart.transform.localRotation, Quaternion.Euler (this.attachRotationEulerAngles), 6f * deltaTime);
+                this.battleBotPart.transform.localRotation = Quaternion.Lerp (this.battleBotPart.transform.localRotation, Quaternion.Euler (this.battleBotPart.attachRotationEulerAngles), 6f * deltaTime);
             }
         }
 

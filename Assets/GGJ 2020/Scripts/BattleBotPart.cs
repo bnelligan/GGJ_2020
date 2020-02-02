@@ -15,6 +15,8 @@ namespace BrokenBattleBots
         public BattleBotPartType PartType;
         public AudioSource AudioSource;
         public float weldSpeedMultiplier = 1f;
+        public Vector3 attachPosition;
+        public Vector3 attachRotationEulerAngles;
 
         public enum BattleBotPartType
         {
@@ -36,9 +38,9 @@ namespace BrokenBattleBots
 
             UnityEngine.Mathf.Clamp01 (this.Welded);
 
-            MeshRenderer meshRenderer = this.GetComponentInChildren <MeshRenderer> ();
+            MeshRenderer[] meshRenderers = this.GetComponentsInChildren <MeshRenderer> ();
 
-            if (meshRenderer != null)
+            foreach (MeshRenderer meshRenderer in meshRenderers)
             {
                 // Color color = Color.Lerp (Color.black, Color.red, this.Welded / 10f);
 
