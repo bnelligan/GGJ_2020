@@ -60,7 +60,7 @@ namespace BrokenBattleBots
 
             // Scale camera field of view based on the furthest part (from the camera)
 
-            this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * 1.4f, UnityEngine.Time.deltaTime * 3f);
+            this.Camera.fieldOfView = UnityEngine.Mathf.Lerp (this.Camera.fieldOfView, furthestPartFromCameraDistance * (BattleBotCustomization.instance.Standing ? 2f : 1.4f), UnityEngine.Time.deltaTime * 3f);
 
             // Move the camera based on the center of all the parts
 
