@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
 {
-    public int Health = 100;
+    public int Health;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
@@ -17,7 +17,7 @@ public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
         
         dstManager.AddComponentData(entity, new Health(){
             Current = Health,
-            Max = Health
+            Max = 100
         });
 
         dstManager.AddComponentData(entity, new Tag_Generator());
