@@ -690,6 +690,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &743932282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8944201095880069441, guid: 5891399f9d141b545957729614549b7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6849280399109581699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &819895742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8813364681718191159, guid: 8fff2e8ed162c2447b3371554fb3bddb,
@@ -1504,6 +1510,8 @@ MonoBehaviour:
   - {fileID: 1069029590}
   - {fileID: 819895742}
   - {fileID: 1624062878}
+  StartFighting: 0
+  Robot: {fileID: 743932282}
 --- !u!4 &1801182700
 Transform:
   m_ObjectHideFlags: 0
@@ -2378,7 +2386,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6849280399109581699}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 743932282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90667154085dadc4190da63ae0216cb0, type: 3}

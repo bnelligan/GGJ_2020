@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BrokenBattleBots;
+using Unity.Entities;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] spawners;
     public bool StartFighting;
+    public GameObject Robot;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
                 
             }
             StartFighting = true;
+            Robot.AddComponent<ConvertToEntity>();
         }
         
     }
