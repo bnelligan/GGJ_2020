@@ -38,6 +38,14 @@ namespace BrokenBattleBots
             dotManager = World.Active.EntityManager;
         }
 
+        public void UpdateTargetPosition (Vector3 targetPosition)
+        { 
+            if (this.IsRobotStanding == true)
+            {
+                this.TargetPosition = targetPosition;
+            }
+        }
+
         private void LateUpdate ()
         {
             if (this.useECS == false)
