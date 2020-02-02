@@ -42,22 +42,21 @@ namespace BrokenBattleBots
         {
             this.Welded += value * this.weldSpeedMultiplier;
 
+            // Shake the torso
+
             if (this.Rigidbody != null)
             {
-                this.Rigidbody.angularVelocity = Random.onUnitSphere;
+                this.Rigidbody.angularVelocity = Random.onUnitSphere * Random.Range(0f, 3f);
             }
             else
             {
-                // Shake the torso
-
-                this.transform.root.GetComponent <Rigidbody> ().angularVelocity = Random.onUnitSphere * Random.Range (0f, 3f);
+                this.transform.root.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere * Random.Range(0f, 3f);
             }
 
-            BattleBotCustomization.instance.DetachUnweldedParts (this);
-
-            // Clamp weld value
-
-            UnityEngine.Mathf.Clamp01 (this.Welded);
+            if (this.Welded < 10f)
+            {
+                BattleBotCustomization.instance.DetachUnweldedParts (this);
+            }
 
             this.ChangeColor ();
         }
