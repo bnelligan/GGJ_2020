@@ -5,8 +5,10 @@ using UnityEngine;
 public class C4Controller : MonoBehaviour
 {
     public GameObject c4;
+    public GameObject lazer;
     public int c4Limit;
-    public List<GameObject> c4List = new List<GameObject>();
+    private List<GameObject> c4List = new List<GameObject>();
+    public GameObject spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,16 @@ public class C4Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && c4List.Count < c4Limit)
         {
-            GameObject OBJc4 = Instantiate(c4, transform.position, Quaternion.identity);
+            
+            GameObject OBJc4 = Instantiate(c4, spawnPoint.transform.position, Quaternion.identity);
             c4List.Add(OBJc4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+
+            GameObject laz = Instantiate(lazer, spawnPoint.transform.position, Quaternion.identity);
+            
         }
 
         if (Input.GetKeyDown(KeyCode.U))

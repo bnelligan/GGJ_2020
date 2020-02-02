@@ -3201,6 +3201,36 @@ Transform:
   m_Father: {fileID: 2142192408}
   m_RootOrder: 164
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &157057987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157057988}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157057988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157057987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1070251983}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157754397
 GameObject:
   m_ObjectHideFlags: 0
@@ -16375,9 +16405,10 @@ GameObject:
   - component: {fileID: 1070251980}
   - component: {fileID: 1070251979}
   - component: {fileID: 1070251984}
+  - component: {fileID: 1070251985}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16466,9 +16497,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070251978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: 1.32, z: -2.32}
+  m_LocalPosition: {x: 0.83, y: 1.32, z: -1.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 157057988}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16485,7 +16517,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c4: {fileID: 9120889555392095661, guid: a97df8609c8f5f849957799befb28bcc, type: 3}
+  lazer: {fileID: 7810821440849447293, guid: 4edea0217d2522b43844497e88759cdb, type: 3}
   c4Limit: 4
+  spawnPoint: {fileID: 157057987}
+--- !u!114 &1070251985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070251978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ae746f80390944930f4a53f83272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit: {x: 0, y: 0, z: 0}
+  speed: 0
+  lazerTime: 0
 --- !u!1 &1079293184
 GameObject:
   m_ObjectHideFlags: 0
@@ -32280,6 +32329,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1419677077}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2132303212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132303213}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132303213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132303212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.69, y: 0.854, z: -3.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136740855
 GameObject:
   m_ObjectHideFlags: 0
@@ -32399,6 +32478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2142192408}
+  - component: {fileID: 2142192409}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -32693,6 +32773,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2142192409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142192407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af20573a294d48478241eb41c1c8c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  c4: {fileID: 0}
+  lazer: {fileID: 7810821440849447293, guid: 4edea0217d2522b43844497e88759cdb, type: 3}
+  c4Limit: 0
+  spawnPoint: {fileID: 2132303212}
 --- !u!1 &2144670458
 GameObject:
   m_ObjectHideFlags: 0
