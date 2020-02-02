@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
 public class ByeBye : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class ByeBye : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Enemy")
         {
             EnemiesWithinRange.Add(other.gameObject);
