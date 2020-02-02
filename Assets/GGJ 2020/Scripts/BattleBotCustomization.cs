@@ -56,16 +56,46 @@ namespace BrokenBattleBots
             Instantiate (this.legPrefabs[Random.Range (0, this.legPrefabs.Length)], (this.transform.position + Vector3.up * range) + Random.onUnitSphere * range, Quaternion.identity);
         }
 
-        public IEnumerator IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
+        public struct IgnoreCollisionPair
         {
-            UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, true);
+            public Collider colliderA;
+            public Collider colliderB;
+        }
 
-            while (UnityEngine.Physics.ComputePenetration (colliderA, colliderA.transform.position, colliderA.transform.rotation, colliderB, colliderB.transform.position, colliderB.transform.rotation, out Vector3 direction, out float distance))
+        private System.Collections.Generic.List <IgnoreCollisionPair> ignoreCollisions = new System.Collections.Generic.List<IgnoreCollisionPair> ();
+
+        public void IgnoreCollisionsTillNotOverlapping (Collider colliderA, Collider colliderB)
+        {
+            if (colliderA == colliderB)
             {
-                yield return null;
+                UnityEngine.Debug.LogError ("NO");
+
+                return;
             }
 
-            UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, false);
+            IgnoreCollisionPair ignoreCollisionPair = new IgnoreCollisionPair ();
+            ignoreCollisionPair.colliderA = colliderA;
+            ignoreCollisionPair.colliderB = colliderB;
+
+            UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, true);
+
+            this.ignoreCollisions.Add (ignoreCollisionPair);
+        }
+
+        private void UpdateIgnoreCollisionTillClearPairs ()
+        {
+            for (int index = this.ignoreCollisions.Count - 1; index >= 0; index -= 1)
+            {
+                Collider colliderA = ignoreCollisions[index].colliderA;
+                Collider colliderB = ignoreCollisions[index].colliderB;
+
+                if (UnityEngine.Physics.ComputePenetration (colliderA, colliderA.transform.position, colliderA.transform.rotation, colliderB, colliderB.transform.position, colliderB.transform.rotation, out Vector3 direction, out float distance) == false)
+                {
+                    UnityEngine.Physics.IgnoreCollision (colliderA, colliderB, false);
+
+                    this.ignoreCollisions.RemoveAt (index);
+                }
+            }
         }
 
         public void StandUp ()
@@ -123,46 +153,38 @@ namespace BrokenBattleBots
             this.Standing = true;
         }
 
-        public void DetachUnweldedParts (BattleBotPart ignore = null)
+        public void DetachUnweldedParts (BattleBotPart ignore = null, float weldDetachThreshold = 9f)
         {
-            if (this.socketArmLeft.battleBotPart != null && this.socketArmLeft.battleBotPart.Welded < 9f)
+            if (this.socketArmLeft.battleBotPart != null && this.socketArmLeft.battleBotPart.Welded < weldDetachThreshold)
             {
-                if (ignore != null && this.socketArmLeft.battleBotPart == ignore)
+                if (ignore == null || this.socketArmLeft.battleBotPart != ignore)
                 {
-                    return;
+                    this.DetachPart (this.socketArmLeft.battleBotPart);
                 }
-
-                this.DetachPart (this.socketArmLeft.battleBotPart);
             }
 
-            if (this.socketArmRight.battleBotPart != null && this.socketArmRight.battleBotPart.Welded < 9f)
+            if (this.socketArmRight.battleBotPart != null && this.socketArmRight.battleBotPart.Welded < weldDetachThreshold)
             {
-                if (ignore != null && this.socketArmRight.battleBotPart == ignore)
+                if (ignore == null || this.socketArmRight.battleBotPart != ignore)
                 {
-                    return;
+                    this.DetachPart (this.socketArmRight.battleBotPart);
                 }
-
-                this.DetachPart (this.socketArmRight.battleBotPart);
             }
 
-            if (this.socketHead.battleBotPart != null && this.socketHead.battleBotPart.Welded < 9f)
+            if (this.socketHead.battleBotPart != null && this.socketHead.battleBotPart.Welded < weldDetachThreshold)
             {
-                if (ignore != null && this.socketHead.battleBotPart == ignore)
+                if (ignore == null || this.socketHead.battleBotPart != ignore)
                 {
-                    return;
+                    this.DetachPart (this.socketHead.battleBotPart);
                 }
-
-                this.DetachPart (this.socketHead.battleBotPart);
             }
 
-            if (this.socketLegs.battleBotPart != null && this.socketLegs.battleBotPart.Welded < 9f)
+            if (this.socketLegs.battleBotPart != null && this.socketLegs.battleBotPart.Welded < weldDetachThreshold)
             {
-                if (ignore != null && this.socketLegs.battleBotPart == ignore)
+                if (ignore == null || this.socketLegs.battleBotPart != ignore)
                 {
-                    return;
+                    this.DetachPart (this.socketLegs.battleBotPart);
                 }
-
-                this.DetachPart (this.socketLegs.battleBotPart);
             }
         }
 
@@ -190,6 +212,8 @@ namespace BrokenBattleBots
 
         private void Update ()
         {
+            this.UpdateIgnoreCollisionTillClearPairs ();
+
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.Space))
             {
                 if (this.Standing == true)
@@ -282,7 +306,7 @@ namespace BrokenBattleBots
 
         private void DetachPart (BattleBotPart battleBotPart)
         {
-            this.StartCoroutine (this.IgnoreCollisionsTillNotOverlapping (battleBotPart.Socket.GetComponent <Collider> (), battleBotPart.Collider));
+            this.IgnoreCollisionsTillNotOverlapping (battleBotPart.Socket.Collider, battleBotPart.Collider);
 
             battleBotPart.Socket.DetachPart (UnityEngine.Random.onUnitSphere * 10f);
         }
