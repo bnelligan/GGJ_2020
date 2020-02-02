@@ -13,11 +13,15 @@ namespace BrokenBattleBots
 {
     public class AuthorEnemy : MonoBehaviour, IConvertGameObjectToEntity
     {
-        public float MoveSpeed;
-        public int Health;
+        public float MoveSpeed = 5;
+        public int Health = 100;
         public int RoamRadius = 25;
         public int MaxChaseDist = 20;
         public int AggroDist = 10;
+        public float AttackDelay = 2;
+        public int AttackDamage = 15;
+        public int AttackRange = 5;
+
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             EntityArchetype enemyArchetype = dstManager.CreateArchetype(new ComponentType[]
@@ -27,9 +31,10 @@ namespace BrokenBattleBots
                 typeof(EnemyAI),
                 typeof(MoveDestination),
                 typeof(RoamRadius),
-                typeof(ChaseTarget),
+                typeof(AggroInfo),
                 typeof(Rotation),
-                typeof(AimInput)
+                typeof(AimInput),
+                typeof(Countdown)
             });
 
 
@@ -57,28 +62,24 @@ namespace BrokenBattleBots
             {
                 Value = RoamRadius
             });
-            dstManager.AddComponentData(entity, new ChaseTarget()
+            dstManager.AddComponentData(entity, new AggroInfo()
             {
                 AggroDistance = AggroDist,
                 MaxDistance = MaxChaseDist,
-                Target = Entity.Null
+                Target = Entity.Null,
+                AttackDamage = AttackDamage,
+                AttackFrequency = AttackDelay,
+                AttackRange = AttackRange
             });
             dstManager.AddComponentData(entity, new AimInput()
             {
                 AimPoint = float3.zero
             });
+            dstManager.AddComponentData(entity, new Countdown()
+            {
+                TimeLeft = AttackDelay
+            });
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        
     }
 }

@@ -13,7 +13,8 @@ public class AuthorGenerator : MonoBehaviour, IConvertGameObjectToEntity
     {
         EntityArchetype generatorArchetype = dstManager.CreateArchetype(new ComponentType[]
         {
-            typeof(Health)
+            typeof(Health),
+            typeof(Tag_Generator)
         });
         
         dstManager.AddComponentData(entity, new Health(){
