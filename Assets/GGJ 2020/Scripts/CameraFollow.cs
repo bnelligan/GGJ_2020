@@ -8,6 +8,7 @@ namespace BrokenBattleBots
     [RequireComponent (typeof (Camera))]
     public class CameraFollow : MonoBehaviour
     {
+        public static CameraFollow Instance;
         public Vector3 TargetPosition;
         public bool IsRobotStanding;
         public Camera Camera;
@@ -26,6 +27,11 @@ namespace BrokenBattleBots
         }
 
         #endif
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start ()
         {
