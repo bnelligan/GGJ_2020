@@ -458,9 +458,9 @@ GameObject:
   - component: {fileID: 106821374699548116}
   - component: {fileID: 8944201095880069447}
   - component: {fileID: 8944201095880069440}
-  - component: {fileID: 155842208639510035}
   - component: {fileID: 6849280399200649919}
   - component: {fileID: 729893942}
+  - component: {fileID: 2859402885248159996}
   m_Layer: 8
   m_Name: Robot Main Torso
   m_TagString: Untagged
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Socket: {fileID: 0}
   Rigidbody: {fileID: 8944201095880069447}
-  Collider: {fileID: 155842208639510035}
+  Collider: {fileID: 2859402885248159996}
   PartType: 5
   AudioSource: {fileID: 8944201095880069440}
   weldSpeedMultiplier: 1
@@ -666,20 +666,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!64 &155842208639510035
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944201095880069441}
-  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: e437253fca482a546aa45710d694c3c8, type: 3}
 --- !u!114 &6849280399200649919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,3 +776,16 @@ MonoBehaviour:
   RotationFriction: 0
   RotationSmoothness: 1
   RotationSpeed: 2
+--- !u!65 &2859402885248159996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944201095880069441}
+  m_Material: {fileID: 13400000, guid: c0127d4443100a7489b252894c8f785c, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0678034, y: 4.372654, z: 1.9085529}
+  m_Center: {x: 0.07310963, y: -0.29594994, z: -0.09709418}
