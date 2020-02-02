@@ -16,6 +16,8 @@ namespace BrokenBattleBots
         public float weldSpeedMultiplier = 1f;
         public Vector3 attachPosition;
         public Vector3 attachRotationEulerAngles;
+        [Tooltip ("Applies to legs only")]
+        public float standHeightOffset = 0f;
 
         public enum BattleBotPartType
         {

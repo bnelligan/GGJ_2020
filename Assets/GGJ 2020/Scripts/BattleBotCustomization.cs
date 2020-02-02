@@ -62,6 +62,20 @@ namespace BrokenBattleBots
 
                 return;
             }
+
+            // The bot has legs, disable physics and go into the upright position
+
+            this.partTorso.Rigidbody.isKinematic = true;
+
+            this.partTorso.Rigidbody.useGravity = false;
+
+            this.partTorso.transform.rotation = Quaternion.identity;
+
+            Vector3 position = this.partTorso.transform.position;
+
+            position.y = this.socketLegs.battleBotPart.standHeightOffset;
+
+            this.partTorso.transform.position = position;
         }
 
         public void FallOver ()
