@@ -40,10 +40,6 @@ namespace BrokenBattleBots
             }
 
             this.CameraFollow = this.Camera.GetComponent <CameraFollow> ();
-
-            // Update camera follow targets to torso
-
-            this.CameraFollow.FollowTarget = this.partTorso.transform;
         }
 
         private void Start ()
@@ -215,6 +211,13 @@ namespace BrokenBattleBots
 
         private void Update ()
         {
+            if (this.Standing == true)
+            {
+                // Update camera follow targets to torso
+
+                this.CameraFollow.TargetPosition = this.partTorso.transform.position;
+            }
+
             if (UnityEngine.Input.GetKeyDown (UnityEngine.KeyCode.R))
             {
                 this.SpawnRandomParts ();

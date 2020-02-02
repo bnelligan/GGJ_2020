@@ -8,9 +8,9 @@ namespace BrokenBattleBots
     [RequireComponent (typeof (Camera))]
     public class CameraFollow : MonoBehaviour
     {
-        public Camera Camera;
-        public Transform FollowTarget;
+        public Vector3 TargetPosition;
         public bool IsRobotStanding;
+        public Camera Camera;
 
         public bool useECS;
 
@@ -36,8 +36,6 @@ namespace BrokenBattleBots
         {
             if (this.useECS == false)
             {
-                Vector3 cameraPosition = this.transform.position;
-
                 float cameraHeight = 19.43f;
 
                 float cameraFieldOfView = 32f;
@@ -49,10 +47,7 @@ namespace BrokenBattleBots
                     cameraFieldOfView = 64f;
                 }
 
-                if (this.FollowTarget != null)
-                {
-                    cameraPosition = this.FollowTarget.position + new Vector3 (-5.67f, cameraHeight, -10.83f);
-                }
+                Vector3 cameraPosition = this.TargetPosition + new Vector3 (-5.67f, cameraHeight, -10.83f);
 
                 this.transform.position = Vector3.Lerp (this.transform.position, cameraPosition, Time.deltaTime * 3f);
 
