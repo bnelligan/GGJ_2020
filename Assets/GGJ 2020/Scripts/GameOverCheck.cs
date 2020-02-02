@@ -76,11 +76,6 @@ public class GameOverCheck : MonoBehaviour
         Debug.Log("health " + playerHealth );
         Debug.Log(gen3Health);
 
-        if (playerHealth <=0 && !gen1Dead)
-        {
-            end.SetActive(true);
-            Debug.Log("Game Over");
-            gen1Dead = true;
-        }
+        
     }
 }
